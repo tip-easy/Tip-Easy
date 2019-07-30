@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 // Components
 import { Navigation } from './Components/Nav/Nav'
 
-import { LandingPage } from './Components/Pages/LandingPage';
 import { Login } from './Components/Pages/Login';
 import { Register } from './Components/Pages/Register';
 import { SelectAmount } from './Components/Pages/SelectAmount';
@@ -21,17 +20,14 @@ const App = () => {
       <Navigation />
 
       <main>
-        {/* Landing Page */}
-        <Route path="/" exact render={props => (<LandingPage />)} />
+        {/* Select Amount */}
+        <Route path="/" exact render={props => (<SelectAmount />)} />
 
         {/* Login */}
         <Route path="/login" render={props => (<Login />)} />
 
         {/* Register */}
         <Route path="/register" render={props => (<Register />)} />
-
-        {/* Select Amount */}
-        <Route path="/tip" exact render={props => (<SelectAmount />)} />
 
         {/* Payment Method */}
         <Route path="/payment-methods" render={props => (<PaymentMethod />)} />
@@ -43,7 +39,7 @@ const App = () => {
         <Route path="/tip/success" render={props => (<PaymentSuccess />)} />
 
         {/* Enter Code */}
-        <Route path="/tip/find" render={props => (<EnterCode />)} />
+        <Route path="/tip" render={props => (<EnterCode />)} />
 
       </main>
 
