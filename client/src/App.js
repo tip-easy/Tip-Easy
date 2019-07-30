@@ -1,10 +1,14 @@
 import React from 'react'
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 
+// Components
+import { Navigation } from './Components/Nav/Nav'
+import { Footer } from './Components/Footer/Footer'; 
+
 const App = () => {
   return (
     <Router>
-      <nav>I nav</nav>
+      <Navigation />
 
       <main>
         <Route path="/" exact component={props => (
@@ -14,9 +18,9 @@ const App = () => {
         )} />
       </main>
 
-      <footer>
+      <Footer>
         This is the footer, at the foot of the page.
-      </footer>
+      </Footer>
     </Router>
   )
 }
