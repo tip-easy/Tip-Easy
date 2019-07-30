@@ -1,10 +1,23 @@
 import React from 'react'
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 
-function App () {
+const App = () => {
   return (
-    <div className="App">
-      Beep Boop. I'm alive.
-    </div>
+    <Router>
+      <nav>I nav</nav>
+
+      <main>
+        <Route path="/" exact component={props => (
+          <div className="App">
+            Beep Boop. I'm alive.
+          </div>
+        )} />
+      </main>
+
+      <footer>
+        This is the footer, at the foot of the page.
+      </footer>
+    </Router>
   )
 }
 
