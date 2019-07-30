@@ -21,6 +21,7 @@
         "react"
     ],
     "rules": {
-        "semi": 2
+        "no-unused-vars": 0,
+        "semi": 0,
     }
 }
