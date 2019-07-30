@@ -22,28 +22,28 @@ const App = () => {
 
       <main>
         {/* Landing Page */}
-        <Route path="/" exact component={props => (<LandingPage />)} />
+        <Route path="/" exact render={props => (<LandingPage />)} />
 
         {/* Login */}
-        <Route path="/login" component={props => (<Login />)} />
+        <Route path="/login" render={props => (<Login />)} />
 
         {/* Register */}
-        <Route path="/register" component={props => (<Register />)} />
+        <Route path="/register" render={props => (<Register />)} />
 
         {/* Select Amount */}
-        <Route path="/tip" exact component={props => (<SelectAmount />)} />
+        <Route path="/tip" exact render={props => (<SelectAmount />)} />
 
         {/* Payment Method */}
-        <Route path="/payment-methods" component={props => (<PaymentMethod />)} />
+        <Route path="/payment-methods" render={props => (<PaymentMethod />)} />
 
         {/* Payment Details */}
-        <Route path="/details" component={props => (<PaymentDetails />)} />
+        <Route path="/details" render={props => (<PaymentDetails />)} />
 
         {/* Payment Success */}
-        <Route path="/tip/success" component={props => (<PaymentSuccess />)} />
+        <Route path="/tip/success" render={props => (<PaymentSuccess />)} />
 
         {/* Enter Code */}
-        <Route path="/tip/find" component={props => (<EnterCode />)} />
+        <Route path="/tip/find" render={props => (<EnterCode />)} />
 
       </main>
 
