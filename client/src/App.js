@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/welcome" render={props => (<Auth {...props} />)} />
 
         {/* Payment Method */}
-        <Route path="/payment-methods" render={props => (<PaymentMethod {...props} />)} />
+        <Route path="/payment-method" render={props => (<PaymentMethod {...props} />)} />
 
         {/* Payment Details */}
         <Route path="/details" render={props => (<PaymentDetails {...props} />)} />
