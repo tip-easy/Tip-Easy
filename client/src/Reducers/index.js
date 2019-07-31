@@ -1,5 +1,5 @@
-// import {} from './...';
+import { LoginReducer } from './LoginReducer';
 
 export {
-
+  LoginReducer
 };

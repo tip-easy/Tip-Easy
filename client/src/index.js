@@ -11,10 +11,10 @@ import App from './App';
 import thunk from 'redux-thunk';
 
 // Reducers
-import {} from './Reducers';
+import { LoginReducer } from './Reducers';
 
 const rootReducer = combineReducers({
-
+  LoginReducer
 });
 
 const store = createStore(
