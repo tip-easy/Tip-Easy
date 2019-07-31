@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { Navigation } from './Components/Nav/Nav'
 
 import { Auth } from './Components/Pages/Auth/Auth';
-import { SelectAmount } from './Components/Pages/SelectAmount';
-import { PaymentMethod } from './Components/Pages/PaymentMethod';
-import { PaymentDetails } from './Components/Pages/PaymentDetails';
-import { PaymentSuccess } from './Components/Pages/PaymentSuccess';
-import { EnterCode } from './Components/Pages/EnterCode';
+import { SelectAmount } from './Components/Pages/PaymentFlow/SelectAmount';
+import { PaymentMethod } from './Components/Pages/PaymentFlow/PaymentMethod';
+import { PaymentDetails } from './Components/Pages/PaymentFlow/PaymentDetails';
+import { PaymentSuccess } from './Components/Pages/PaymentFlow/PaymentSuccess';
+import { EnterCode } from './Components/Pages/PaymentFlow/EnterCode';
 import { UserProfile } from './Components/Pages/UserProfile';
 
 import { Footer } from './Components/Footer/Footer'; 
@@ -17,9 +17,11 @@ import { Footer } from './Components/Footer/Footer';
 const App = () => {
   return (
     <Router>
-      <Navigation />
+      {/* Commented out for now until we decide on if we need a header */}
+      {/* <Navigation /> */}
 
       <main>
+
         {/* Select Amount */}
         <Route path="/" exact render={props => (<SelectAmount {...props} />)} />
 
@@ -43,7 +45,8 @@ const App = () => {
 
       </main>
 
-      <Footer />
+      {/* Commented out for now until we decide on if we need a footer */}
+      {/* <Footer /> */}
     </Router>
   )
 }
