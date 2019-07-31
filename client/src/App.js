@@ -4,13 +4,13 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 // Components
 import { Navigation } from './Components/Nav/Nav'
 
-import { Login } from './Components/Pages/Login';
-import { Register } from './Components/Pages/Register';
+import { Auth } from './Components/Pages/Auth/Auth';
 import { SelectAmount } from './Components/Pages/SelectAmount';
 import { PaymentMethod } from './Components/Pages/PaymentMethod';
 import { PaymentDetails } from './Components/Pages/PaymentDetails';
 import { PaymentSuccess } from './Components/Pages/PaymentSuccess';
 import { EnterCode } from './Components/Pages/EnterCode';
+import { UserProfile } from './Components/Pages/UserProfile';
 
 import { Footer } from './Components/Footer/Footer'; 
 
@@ -21,25 +21,25 @@ const App = () => {
 
       <main>
         {/* Select Amount */}
-        <Route path="/" exact render={props => (<SelectAmount />)} />
+        <Route path="/" exact render={props => (<SelectAmount {...props} />)} />
 
-        {/* Login */}
-        <Route path="/login" render={props => (<Login />)} />
-
-        {/* Register */}
-        <Route path="/register" render={props => (<Register />)} />
+        {/* Login & Registration */}
+        <Route path="/welcome" render={props => (<Auth {...props} />)} />
 
         {/* Payment Method */}
-        <Route path="/payment-methods" render={props => (<PaymentMethod />)} />
+        <Route path="/payment-methods" render={props => (<PaymentMethod {...props} />)} />
 
         {/* Payment Details */}
-        <Route path="/details" render={props => (<PaymentDetails />)} />
+        <Route path="/details" render={props => (<PaymentDetails {...props} />)} />
 
         {/* Payment Success */}
-        <Route path="/tip/success" render={props => (<PaymentSuccess />)} />
+        <Route path="/tip/success" render={props => (<PaymentSuccess {...props} />)} />
 
         {/* Enter Code */}
-        <Route path="/tip" render={props => (<EnterCode />)} />
+        <Route path="/tip" render={props => (<EnterCode {...props} />)} />
+
+        {/* Enter Code */}
+        <Route path="/user" render={props => (<UserProfile {...props} />)} />
 
       </main>
 
