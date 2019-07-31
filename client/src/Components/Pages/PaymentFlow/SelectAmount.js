@@ -13,7 +13,10 @@ export const SelectAmount = (props) => {
 
   return (
     <>
-      <div className="upperRow">
+      <div 
+        className="upperRow"
+        onClick={() => props.history.push('/welcome')}
+      >
         Log In or Register
       </div>
 

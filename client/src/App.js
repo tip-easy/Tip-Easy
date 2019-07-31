@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 // Components
-import { Navigation } from './Components/Nav/Nav'
+// import { Navigation } from './Components/Nav/Nav'
 
 import { Auth } from './Components/Pages/Auth/Auth';
 import { SelectAmount } from './Components/Pages/PaymentFlow/SelectAmount';
@@ -12,7 +12,7 @@ import { PaymentSuccess } from './Components/Pages/PaymentFlow/PaymentSuccess';
 import { EnterCode } from './Components/Pages/PaymentFlow/EnterCode';
 import { UserProfile } from './Components/Pages/UserProfile';
 
-import { Footer } from './Components/Footer/Footer'; 
+// import { Footer } from './Components/Footer/Footer'; 
 
 const App = () => {
   return (
