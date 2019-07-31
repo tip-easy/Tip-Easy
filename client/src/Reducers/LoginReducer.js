@@ -7,41 +7,41 @@ const initialState = {
 
 export const LoginReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.LOGIN_START:
+    case types.LOGGING_IN_START:
       return {
         ...state,
         loggingIn: true,
         loginErrorMessage: "",
       }
     
-    case types.LOGIN_SUCCESS:
+    case types.LOGGING_IN_SUCCESS:
       return {
         ...state,
         loggingIn: false,
       }
 
-    case types.LOGIN_FAILURE:
+    case types.LOGGING_IN_FAILURE:
         return {
           ...state,
           loggingIn: false,
           loginErrorMessage: "Something's gone wrong in trying to log you in. Please try again."
         }
 
-    case types.LOGIN_FAILURE_INVALID_EMAIL:
+    case types.LOGGING_IN_FAILURE_INVALID_EMAIL:
         return {
           ...state,
           loggingIn: false,
           loginErrorMessage: "That email address is unknown to us. Are you sure it's correct?"
         }
 
-    case types.LOGIN_FAILURE_INVALID_PASSWORD:
+    case types.LOGGING_IN_FAILURE_INVALID_PASSWORD:
         return {
           ...state,
           loggingIn: false,
           loginErrorMessage: "That's not the right password. Are you sure you didn't misspell it?"
         }
 
-    case types.LOGIN_FAILURE_INVALID_PASSWORD_LENGTH:
+    case types.LOGGING_IN_FAILURE_INVALID_PASSWORD_LENGTH:
         return {
           ...state,
           loggingIn: false,
