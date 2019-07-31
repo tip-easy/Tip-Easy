@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+
 export const SelectAmount = (props) => {
   const [amount, setAmount] = useState(5)
 
@@ -53,4 +56,16 @@ export const SelectAmount = (props) => {
   )
 }
 
-export default SelectAmount;
+const mapStateToProps = (state) => {
+  return {
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectAmount);

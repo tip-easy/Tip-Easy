@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+
 export const Register = ({ pushToSelectAmount, pushToUserProfile, }) => {
   const submitHandler = (event) => {
     event.preventDefault()
@@ -29,4 +32,16 @@ export const Register = ({ pushToSelectAmount, pushToUserProfile, }) => {
   )
 }
 
-export default Register;
+const mapStateToProps = (state) => {
+  return {
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
