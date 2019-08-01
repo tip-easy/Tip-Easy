@@ -7,12 +7,12 @@ import "./App.scss";
 // import { Navigation } from './Components/Nav/Nav'
 
 import { Auth } from './Components/Pages/Auth/Auth';
-import { SelectAmount } from './Components/Pages/PaymentFlow/SelectAmount';
-import { PaymentMethod } from './Components/Pages/PaymentFlow/PaymentMethod';
-import { PaymentDetails } from './Components/Pages/PaymentFlow/PaymentDetails';
-import { PaymentSuccess } from './Components/Pages/PaymentFlow/PaymentSuccess';
-import { EnterCode } from './Components/Pages/PaymentFlow/EnterCode';
-import { UserProfile } from './Components/Pages/UserProfile';
+import { SelectAmount } from './Components/Pages/PaymentFlow/SelectAmount/SelectAmount';
+import { PaymentMethod } from './Components/Pages/PaymentFlow/PaymentMethod/PaymentMethod';
+import { PaymentDetails } from './Components/Pages/PaymentFlow/PaymentDetails/PaymentDetails';
+import { PaymentSuccess } from './Components/Pages/PaymentFlow/PaymentSuccess/PaymentSuccess';
+import { EnterCode } from './Components/Pages/PaymentFlow/EnterCode/EnterCode';
+import { UserProfile } from './Components/Pages/UserProfile/UserProfile';
 
 // import { Footer } from './Components/Footer/Footer'; 
 
