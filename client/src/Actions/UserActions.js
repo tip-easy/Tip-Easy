@@ -2,7 +2,7 @@ import axios from 'axios';
 import URL from './index';
 import * as types from './actionTypes';
 
-export const GetUser = (user_info, token ) => dispatch => {
+export const GetUser = ( token ) => dispatch => {
   // Implement further data-checking.
   
   dispatch({
@@ -13,7 +13,7 @@ export const GetUser = (user_info, token ) => dispatch => {
       'Content-Type': 'application/json',
       'Authorization': `${token}`,
     }
-  }, user_info)
+  })
     .then(res => {
       dispatch({ 
         type: types.GETTING_USER_SUCCESS,

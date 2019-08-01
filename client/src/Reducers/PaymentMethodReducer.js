@@ -6,19 +6,19 @@ const initialState = {
 
 export const PaymentMethodReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.FETCHING_PAYMENT_METHOD_START:
+    case types.FETCHING_PAYMENT_METHODS_START:
       return {
         ...state,
 
       }
     
-    case types.FETCHING_PAYMENT_METHOD_SUCCESS:
+    case types.FETCHING_PAYMENT_METHODS_SUCCESS:
       return {
         ...state,
 
       }
 
-    case types.FETCHING_PAYMENT_METHOD_FAILURE:
+    case types.FETCHING_PAYMENT_METHODS_FAILURE:
       return {
         ...state,
 
