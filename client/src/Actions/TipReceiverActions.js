@@ -2,7 +2,7 @@ import axios from 'axios';
 import URL from './index';
 import * as types from './actionTypes';
 
-export const SearchForTipReceiver = (code) => dispatch => {
+export const SearchForTipReceiver = (code, token) => dispatch => {
   dispatch({
     type: types.SEARCHING_TIP_RECEIVER_START
   })
