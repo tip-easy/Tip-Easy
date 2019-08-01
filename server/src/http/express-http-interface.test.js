@@ -5,10 +5,10 @@ describe('Express HTTP Interface', () => {
     expect(typeof expressHTTPInterface()).toBe('function');
   });
 
-  it('should not break when not passed a Promise', () => {
+  it('should not break when not passed a function', () => {
     expect(typeof expressHTTPInterface(null)).toBe('function');
     expect(typeof expressHTTPInterface({})).toBe('function');
-    expect(typeof expressHTTPInterface(Function.prototype)).toBe('function');
+    expect(typeof expressHTTPInterface([])).toBe('function');
   });
 
   it('should return null when the returned function is invoked', () => {

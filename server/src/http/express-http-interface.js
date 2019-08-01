@@ -19,11 +19,11 @@ function initExpressHTTPInterface(handleRequest, express) {
         handleRequest(request);
         
         // Temporarily end requests to avoid request hanging
-        res.status(404).send('Nothing to see here...');
+        res.send('Nothing to see here...');
       } else {
         // throw new Error('A handler function is required to handle requests');
         // Temporarily end requests to avoid request hanging
-        res.status(404).send('Nothing to see here...');
+        res.send('Nothing to see here...');
       }
     } else {
       return null;
