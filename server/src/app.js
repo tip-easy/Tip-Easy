@@ -11,11 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/', (req, res) => {
-  res.status(200).json({ "message": "Server's alive!"});
+  res.status(200).send({ message: 'Server\'s Alive' });
 })
 
-const PORT = process.env.PORT || 7000;
-
-app.listen(PORT, () => 
-  console.log(`\n** Running on port ${PORT} **\n`)
-);
+module.exports = app;
