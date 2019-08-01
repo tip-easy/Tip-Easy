@@ -91,3 +91,6 @@ yarn.lock
 
 # NPM Lockfile
 package-lock.json
+
+# VSCode Config
+.vscode
