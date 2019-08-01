@@ -6,12 +6,16 @@ const helmet = require('helmet');
 
 const app = express();
 
+const initExpressHTTPInterface = require('./http/express-http-interface');
+
 app.use(helmet());
 app.use(express.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.status(200).send({ message: 'Server\'s Alive' });
-})
+const router = () => {};
+
+const expressHTTPInterface = initExpressHTTPInterface(router);
+
+app.use(expressHTTPInterface);
 
 module.exports = app;

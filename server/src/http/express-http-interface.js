@@ -23,7 +23,7 @@ function initExpressHTTPInterface(handleRequest, express) {
       } else {
         // throw new Error('A handler function is required to handle requests');
         // Temporarily end requests to avoid request hanging
-        res.end();
+        res.status(404).send('Nothing to see here...');
       }
     } else {
       return null;
