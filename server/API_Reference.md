@@ -1,12 +1,12 @@
 # TipEasy API Reference
 
-### User Endpoints
+## User Endpoints
 
-#### `/api/me` - [GET]
+### `/api/me` - [GET]
 
 Short explanation of this endpoint goes here
 
-##### Resource Information
+#### Resource Information
 
 <table>
   <tr>
@@ -19,11 +19,11 @@ Short explanation of this endpoint goes here
   </tr>
 </table>
 
-##### Parameters
+#### Parameters
 
 This endpoint doesn't have any parameters.
 
-##### Response
+#### Response
 
 <table>
   <tr>
