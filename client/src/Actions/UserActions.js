@@ -2,7 +2,7 @@ import axios from 'axios';
 import URL from './index';
 import * as types from './actionTypes';
 
-export const getUser = (user_info, token ) => dispatch => {
+export const GetUser = (user_info, token ) => dispatch => {
   // Implement further data-checking.
   
   dispatch({
@@ -31,7 +31,7 @@ export const getUser = (user_info, token ) => dispatch => {
     })
 }
 
-export const updateUserInfo = ( changes, token ) => dispatch => {
+export const UpdateUserInfo = ( changes, token ) => dispatch => {
   // Check incoming data in `changes` for one of the provided parameters. If not, reject it.
 
   dispatch({ 
@@ -61,7 +61,7 @@ export const updateUserInfo = ( changes, token ) => dispatch => {
     })
 }
 
-export const resetPassword = ( changes, token ) => dispatch => {
+export const ResetPassword = ( changes, token ) => dispatch => {
   // Check incoming data in `changes` for one of the provided parameters. If not, reject it.
 
   requestObject = {
@@ -94,7 +94,7 @@ export const resetPassword = ( changes, token ) => dispatch => {
     })
 }
 
-export const deleteUser = ( token ) => dispatch => {
+export const DeleteUser = ( token ) => dispatch => {
   dispatch({
     type: types.DELETING_USER_START
   })
@@ -124,7 +124,7 @@ export const deleteUser = ( token ) => dispatch => {
 
 // On logout, which can only be done through the UserProfile, clear the entire store by calling every individual CLEAR action
 // >>> Find a way to clear the entire store in a single go.
-export const logout = credentials => dispatch => {
+export const Logout = credentials => dispatch => {
   localStorage.clear('token')
   dispatch({ 
     type: types.CLEAR_USER_FROM_STORE 

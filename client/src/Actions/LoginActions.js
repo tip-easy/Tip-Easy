@@ -2,9 +2,9 @@ import axios from 'axios';
 import URL from './index';
 import * as types from './actionTypes';
 
-import { getUser } from './UserActions'
+import { GetUser } from './UserActions'
 
-export const login = user_info => dispatch => {
+export const Login = user_info => dispatch => {
   // Implement further data-checking.
   
   let credentials = {
@@ -26,7 +26,7 @@ export const login = user_info => dispatch => {
         }
       })
       // Found in UserActions
-      getUser({
+      GetUser({
         credentials,
         token
       })
