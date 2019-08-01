@@ -2,10 +2,98 @@ import axios from 'axios';
 import URL from './index';
 import * as types from './actionTypes';
 
+export const getUser = (user_info, token ) => dispatch => {
+  // Implement further data-checking.
+  
+  dispatch({
+    type: types.GETTING_USER_START
+  })
+  return axios.get(`${URL}/api/me`, { 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`,
+    }
+  }, user_info)
+    .then(res => {
+      dispatch({ 
+        type: types.GETTING_USER_SUCCESS,
+        payload: {
+          user: res.data.user,
+        }
+      })
+    })
+
+    .catch(error => {
+      dispatch({ 
+        type: types.GETTING_USER_FAILURE, 
+        payload: {error} 
+      });
+    })
+}
+
+export const updateUserInfo = ( changes, token ) => dispatch => {
+  // Check incoming data in `changes` for one of the provided parameters. If not, reject it.
+
+  dispatch({ 
+    type: types.UPDATING_USER_INFO_START 
+  })
+
+  return axios.patch(`${URL}/api/me`, { 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`,
+      }
+    }, changes)
+    .then(res => {
+      dispatch({ 
+        type: types.UPDATING_USER_INFO_SUCCESS,
+        payload: {
+          user: res.data.user
+        }
+      })
+    })
+
+    .catch(error => {
+      dispatch({ 
+        type: types.UPDATING_USER_INFO_FAILURE,
+        payload: {error} 
+      })
+    })
+}
+
+export const deleteUser = ( token ) => dispatch => {
+  dispatch({
+    type: types.DELETING_USER_START
+  })
+
+  return axios.delete(`${URL}/api/me`, { 
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `${token}`,
+      }
+    })
+    .then(res => {
+      dispatch({
+        type: types.DELETING_USER_SUCCESS
+      })
+      dispatch({
+        type: types.CLEAR_USER_FROM_STORE
+      })
+    })
+    
+    .catch(error => {
+      dispatch({ 
+        type: types.DELETING_USER_FAILURE,
+        payload: {error} 
+      })
+    })
+}
 
 // On logout, which can only be done through the UserProfile, clear the entire store by calling every individual CLEAR action
 // >>> Find a way to clear the entire store in a single go.
 export const logout = credentials => dispatch => {
   localStorage.clear('token')
-  dispatch({ type: types.CLEAR_USER_FROM_STORE })
+  dispatch({ 
+    type: types.CLEAR_USER_FROM_STORE 
+  })
 };

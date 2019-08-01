@@ -2,21 +2,33 @@ import axios from 'axios';
 import URL from './index';
 import * as types from './actionTypes';
 
+import { getUser } from './UserActions'
 
 export const login = user_info => dispatch => {
   // Implement further data-checking.
   
-  dispatch({type: types.LOGGING_IN_START})
-  return axios.post(`${URL}/login`, {
-    email: user_info.email, password: user_info.password
+  let credentials = {
+    email: user_info.email,
+    password: user_info.password
+  }
+
+  dispatch({
+    type: types.LOGGING_IN_START
+  })
+  return axios.post(`${URL}/api/login`, {
+    credentials
   })
     .then(res => {
       dispatch({ 
         type: types.LOGGING_IN_SUCCESS,
         payload: {
-          user: res.data.user,
           token: res.data.token,
         }
+      })
+      // Found in UserActions
+      getUser({
+        credentials,
+        token
       })
     })
 
