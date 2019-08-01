@@ -1,3 +1,3 @@
-# tools/
+# src/
 
-This is where all third-party code and their interfaces will live. 
+This is where all application source code will live. 
