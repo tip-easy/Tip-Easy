@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
+
 export const PaymentMethod = (props) => {
   const clickHandler = () => {
     props.history.push('/details')
@@ -33,4 +36,16 @@ export const PaymentMethod = (props) => {
   )
 }
 
-export default PaymentMethod;
+const mapStateToProps = (state) => {
+  return {
+
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PaymentMethod);
