@@ -11,10 +11,28 @@ import App from './App';
 import thunk from 'redux-thunk';
 
 // Reducers
-import {} from './Reducers';
+import { BalanceReducer,
+  DepositReducer,
+  LoginReducer,
+  PaymentMethodReducer,
+  RegistrationReducer,
+  SelectTipReducer,
+  TipReceiverReducer,
+  TransactionReducer,
+  UserReducer,
+  WithdrawalReducer, } from './Reducers';
 
 const rootReducer = combineReducers({
-
+  BalanceReducer,
+  DepositReducer,
+  LoginReducer,
+  PaymentMethodReducer,
+  RegistrationReducer,
+  SelectTipReducer,
+  TipReceiverReducer,
+  TransactionReducer,
+  UserReducer,
+  WithdrawalReducer,
 });
 
 const store = createStore(
