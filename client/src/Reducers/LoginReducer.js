@@ -2,6 +2,7 @@ import * as types from './../Actions/actionTypes';
 
 const initialState = {
   loggingIn: false,
+  
   loginErrorMessage: "",
 }
 
@@ -11,6 +12,7 @@ export const LoginReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: true,
+
         loginErrorMessage: "",
       }
     
@@ -24,6 +26,7 @@ export const LoginReducer = (state = initialState, action) => {
         return {
           ...state,
           loggingIn: false,
+
           loginErrorMessage: "Something's gone wrong in trying to log you in. Please try again."
         }
 
@@ -31,6 +34,7 @@ export const LoginReducer = (state = initialState, action) => {
         return {
           ...state,
           loggingIn: false,
+
           loginErrorMessage: "That email address is unknown to us. Are you sure it's correct?"
         }
 
@@ -38,6 +42,7 @@ export const LoginReducer = (state = initialState, action) => {
         return {
           ...state,
           loggingIn: false,
+
           loginErrorMessage: "That's not the right password. Are you sure you didn't misspell it?"
         }
 
@@ -45,6 +50,7 @@ export const LoginReducer = (state = initialState, action) => {
         return {
           ...state,
           loggingIn: false,
+
           loginErrorMessage: "Hey! That password isn't long enough, it has to be at least 8 characters long!"
         }
 

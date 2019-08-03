@@ -3,7 +3,7 @@ import { DepositReducer } from './DepositReducer';
 import { LoginReducer } from './LoginReducer';
 import { PaymentMethodReducer } from './PaymentMethodReducer';
 import { RegistrationReducer } from './RegistrationReducer';
-import { SelectTipReducer } from './SelectTip';
+import { SelectTipReducer } from './TipReducer';
 import { TipReceiverReducer } from './TipReceiverReducer';
 import { TransactionReducer } from './TransactionReducer';
 import { UserReducer } from './UserReducer';

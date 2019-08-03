@@ -21,14 +21,11 @@ export const Login = user_info => dispatch => {
     .then(res => {
       dispatch({ 
         type: types.LOGGING_IN_SUCCESS,
-        payload: {
-          token: res.data.token,
-        }
       })
       // Found in UserActions
       GetUser({
         credentials,
-        token
+        token: res.data.token,
       })
     })
 

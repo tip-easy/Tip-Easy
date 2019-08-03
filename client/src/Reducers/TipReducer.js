@@ -1,7 +1,7 @@
 import * as types from '../Actions/actionTypes';
 
 const initialState = {
-  
+  tip: 0,
 }
 
 export const SelectTipReducer = (state = initialState, action) => {
@@ -9,13 +9,13 @@ export const SelectTipReducer = (state = initialState, action) => {
     case types.SET_TIP:
       return {
         ...state,
-
+        tip: action.payload.tip,
       }
     
     case types.CLEAR_TIP_FROM_STORE:
       return {
         ...state,
-
+        tip: initialState.tip
       }
 
     default: 

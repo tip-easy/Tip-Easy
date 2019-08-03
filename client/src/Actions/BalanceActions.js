@@ -27,7 +27,9 @@ export const GetBalance = ( token ) => dispatch => {
     .catch(error => {
       dispatch({ 
         type: types.GETTING_BALANCE_FAILURE, 
-        payload: {error} 
+        payload: {
+          error
+        } 
       });
     })
 }

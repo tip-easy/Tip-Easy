@@ -8,7 +8,6 @@ export const MakeDeposit = (deposit_details, token) => dispatch => {
     currency: deposit_details.currency,
     deposit_method: deposit_details.deposit_method,
     deposit_method_type: deposit_details.deposit_method_type,
-    // initiated_at: generateTimestamp()
   }
 
   dispatch({
@@ -41,7 +40,7 @@ export const SetDepositAmount = (amount) => dispatch => {
   return dispatch({
     type: types.SET_DEPOSIT_AMOUNT,
     payload: {
-      amount,
+      depositAmount: amount,
     }
   })
 }
