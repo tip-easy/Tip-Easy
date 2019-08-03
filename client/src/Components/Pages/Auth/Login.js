@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 // Actions
 import { login } from './../../../Actions/LoginActions'
 
-export const Login = (props) => {
+export const Login = ({ pushToSelectAmount, pushToUserProfile }) => {
  
   const submitHandler = (event) => {
     event.preventDefault();
