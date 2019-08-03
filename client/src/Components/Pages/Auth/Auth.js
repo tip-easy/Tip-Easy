@@ -1,13 +1,11 @@
 import React, { useState} from 'react';
 
 // Components
-import { Login } from './Login';
+import { LoginPage } from './Login';
 import { Register } from './Register';
 
 export const Auth = (props) => {
   const [page, setPage] = useState('login')
-  const [loginDisabled, setLoginDisabled] = useState(true)
-  const [registerDisabled, setRegisterDisabled] = useState(false)
 
   // These handler methods have to be placed on non-nested components to access props.
   // These get passed to <Login> and <Register>, to be called depending on user interaction and database response.
@@ -40,7 +38,7 @@ export const Auth = (props) => {
 
       <div className="inputContainer">
         {page === 'login' ? 
-          <Login 
+          <LoginPage 
             pushToSelectAmount={pushToSelectAmount}
             pushToUserProfile={pushToUserProfile}  
           />

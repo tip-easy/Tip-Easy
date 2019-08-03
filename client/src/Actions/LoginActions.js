@@ -1,5 +1,5 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
 
 import { GetUser } from './UserActions'
@@ -11,7 +11,7 @@ export const Login = user_info => dispatch => {
     email: user_info.email,
     password: user_info.password
   }
-
+  console.log(credentials)
   dispatch({
     type: types.LOGGING_IN_START
   })
