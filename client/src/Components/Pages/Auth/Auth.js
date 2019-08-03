@@ -22,10 +22,8 @@ export const Auth = (props) => {
         <button 
           onClick={() => {
             setPage('login'); 
-            setLoginDisabled(true);
-            setRegisterDisabled(false)
           }}
-          disabled={loginDisabled}
+          disabled={page === 'login' ? true : false}
         >
           Login
         </button>
@@ -33,10 +31,8 @@ export const Auth = (props) => {
         <button 
           onClick={() => {
             setPage('register');
-            setRegisterDisabled(true);
-            setLoginDisabled(false);
           }}
-          disabled={registerDisabled}  
+          disabled={page === 'register' ? true : false}  
         >
           Register
         </button>
