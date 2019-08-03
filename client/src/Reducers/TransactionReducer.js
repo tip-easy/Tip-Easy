@@ -2,9 +2,11 @@ import * as types from '../Actions/actionTypes';
 
 const initialState = {
   transaction: {},
+  transactionsArray: [],
+
   sendingTransaction: false,
   fetchingTransactionsArray: false,
-  transactionsArray: [],
+  
   sendTransactionMessage: "",
   fetchTransactionsArrayMessage: ""
 }
@@ -16,6 +18,7 @@ export const TransactionReducer = (state = initialState, action) => {
       return {
         ...state,
         sendingTransaction: true,
+
         sendTransactionMessage: initialState.sendTransactionMessage,
       }
     
@@ -23,6 +26,7 @@ export const TransactionReducer = (state = initialState, action) => {
       return {
         ...state,
         sendingTransaction: false,
+
         sendTransactionMessage: action.payload.successMessage,
       }
 
@@ -30,6 +34,7 @@ export const TransactionReducer = (state = initialState, action) => {
       return {
         ...state,
         sendingTransaction: false,
+
         sendTransactionMessage: action.payload.error,
       }
 
@@ -44,6 +49,7 @@ export const TransactionReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingTransactionsArray: true,
+
         fetchTransactionsArrayMessage: initialState.fetchTransactionsArrayMessage,
       }
 
@@ -51,6 +57,7 @@ export const TransactionReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingTransactionsArray: false,
+
         transactionsArray: action.payload.transactionsArray
       }
 
@@ -58,6 +65,7 @@ export const TransactionReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingTransactionsArray: false,
+
         fetchTransactionsArrayMessage: action.payload.error,
       }
 

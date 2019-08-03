@@ -24,8 +24,10 @@ const initialState = {
       imgAlt: "",
     }
   ],
-  selectedTipReceiverCode: "",
+  
   searchingTipReceivers: false,
+  
+  selectedTipReceiverCode: "",
   searchingTipReceiversMessage: "",
 }
 
@@ -35,20 +37,23 @@ export const TipReceiverReducer = (state = initialState, action) => {
       return {
         ...state,
         searchingTipReceivers: true,
+        
         searchingTipReceiversMessage: initialState.searchingTipReceiversMessage,
       }
     
     case types.SEARCHING_TIP_RECEIVER_SUCCESS:
       return {
         ...state,
+        receiverSearchResultsArray: action.payload.receiverSearchResultArray,
+
         searchingTipReceivers: false,
-        receiverSearchResultsArray: action.payload.receiverSearchResultArray
       }
 
     case types.SEARCHING_TIP_RECEIVER_FAILURE:
         return {
           ...state,
           searchingTipReceivers: false,
+
           searchingTipReceiversMessage: action.payload.error
         }
 

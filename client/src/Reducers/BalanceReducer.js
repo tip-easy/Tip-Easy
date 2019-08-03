@@ -2,7 +2,9 @@ import * as types from './../Actions/actionTypes';
 
 const initialState = {
   balance: 0,
+
   gettingBalance: false,
+  
   balanceMessage: "",
 }
 
@@ -12,6 +14,7 @@ export const BalanceReducer = (state = initialState, action) => {
       return {
         ...state,
         balanceMessage: initialState.balanceMessage,
+
         gettingBalance: true,
       }
     
@@ -19,6 +22,7 @@ export const BalanceReducer = (state = initialState, action) => {
       return {
         ...state,
         balance: action.payload.balance,
+
         gettingBalance: false,
       }
 
@@ -32,6 +36,7 @@ export const BalanceReducer = (state = initialState, action) => {
         return {
           ...state,
           balance: initialState.balance,
+
           balanceMessage: initialState.balanceMessage,
         }
 

@@ -2,6 +2,7 @@ import * as types from '../Actions/actionTypes';
 
 const initialState = {
   registering: false,
+  
   errorMessage: ''
 }
 
@@ -23,6 +24,7 @@ export const RegistrationReducer = (state = initialState, action) => {
       return {
         ...state,
         registering: false,
+
         errorMessage: "",
       }
 
@@ -30,6 +32,7 @@ export const RegistrationReducer = (state = initialState, action) => {
       return {
         ...state,
         registering: false,
+
         errorMessage: "",
       }
 
@@ -37,6 +40,7 @@ export const RegistrationReducer = (state = initialState, action) => {
       return {
         ...state,
         registering: false,
+
         errorMessage: "",
       }
 
@@ -44,6 +48,7 @@ export const RegistrationReducer = (state = initialState, action) => {
       return {
         ...state,
         registering: false,
+
         errorMessage: "",
       }
     
@@ -51,6 +56,7 @@ export const RegistrationReducer = (state = initialState, action) => {
       return {
         ...state,
         registering: false,
+
         errorMessage: "",
       }
 

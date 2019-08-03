@@ -2,7 +2,9 @@ import * as types from '../Actions/actionTypes';
 
 const initialState = {
   depositAmount: 0,
+
   depositing: false,
+  
   depositMessage: "",
 }
 
@@ -24,6 +26,7 @@ export const DepositReducer = (state = initialState, action) => {
         return {
           ...state,
           depositing: true,
+
           depositMessage: initialState.depositMessage,
         }
 
@@ -37,6 +40,7 @@ export const DepositReducer = (state = initialState, action) => {
         return {
           ...state,
           depositing: false,
+
           depositMessage: action.payload.error,
         }
 

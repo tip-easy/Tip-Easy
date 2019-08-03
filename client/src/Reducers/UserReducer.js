@@ -1,10 +1,6 @@
 import * as types from './../Actions/actionTypes';
 
 const initialState = {
-  gettingUser: false,
-  updatingUser: false,
-  resettingPassword: false,
-  deletingUser: false,
   token: "",
   user: {
     // Having a default / placeholder?
@@ -17,7 +13,13 @@ const initialState = {
     organisation: "Sith Order",
     default_curreny: "btc",
   },
-  errorMessage: "",
+
+  gettingUser: false,
+  updatingUser: false,
+  resettingPassword: false,
+  deletingUser: false,
+
+  gettingUserMessage: "",
   updateMessage: "",
   resettingPasswordMessage: "",
   deleteMessage: "",
@@ -29,22 +31,25 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         gettingUser: true,
-        errorMessage: initialState.errorMessage,
+
+        gettingUserMessage: initialState.gettingUserMessage,
       }
 
     case types.GETTING_USER_SUCCESS:
       return {
         ...state,
-        gettingUser: false,
         token: action.payload.token,
         user: action.payload.user,
+
+        gettingUser: false,
       }
 
     case types.GETTING_USER_FAILURE:
       return {
         ...state,
         gettingUser: false,
-        errorMessage: "",
+
+        gettingUserMessage: action.payload.error,
       }
   
     case types.CLEAR_USER_FROM_STORE:
@@ -59,21 +64,23 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         updatingUser: true,
-        errorMessage: initialState.errorMessage,
+
         updateMessage: initialState.updateMessage,
       }
 
     case types.UPDATING_USER_INFO_SUCCESS:
       return {
         ...state,
-        updatingUser: false,
         user: action.payload.user,
+
+        updatingUser: false,
       }
 
     case types.UPDATING_USER_INFO_FAILURE:
       return {
         ...state,
         updatingUser: false,
+
         updateMessage: "",
       }
 
@@ -82,6 +89,7 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         resettingPassword: true,
+
         resettingPasswordMessage: initialState.resettingPasswordMessage,
       }
 
@@ -89,6 +97,7 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         resettingPassword: false,
+
         resettingPasswordMessage: "",
       }
 
@@ -96,6 +105,7 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         resettingPassword: false,
+
         resettingPasswordMessage: "",
     }
 
@@ -104,6 +114,7 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         deletingUser: true,
+
         deleteMessage: initialState.deleteMessage,
       }
 
@@ -111,6 +122,7 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         deletingUser: false,
+
         deleteMessage: "",
       }
 
@@ -118,6 +130,7 @@ export const UserReducer = (state = initialState, action) => {
       return {
         ...state,
         deletingUser: false,
+
         deleteMessage: "",
       }
 

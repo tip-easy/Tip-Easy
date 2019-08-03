@@ -2,7 +2,9 @@ import * as types from './../Actions/actionTypes';
 
 const initialState = {
   withdrawalAmount: 0,
+
   withdrawing: false,
+  
   withdrawalMessage: "",
 }
 
@@ -24,6 +26,7 @@ export const WithdrawalReducer = (state = initialState, action) => {
       return {
         ...state,
         withdrawing: true,
+
         withdrawalMessage: initialState.withdrawalMessage,
       }
 
@@ -31,6 +34,7 @@ export const WithdrawalReducer = (state = initialState, action) => {
       return {
         ...state,
         withdrawing: false,
+
         withdrawalMessage: action.payload.successMessage,
       }
 
@@ -38,6 +42,7 @@ export const WithdrawalReducer = (state = initialState, action) => {
       return {
         ...state,
         withdrawing: false,
+
         withdrawalMessage: action.payload.error,
       }
 
