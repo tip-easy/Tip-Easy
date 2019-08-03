@@ -40,7 +40,7 @@ export const SetDepositAmount = (amount) => dispatch => {
   return dispatch({
     type: types.SET_DEPOSIT_AMOUNT,
     payload: {
-      amount,
+      depositAmount: amount,
     }
   })
 }

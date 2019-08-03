@@ -16,7 +16,7 @@ export const FetchPaymentMethods = (token) => dispatch => {
       dispatch({ 
         type: types.FETCHING_PAYMENT_METHODS_SUCCESS,
         payload: {
-          paymentMethodsArray: res.data.payment_method_array
+          paymentMethodsArray: res.data.paymentMethodsArray
         }
       })
     })
@@ -24,7 +24,9 @@ export const FetchPaymentMethods = (token) => dispatch => {
     .catch(error => {
       dispatch({ 
         type: types.FETCHING_PAYMENT_METHODS_FAILURE, 
-        payload: {error} 
+        payload: {
+          error
+        } 
       });
     })
 }
@@ -51,7 +53,9 @@ export const FetchIndividualPaymentMethod = (payment_method_id, token) => dispat
     .catch(error => {
       dispatch({ 
         type: types.FETCHING_PAYMENT_METHODS_FAILURE, 
-        payload: {error} 
+        payload: {
+          error
+        } 
       });
     })
 }
@@ -78,6 +82,7 @@ export const AddPaymentMethod = (new_payment_menthod, token) => dispatch => {
       dispatch({
         type: types.ADDING_PAYMENT_METHOD_SUCCESS,
         payload: {
+          paymentMethodsArray: res.data.paymentMethodsArray,
           successMessage: res.data.message
         }
       })
@@ -86,7 +91,9 @@ export const AddPaymentMethod = (new_payment_menthod, token) => dispatch => {
     .catch(error => {
       dispatch({ 
         type: types.ADDING_PAYMENT_METHOD_FAILURE, 
-        payload: {error} 
+        payload: {
+          error
+        } 
       });
     })
 }
@@ -111,7 +118,9 @@ export const RemovePaymentMethod = (payment_method_id, id) => dispatch => {
     .catch(error => {
       dispatch({ 
         type: types.REMOVING_PAYMENT_METHOD_FAILURE,
-        payload: {error} 
+        payload: {
+          error
+        } 
       })
     })
 }

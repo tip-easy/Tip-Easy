@@ -25,7 +25,9 @@ export const SearchForTipReceiver = (code, token) => dispatch => {
     .catch(error => {
       dispatch({ 
         type: types.SEARCHING_TIP_RECEIVER_FAILURE, 
-        payload: {error} 
+        payload: {
+          error
+        } 
       });
     })
 }

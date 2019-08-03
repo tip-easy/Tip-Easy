@@ -40,7 +40,7 @@ export const SetWithdrawalAmount = (amount) => dispatch => {
   return dispatch({
     type: types.SET_WITHDRAWAL_AMOUNT,
     payload: {
-      amount,
+      withdrawalAmount: amount,
     }
   })
 }

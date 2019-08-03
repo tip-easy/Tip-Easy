@@ -32,16 +32,19 @@ export const SendTransaction = (code, transactionObject, token) => dispatch => {
     .catch(error => {
       dispatch({ 
         type: types.SENDING_TRANSACTION_FAILURE, 
-        payload: {error} 
+        payload: {
+          error
+        } 
       });
     })
 }
 
-export const ClearCurrentTransaction = () => dispatch => {
-  return dispatch({
-    type: types.CLEAR_CURRENT_TRANSACTION_FROM_STORE,
-  })
-}
+// Not sure whether or not we need to implement this
+// export const ClearCurrentTransaction = () => dispatch => {
+//   return dispatch({
+//     type: types.CLEAR_CURRENT_TRANSACTION_FROM_STORE,
+//   })
+// }
 
 export const FetchTransactions = (token) => dispatch => {
   dispatch({
@@ -66,7 +69,9 @@ export const FetchTransactions = (token) => dispatch => {
     .catch(error => {
       dispatch({ 
         type: types.FETCHING_TRANSACTIONS_FAILURE, 
-        payload: {error} 
+        payload: {
+          error
+        } 
       });
     })
 }
