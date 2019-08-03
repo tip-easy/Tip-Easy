@@ -4,14 +4,14 @@ import * as types from './actionTypes';
 
 import { GetUser } from './UserActions'
 
-export const Login = user_info => dispatch => {
+export const login = user_info => dispatch => {
   // Implement further data-checking.
+  console.log(credentials)
   
   let credentials = {
     email: user_info.email,
     password: user_info.password
   }
-  console.log(credentials)
   dispatch({
     type: types.LOGGING_IN_START
   })

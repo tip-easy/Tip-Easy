@@ -20,7 +20,8 @@ import { BalanceReducer,
   TipReceiverReducer,
   TransactionReducer,
   UserReducer,
-  WithdrawalReducer, } from './Reducers';
+  WithdrawalReducer, 
+} from './Reducers';
 
 const rootReducer = combineReducers({
   BalanceReducer,
