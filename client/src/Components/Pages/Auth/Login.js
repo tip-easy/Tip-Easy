@@ -6,11 +6,11 @@ import { bindActionCreators } from 'redux';
 // Actions
 import { login } from './../../../Actions/LoginActions'
 
-export const Login = ({ pushToSelectAmount, pushToUserProfile }) => {
+export const Login = (props) => {
  
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log('test')
+    console.log(props)
   }
 
   return (
@@ -37,7 +37,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    Login
+    login
   }, dispatch);
 }
 
