@@ -19,6 +19,7 @@ export const GetUser = ( token ) => dispatch => {
         type: types.GETTING_USER_SUCCESS,
         payload: {
           user: res.data.user,
+          token
         }
       })
     })

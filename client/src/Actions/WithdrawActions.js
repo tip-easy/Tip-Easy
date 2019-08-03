@@ -8,7 +8,6 @@ export const MakeWithdrawal = (withdraw_details, token) => dispatch => {
     currency: withdraw_details.currency,
     withdraw_method: withdraw_details.withdraw_method,
     withdraw_method_type: withdraw_details.withdraw_method_type,
-    // initiated_at: generateTimestamp()
   }
 
   dispatch({

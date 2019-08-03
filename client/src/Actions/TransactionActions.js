@@ -9,7 +9,6 @@ export const SendTransaction = (code, transactionObject, token) => dispatch => {
     unique_code: code,
     pay_method_string: transactionObject.pay_method_string,
     pay_method_type: transactionObject.pay_method_type,
-    // initiated_at: generateTimestamp()
   }
 
   dispatch({
