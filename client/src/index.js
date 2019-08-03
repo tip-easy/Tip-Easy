@@ -16,7 +16,7 @@ import { BalanceReducer,
   LoginReducer,
   PaymentMethodReducer,
   RegistrationReducer,
-  SelectTipReducer,
+  TipReducer,
   TipReceiverReducer,
   TransactionReducer,
   UserReducer,
@@ -29,15 +29,15 @@ const rootReducer = combineReducers({
   LoginReducer,
   PaymentMethodReducer,
   RegistrationReducer,
-  SelectTipReducer,
+  TipReducer,
   TipReceiverReducer,
   TransactionReducer,
   UserReducer,
   WithdrawalReducer,
 });
 
-const store = createStore(
-  rootReducer,
+export const store = createStore(
+  rootReducer, {},
   compose(
     applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

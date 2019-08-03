@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { connect} from 'react-redux'
+import { connect} from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 
 // Actions
 import { login } from './../../../Actions/LoginActions'
 
-export const Login = (props) => {
- 
+const Login = (props) => {
+
   const submitHandler = (event) => {
     event.preventDefault();
     console.log(props)
@@ -31,7 +31,7 @@ export const Login = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-
+    user: state.UserReducer.user
   }
 }
 

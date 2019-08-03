@@ -3,7 +3,9 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
+
 export const EnterCode = (props) => {
+
   const mockJSON = [
     {
       name: "Gabe",
@@ -27,8 +29,7 @@ export const EnterCode = (props) => {
       imgAlt: "",
     }
   ]
-
-
+    
   return (
     <>
       <div className="inputContainer">
@@ -79,7 +80,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-
+    
   }, dispatch)
 }
 

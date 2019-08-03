@@ -1,8 +1,8 @@
 import React, { useState} from 'react';
 
 // Components
-import { Login } from './Login';
-import { Register } from './Register';
+import Login from './Login';
+import Register from './Register';
 
 export const Auth = (props) => {
   const [page, setPage] = useState('login')
