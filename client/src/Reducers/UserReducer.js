@@ -1,7 +1,7 @@
 import * as types from './../Actions/actionTypes';
 
 const initialState = {
-  token: "",
+  token: "XXXXX",
   user: {
     // Having a default / placeholder?
     accountType: "sender",

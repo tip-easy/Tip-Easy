@@ -1,8 +1,8 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
 
-export const SearchForTipReceiver = (code, token) => dispatch => {
+export const searchForTipReceiver = (code, token) => dispatch => {
   dispatch({
     type: types.SEARCHING_TIP_RECEIVER_START
   })
@@ -32,7 +32,7 @@ export const SearchForTipReceiver = (code, token) => dispatch => {
     })
 }
 
-export const SelectTipReceiver = (code) => dispatch => {
+export const selectTipReceiver = (code) => dispatch => {
   dispatch({
     type: types.TIP_RECEIVER_SET,
     payload: {
@@ -41,7 +41,7 @@ export const SelectTipReceiver = (code) => dispatch => {
   })
 }
 
-export const ClearTipReceiver = () => dispatch => {
+export const clearTipReceiver = () => dispatch => {
   dispatch({
     type: types.CLEAR_TIP_RECEIVER_FROM_STORE,
   })
