@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 
-export const SetTip = amount => dispatch => {
+export const setTip = amount => dispatch => {
   return dispatch({
     type: types.SET_TIP,
     payload: {
@@ -9,7 +9,7 @@ export const SetTip = amount => dispatch => {
   })
 }
 
-export const ClearTip = () => dispatch => {
+export const clearTip = () => dispatch => {
   return dispatch({
     type: types.CLEAR_TIP_FROM_STORE,
   })
