@@ -16,6 +16,12 @@ const Login = (props) => {
       email,
       password,
     })
+    if (props.user.name) {
+    props.user.accountType === 'sender' ? 
+      props.pushToSelectAmount()
+        : 
+      props.pushToUserProfile()
+    }
   }
 
   return (
@@ -40,7 +46,7 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-
+    user: state.UserReducer.user
   }
 }
 

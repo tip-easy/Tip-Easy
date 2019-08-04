@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-export const Register = ({ pushToSelectAmount, pushToUserProfile, }) => {
+import { register } from './../../../Actions/RegistrationActions'
+
+export const Register = (props) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
   const submitHandler = (event) => {
     event.preventDefault()
-    console.log('Submit');
+    props.register({
+      email,
+      password,
+    })
+    if (props.user.name) {
+      props.user.accountType === 'sender' ? 
+        props.pushToSelectAmount()
+          : 
+        props.pushToUserProfile()
+    }
   }
 
   return (
@@ -20,10 +34,14 @@ export const Register = ({ pushToSelectAmount, pushToUserProfile, }) => {
 
       <input 
         type="text" 
-        placeholder="Email" />
+        placeholder="Email" 
+        onChange={(e) => setEmail(e.target.value)}  
+      />
       <input 
         type="password" 
-        placeholder="Password" />
+        placeholder="Password" 
+        onChange={(e) => setPassword(e.target.value)}
+      />
         
       <button onClick={(event) => submitHandler(event)}>
         Sign Up
@@ -34,13 +52,13 @@ export const Register = ({ pushToSelectAmount, pushToUserProfile, }) => {
 
 const mapStateToProps = (state) => {
   return {
-
+    user: state.UserReducer.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-
+    register
   }, dispatch)
 }
 

@@ -1,9 +1,9 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
-import { Login } from './LoginActions';
+import { login } from './LoginActions';
 
-export const Register = user_info => dispatch => {
+export const register = user_info => dispatch => {
   // Clearly define what user_info will contain and manually pass it in the request body.
 
   dispatch({ 
@@ -12,11 +12,11 @@ export const Register = user_info => dispatch => {
   return axios.post(`${URL}/api/register`, {user_info})
     .then(res => {
       dispatch({
-        type: types.REGISTRATION_SUCCESS
+        type: types.REGISTERING_SUCCESS
       })
       
       // Found in LoginActions
-      Login({
+      login({
         email: user_info.email, 
         password: user_info.password
       })

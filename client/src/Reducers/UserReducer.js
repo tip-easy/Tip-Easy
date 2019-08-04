@@ -5,13 +5,13 @@ const initialState = {
   user: {
     // Having a default / placeholder?
     accountType: "sender",
-    name: "Anakin",
-    email: "Vader@ImperialAcademy.com",
-    profile_img: "",
-    unique_code: "AA0000",
-    location: "Coruscant",
-    organisation: "Sith Order",
-    default_curreny: "btc",
+    // name: "Anakin",
+    // email: "Vader@ImperialAcademy.com",
+    // profile_img: "",
+    // unique_code: "AA0000",
+    // location: "Coruscant",
+    // organisation: "Sith Order",
+    // default_curreny: "btc",
   },
 
   gettingUser: false,

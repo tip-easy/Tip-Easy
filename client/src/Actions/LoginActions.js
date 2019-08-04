@@ -13,7 +13,7 @@ export const login = user_info => dispatch => {
   dispatch({
     type: types.LOGGING_IN_START
   })
-  return axios.post(`${URL}/api/login`, {
+  axios.post(`${URL}/api/login`, {
     credentials
   })
     .then(res => {
@@ -30,7 +30,9 @@ export const login = user_info => dispatch => {
     .catch(error => {
       dispatch({ 
         type: types.LOGGING_IN_FAILURE, 
-        payload: {error} 
+        payload: {
+          error
+        } 
       });
     })
 };
