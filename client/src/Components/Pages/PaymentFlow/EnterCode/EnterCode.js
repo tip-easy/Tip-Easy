@@ -1,35 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 
-export const EnterCode = (props) => {
+const EnterCode = (props) => {
+  const [code, setCode] = useState('')
 
-  const mockJSON = [
-    {
-      name: "Gabe",
-      company: "Lambda School",
-      code: "AG6373",
-      imgUrl: "",
-      imgAlt: "",
-    },
-    {
-      name: "Dustin",
-      company: "Chick-Fill-A",
-      code: "CC1138",
-      imgUrl: "",
-      imgAlt: "",
-    },
-    {
-      name: "Tom",
-      company: "Apple",
-      code: "WC4659",
-      imgUrl: "",
-      imgAlt: "",
+  const changeHandler = (e) => {
+    let input = e.target.value
+
+    // Allows for deleting first character.
+    if (input.length === 0) {
+      setCode(e.target.value)
+    } 
+
+    // Ensures first two characters will be uppercased letters
+    else if (input.length <= 2) {
+      input.slice(input.length-1).match(/[a-z]/i) ?
+        setCode(e.target.value.toUpperCase())
+          :
+        setCode(code)
+    } 
+    // Ensures last four characters can only be numbers
+    else if (input.length >= 3 && input.length <= 6 ) {
+      let newDigit = e.target.value.slice(input.length-1, input.length);
+      if (newDigit.match(/[0-9]/i)) {
+        setCode(e.target.value)
+      } else {
+        setCode(code)
+      }
     }
-  ]
-    
+  }
+
   return (
     <>
       <div className="inputContainer">
@@ -40,7 +43,9 @@ export const EnterCode = (props) => {
         {/*        implement max-length as well */}
         <input 
           type="text" 
-          placeholder="AA1234" 
+          placeholder="AA1234"
+          onChange={(e) => changeHandler(e)}
+          value={code}
         />
       </div>
 
@@ -51,7 +56,7 @@ export const EnterCode = (props) => {
         <div className="tipReceiver">
           <p>Select tip receiver below</p>
           
-          {mockJSON.map((person, idx) => 
+          {props.receiverSearchResultsArray.map((person, idx) => 
             <div key={idx} onClick={() => props.history.push('/payment-method')}>
               <img src={person.imgUrl} alt={person.imgAlt} />
               <>
@@ -74,7 +79,7 @@ export const EnterCode = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-
+    receiverSearchResultsArray: state.TipReceiverReducer.receiverSearchResultsArray
   }
 }
 
