@@ -16,10 +16,7 @@ function initExpressHTTPInterface(handleRequest, express) {
       });
 
       if (typeof handleRequest === 'function') {
-        handleRequest(request);
-        
-        // Temporarily end requests to avoid request hanging
-        res.send('Nothing to see here...');
+        handleRequest(request, res);
       } else {
         // throw new Error('A handler function is required to handle requests');
         // Temporarily end requests to avoid request hanging
