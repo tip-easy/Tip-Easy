@@ -6,12 +6,10 @@ import { GetUser } from './UserActions'
 
 export const login = user_info => dispatch => {
   // Implement further data-checking.
-  console.log('made it')
   let credentials = {
     email: user_info.email,
     password: user_info.password
   }
-  console.log(credentials)
   dispatch({
     type: types.LOGGING_IN_START
   })

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect} from 'react-redux';
 
 import { bindActionCreators } from 'redux';
@@ -7,20 +7,29 @@ import { bindActionCreators } from 'redux';
 import { login } from './../../../Actions/LoginActions'
 
 const Login = (props) => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(props)
+    props.login({
+      email,
+      password,
+    })
   }
 
   return (
     <form onSubmit={(event) => submitHandler(event)}>
       <input 
         type="text" 
-        placeholder="Email" />
+        placeholder="Email" 
+        onChange={(e) => setEmail(e.target.value)}
+      />
       <input 
         type="password" 
-        placeholder="Password" />
+        placeholder="Password" 
+        onChange={(e) => setPassword(e.target.value)}
+      />
         
       <button onClick={(event) => submitHandler(event)}>
         Log In
@@ -31,7 +40,7 @@ const Login = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.UserReducer.user
+
   }
 }
 
