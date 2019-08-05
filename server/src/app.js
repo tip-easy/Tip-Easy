@@ -1,22 +1,40 @@
 require('dotenv').config();
 
+// Third-party modules
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
-const app = express();
+const expressServer = express();
 
-const initExpressHTTPInterface = require('./http/express-http-interface');
-const initExpressRouterInterface = require('./routes/express-router-interface');
+// Global helpers
+const makeInterface = require('./global-helpers/make-interface');
 
-app.use(helmet());
-app.use(express.json());
-app.use(cors());
+// HTTP Helpers
+const normaliseExpressRequest = require('./http/helpers/normalise-express-request');
 
-// const dataProcessors = getDataProcessors();
-const router = initExpressRouterInterface(null, app);
-const HTTPInterface = initExpressHTTPInterface(router, app);
+// Interface Functions
+const expressHTTPInterfaceFunction = require('./http/express-http-interface');
 
-app.use(HTTPInterface);
+const router = () => {};
+
+const expressHTTPInterface = makeInterface({ 
+    interfaceFunction: expressHTTPInterfaceFunction,
+    expressServer,
+    cors,
+    helmet,
+    jsonSupport: express.json(),
+    normaliseExpressRequest,
+    handleRequest: router, 
+  }, 
+  [
+    'expressServer',
+    'cors',
+    'jsonSupport',
+    'normaliseExpressRequest',
+    'handleRequest'
+]);
+
+const app = expressHTTPInterface();
 
 module.exports = app;
