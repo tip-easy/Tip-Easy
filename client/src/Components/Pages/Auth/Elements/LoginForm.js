@@ -1,41 +1,35 @@
 import React, { useState } from 'react';
+import { connect} from 'react-redux';
 
-import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import { register } from './../../../Actions/RegistrationActions'
+// Actions
+import { login } from '../../../../Actions/LoginActions'
 
-export const Register = (props) => {
+const LoginForm = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const submitHandler = (event) => {
-    event.preventDefault()
-    props.register({
+    event.preventDefault();
+    props.login({
       email,
       password,
     })
     if (props.user.name) {
-      props.user.accountType === 'sender' ? 
-        props.pushToSelectAmount()
-          : 
-        props.pushToUserProfile()
+    props.user.accountType === 'sender' ? 
+      props.pushToSelectAmount()
+        : 
+      props.pushToUserProfile()
     }
   }
 
   return (
     <form onSubmit={(event) => submitHandler(event)}>
-      
-      {/* Not 100% sure how I'm going to implement dropdown just yet */}
-      {/* Thinking of using react-dropdown, https://reactjsexample.com/a-dead-simple-dropdown-component-for-react/ */}
-      <div className="dropdown">
-        Send or Receive Tips?
-      </div>
-
       <input 
         type="text" 
         placeholder="Email" 
-        onChange={(e) => setEmail(e.target.value)}  
+        onChange={(e) => setEmail(e.target.value)}
       />
       <input 
         type="password" 
@@ -44,7 +38,7 @@ export const Register = (props) => {
       />
         
       <button onClick={(event) => submitHandler(event)}>
-        Sign Up
+        Log In
       </button>
     </form>
   )
@@ -58,8 +52,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    register
-  }, dispatch)
+    login
+  }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(LoginForm);

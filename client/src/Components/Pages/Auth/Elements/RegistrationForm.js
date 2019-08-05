@@ -1,35 +1,41 @@
 import React, { useState } from 'react';
-import { connect} from 'react-redux';
 
+import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-// Actions
-import { login } from './../../../Actions/LoginActions'
+import { register } from '../../../../Actions/RegistrationActions'
 
-const Login = (props) => {
+export const RegistrationForm = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const submitHandler = (event) => {
-    event.preventDefault();
-    props.login({
+    event.preventDefault()
+    props.register({
       email,
       password,
     })
     if (props.user.name) {
-    props.user.accountType === 'sender' ? 
-      props.pushToSelectAmount()
-        : 
-      props.pushToUserProfile()
+      props.user.accountType === 'sender' ? 
+        props.pushToSelectAmount()
+          : 
+        props.pushToUserProfile()
     }
   }
 
   return (
     <form onSubmit={(event) => submitHandler(event)}>
+      
+      {/* Not 100% sure how I'm going to implement dropdown just yet */}
+      {/* Thinking of using react-dropdown, https://reactjsexample.com/a-dead-simple-dropdown-component-for-react/ */}
+      <div className="dropdown">
+        Send or Receive Tips?
+      </div>
+
       <input 
         type="text" 
         placeholder="Email" 
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}  
       />
       <input 
         type="password" 
@@ -38,7 +44,7 @@ const Login = (props) => {
       />
         
       <button onClick={(event) => submitHandler(event)}>
-        Log In
+        Sign Up
       </button>
     </form>
   )
@@ -52,11 +58,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    login
-  }, dispatch);
+    register
+  }, dispatch)
 }
 
-export default connect(
-  mapStateToProps, 
-  mapDispatchToProps
-)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationForm);

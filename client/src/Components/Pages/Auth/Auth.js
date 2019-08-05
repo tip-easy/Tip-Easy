@@ -1,8 +1,8 @@
 import React, { useState} from 'react';
 
 // Components
-import Login from './Login';
-import Register from './Register';
+import LoginForm from './Elements/LoginForm';
+import RegistrationForm from './Elements/RegistrationForm';
 
 export const Auth = (props) => {
   const [page, setPage] = useState('login')
@@ -38,12 +38,12 @@ export const Auth = (props) => {
 
       <div className="inputContainer">
         {page === 'login' ? 
-          <Login
+          <LoginForm
             pushToSelectAmount={pushToSelectAmount}
             pushToUserProfile={pushToUserProfile}  
           />
           :
-          <Register 
+          <RegistrationForm 
             pushToSelectAmount={pushToSelectAmount}
             pushToUserProfile={pushToUserProfile}
           />
