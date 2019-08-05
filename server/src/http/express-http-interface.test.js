@@ -1,21 +1,32 @@
-const expressHTTPInterface = require('./express-http-interface');
+const expressHTTPInterfaceFunction = require('./express-http-interface');
+const makeInterface = require('../global-helpers/make-interface');
 
-describe('Express HTTP Interface', () => {
-  it('should return a function when invoked', () => {
-    expect(typeof expressHTTPInterface()).toBe('function');
+const express = require('express')
+const expressServer = express();
+const cors = require('cors');
+
+describe('Express HTTP Interface Function', () => {
+  it('should throw an error if no arguments are provided', () => {
+    expect(() => expressHTTPInterfaceFunction()).toThrow(/makeInterface.+dependencies/);
   });
 
-  it('should not break when not passed a function', () => {
-    expect(typeof expressHTTPInterface(null)).toBe('function');
-    expect(typeof expressHTTPInterface({})).toBe('function');
-    expect(typeof expressHTTPInterface([])).toBe('function');
+  it('should throw an error if a required argument is not passed', () => {
+    expect(() => expressHTTPInterfaceFunction({
+      expressServer,
+      cors, 
+      jsonSupport: express.json(),
+      normaliseExpressRequest: () => ({}),
+      // handleRequest: () => ({})
+    })).toThrow(/makeInterface.+dependencies/);
   });
 
-  it('should return null when the returned function is invoked', () => {
-    expect(expressHTTPInterface()()).toEqual(null);
-  });
-
-  it('should return not break when the returned function is not passed objects', () => {
-    expect(typeof expressHTTPInterface()(null)).toBe('object');
+  it('should return a function when passed the correct arguments', () => {
+    expect(typeof expressHTTPInterfaceFunction({
+      expressServer,
+      cors,
+      jsonSupport: express.json(),
+      normaliseExpressRequest: () => ({}),
+      handleRequest: () => ({})
+    })).toMatch(/function/);
   });
 });
