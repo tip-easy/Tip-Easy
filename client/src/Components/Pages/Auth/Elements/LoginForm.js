@@ -18,9 +18,9 @@ const LoginForm = (props) => {
     })
     if (props.user.name) {
     props.user.accountType === 'sender' ? 
-      props.pushToSelectAmount()
+      props.goToSelectAmount()
         : 
-      props.pushToUserProfile()
+      props.goToUserProfile()
     }
   }
 

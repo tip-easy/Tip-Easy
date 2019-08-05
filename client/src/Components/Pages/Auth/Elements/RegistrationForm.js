@@ -17,7 +17,7 @@ export const RegistrationForm = (props) => {
     })
     if (props.user.name) {
       props.user.accountType === 'sender' ? 
-        props.pushToSelectAmount()
+        props.goToSelectAmount()
           : 
         props.pushToUserProfile()
     }
