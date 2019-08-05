@@ -16,11 +16,12 @@ import { BalanceReducer,
   LoginReducer,
   PaymentMethodReducer,
   RegistrationReducer,
-  SelectTipReducer,
+  TipReducer,
   TipReceiverReducer,
   TransactionReducer,
   UserReducer,
-  WithdrawalReducer, } from './Reducers';
+  WithdrawalReducer, 
+} from './Reducers';
 
 const rootReducer = combineReducers({
   BalanceReducer,
@@ -28,15 +29,15 @@ const rootReducer = combineReducers({
   LoginReducer,
   PaymentMethodReducer,
   RegistrationReducer,
-  SelectTipReducer,
+  TipReducer,
   TipReceiverReducer,
   TransactionReducer,
   UserReducer,
   WithdrawalReducer,
 });
 
-const store = createStore(
-  rootReducer,
+export const store = createStore(
+  rootReducer, {},
   compose(
     applyMiddleware(thunk),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

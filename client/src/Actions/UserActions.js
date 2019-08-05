@@ -1,5 +1,5 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
 
 export const GetUser = ( token ) => dispatch => {
@@ -65,10 +65,10 @@ export const UpdateUserInfo = ( changes, token ) => dispatch => {
 export const ResetPassword = ( changes, token ) => dispatch => {
   // Check incoming data in `changes` for one of the provided parameters. If not, reject it.
 
-  requestObject = {
+  const requestObject = {
     current_password: changes.current_password,
     new_password: changes.new_password,
-    new_password_confirm: new_password_confirm,
+    new_password_confirm: changes.new_password_confirm,
   }
 
   dispatch({ 

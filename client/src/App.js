@@ -6,17 +6,17 @@ import "./App.scss";
 // Components
 // import { Navigation } from './Components/Nav/Nav'
 
-import { Auth } from './Components/Pages/Auth/Auth';
-import { SelectAmount } from './Components/Pages/PaymentFlow/SelectAmount/SelectAmount';
-import { PaymentMethod } from './Components/Pages/PaymentFlow/PaymentMethod/PaymentMethod';
-import { PaymentDetails } from './Components/Pages/PaymentFlow/PaymentDetails/PaymentDetails';
-import { PaymentSuccess } from './Components/Pages/PaymentFlow/PaymentSuccess/PaymentSuccess';
-import { EnterCode } from './Components/Pages/PaymentFlow/EnterCode/EnterCode';
-import { UserProfile } from './Components/Pages/UserProfile/UserProfile';
+import Auth from './Components/Pages/Auth/Auth';
+import SelectAmount from './Components/Pages/PaymentFlow/SelectAmount/SelectAmount';
+import PaymentMethod from './Components/Pages/PaymentFlow/PaymentMethod/PaymentMethod';
+import PaymentDetails from './Components/Pages/PaymentFlow/PaymentDetails/PaymentDetails';
+import PaymentSuccess from './Components/Pages/PaymentFlow/PaymentSuccess/PaymentSuccess';
+import EnterCode from './Components/Pages/PaymentFlow/EnterCode/EnterCode';
+import UserProfile from './Components/Pages/UserProfile/UserProfile';
 
 // import { Footer } from './Components/Footer/Footer'; 
 
-const App = () => {
+const App = () =>  {
   return (
     <Router>
       {/* Commented out for now until we decide on if we need a header */}

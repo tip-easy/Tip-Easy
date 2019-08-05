@@ -4,7 +4,7 @@ const initialState = {
   tip: 0,
 }
 
-export const SelectTipReducer = (state = initialState, action) => {
+export const TipReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_TIP:
       return {

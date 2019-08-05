@@ -1,7 +1,7 @@
 import * as types from './../Actions/actionTypes';
 
 const initialState = {
-  token: "",
+  token: "XXXXX",
   user: {
     // Having a default / placeholder?
     accountType: "sender",
@@ -11,7 +11,7 @@ const initialState = {
     unique_code: "AA0000",
     location: "Coruscant",
     organisation: "Sith Order",
-    default_curreny: "btc",
+    default_currency: "$",
   },
 
   gettingUser: false,
