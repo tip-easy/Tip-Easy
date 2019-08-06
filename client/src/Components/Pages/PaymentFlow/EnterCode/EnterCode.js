@@ -17,13 +17,17 @@ const EnterCode = (props) => {
     } 
 
     // Ensures first two characters will be uppercased letters
+    // No search DB calls take place until at least 3 characters are inputted
     else if (input.length <= 2) {
       input.slice(input.length-1).match(/[a-z]/i) ?
         setCode(e.target.value.toUpperCase())
           :
         setCode(code)
     } 
+
     // Ensures last four characters can only be numbers
+    // Immediately makes search call to the DB to make for smooth searching experience.
+    // Might stagger a bit more in the future (i.e. after 4 characters) to reduce number of DB calls.
     else if (input.length >= 3 && input.length <= 6 ) {
       let newDigit = e.target.value.slice(input.length-1, input.length);
       if (newDigit.match(/[0-9]/i)) {
@@ -35,12 +39,14 @@ const EnterCode = (props) => {
     }
   }
 
+  // Only allow form submission if all six characters have been filled out
+  // For now, submit temporarily calls searchForTipReceiver. 
+  // Might be deleted later, since there needn't be a submission if the staggered search of onChange works.
   const submitHandler = (e) => {
     e.preventDefault()
     if (code.length < 6) {
       return console.log('Make sure you fill out the six-digit code!')
     } else {
-      console.log(code)
       props.searchForTipReceiver(code, props.token)
     }
   }

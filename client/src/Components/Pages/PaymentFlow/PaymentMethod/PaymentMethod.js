@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { fetchPaymentMethods, selectPaymentMethod } from './../../../../Actions/PaymentMethodActions';
 
+// Array with all possible payment methods we carry, used for rendering corresponding buttons
 const paymentMethodOptions = [
   {
     paymentMethodType: "card",
@@ -25,15 +26,21 @@ const paymentMethodOptions = [
 ]
 
 export const PaymentMethod = (props) => {
-  const clickHandler = (methodName) => {
-    props.selectPaymentMethod(methodName)
+  // Sets selected payment method, containing both the type and name. 
+  // Name has capitalization, meant for display. Type follows the schema set out by the DB
+  const clickHandler = (paymentMethodObject) => {
+    props.selectPaymentMethod(paymentMethodObject)
     props.history.push('/details')
   }
 
+  // on componentDidMount, fetch all payment methods associated with the (logged in) user
+  // TODO: if no payment methods are found for the given user in store, enable all of them
+  //       whereupon the user gets taken to the paymentDetails page to set up the chosen option.
   useEffect(() => {
     props.fetchPaymentMethods()
   })
 
+  // Checks user's payment options in store. If found, it will enabled the corresponding button. Else, it'll be disabled.
   const checkPaymentMethodType = (type) => {
     let found = false;
     props.paymentMethodsArray.forEach((method) => {
@@ -43,6 +50,7 @@ export const PaymentMethod = (props) => {
         return null
       }
     })
+    // Use the NOT in order to correspond to the way `disabled` works. `disabled=true` is the opposite of what we want.
     return !found;
   }
 
@@ -58,11 +66,13 @@ export const PaymentMethod = (props) => {
               key={idx}
               className="option" 
               disabled={checkPaymentMethodType(option.paymentMethodType)} 
-              onClick={() => clickHandler(option.paymentMethodType)} >
+              onClick={() => clickHandler({
+                pay_method_type: option.paymentMethodType,
+                pay_method_name: option.paymentMethodName,
+            })} >
               {option.paymentMethodName}
             </button>
           )}
-
         </div>
       </div>
     </>

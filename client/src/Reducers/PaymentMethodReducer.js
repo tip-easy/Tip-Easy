@@ -19,7 +19,7 @@ const initialState = {
     //   pay_method_name: "BTC Lightning"
     // }
   ],
-  selectedPaymentMethod: "",
+  selectedPaymentMethod: {},
 
   
   fetchingPaymentMethods: false,
