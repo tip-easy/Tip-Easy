@@ -6,7 +6,7 @@ function expressHTTPInterfaceFunction({
   jsonSupport = requiredDependency('jsonSupport'),
   normaliseExpressRequest = requiredDependency('normaliseExpressRequest'),
   handleRequest = requiredDependency('handleRequest'),
-  ...optionalDependencies }) {
+  ...optionalDependencies } = {}) {
  
   expressServer.use(cors());
   expressServer.use(jsonSupport);
