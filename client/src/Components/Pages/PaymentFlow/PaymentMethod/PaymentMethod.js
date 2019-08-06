@@ -5,11 +5,6 @@ import { bindActionCreators } from 'redux';
 
 import { fetchPaymentMethods, selectPaymentMethod } from './../../../../Actions/PaymentMethodActions';
 
-const containsPaymentMethod = (props) => {
-  console.log(props)
-  
-}
-
 const paymentMethodOptions = [
   {
     paymentMethodType: "card",
