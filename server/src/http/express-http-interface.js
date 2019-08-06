@@ -1,36 +1,26 @@
+const requiredDependency = require('../global-helpers/required-dependency');
+
 function expressHTTPInterfaceFunction({
-  expressServer,
-  cors,
-  jsonSupport,
-  normaliseExpressRequest,
-  handleRequest,
-  ...rest } = {}) {
-
-  const requiredParamsExist = (
-    expressServer && 
-    cors && 
-    jsonSupport && 
-    normaliseExpressRequest && 
-    handleRequest
-  );
-
-  if (!requiredParamsExist) {
-    throw new Error('expressHTTPInterfaceFunction: Passing this function through makeInterface is required to inject required dependencies.');
-  }
-  
+  expressServer = requiredDependency('expressServer'),
+  cors = requiredDependency('cors'),
+  jsonSupport = requiredDependency('jsonSupport'),
+  normaliseExpressRequest = requiredDependency('normaliseExpressRequest'),
+  handleRequest = requiredDependency('handleRequest'),
+  ...optionalDependencies }) {
+ 
   expressServer.use(cors());
   expressServer.use(jsonSupport);
 
-  // optional dependencies
-  rest.helmet ? expressServer.use(rest.helmet()) : null;
+  const { helmet } = optionalDependencies;
+
+  // Optional dependencies
+  helmet ? expressServer.use(helmet()) : null;
 
   // Normalise all requests + pass them to handler
-  expressServer.use(function (req, res) {
+  expressServer.use(function(req, res) {
     const request = normaliseExpressRequest(req);
 
-    handleRequest(request);
-    
-    res.send(request.body);
+    handleRequest({ request, res });
   });
   
   return expressServer;
