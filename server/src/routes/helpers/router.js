@@ -31,16 +31,32 @@ async function router({
     //====== User Endpoints ======//
     case '/me':
       if (httpRequest.method === 'GET') {
-        const data = { hello: "random" };
-        return res.send(data);
+        return res.send({
+          account_type: "receiver",
+          name: "Anthony",
+          email: "anthony@company.com",
+          profile_img: "",
+          unique_code: "DSE2986",
+          location: "Netherlands",
+          organisation: "CoolStuff",
+          default_currency: "eur"
+        });
       }
       else if (httpRequest.method === 'PATCH') {
-        const alteredData = { ...httpRequest.body, altered: "value" };
-        return res.send(alteredData);
+        return res.send({
+          account_type: "receiver",
+          name: "Anthony",
+          email: "anthony@company.com",
+          profile_img: "",
+          unique_code: "DSE2986",
+          location: "Netherlands",
+          organisation: "CoolStuff",
+          default_currency: "eur",
+          ...httpRequest.body
+        });
       }
       else if (httpRequest.method === 'DELETE') {
-        const alteredData = { message: "successfully deleted" };
-        return res.send(alteredData);
+        return res.send({ message: "successfully deleted" });
       } else {
         return unroutedRequestResponse({ httpRequest, res });
       }
