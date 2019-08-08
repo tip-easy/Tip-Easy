@@ -1,7 +1,26 @@
 import * as types from './../Actions/actionTypes';
 
 const initialState = {
-  paymentMethodsArray: [],
+  paymentMethodsArray: [
+    {
+      pay_method_type: "card",
+      pay_method_name: "Card"
+    },
+    {
+      pay_method_type: "applepay",
+      pay_method_name: "ApplePay"
+    },
+    // {
+    //   pay_method_type: "applepay",
+    //   pay_method_name: "ApplePay"
+    // },
+    // {
+    //   pay_method_type: "btclightning",
+    //   pay_method_name: "BTC Lightning"
+    // }
+  ],
+  selectedPaymentMethod: {},
+
   
   fetchingPaymentMethods: false,
   addingPaymentMethod: false,
@@ -14,6 +33,18 @@ const initialState = {
 
 export const PaymentMethodReducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.SET_SELECTED_PAYMENT_METHOD:
+      return {
+        ...state,
+        selectedPaymentMethod: action.payload.selectedPaymentMethod
+      }
+
+    case types.CLEAR_SELECTED_PAYMENT_METHOD:
+      return {
+        ...state,
+        selectedPaymentMethod: initialState.selectedPaymentMethod,
+      }
+
     case types.FETCHING_PAYMENT_METHODS_START:
       return {
         ...state,

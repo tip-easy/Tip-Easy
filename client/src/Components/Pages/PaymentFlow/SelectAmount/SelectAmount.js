@@ -40,6 +40,7 @@ const SelectAmount = (props) => {
       </div>
 
       <div className="buttonRow">
+        {/* TO-DO: Generate these buttons through map */}
         <button
           onClick={() => setAmount(5)}
         >

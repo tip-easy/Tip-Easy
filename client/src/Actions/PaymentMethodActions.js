@@ -1,8 +1,23 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
 
-export const FetchPaymentMethods = (token) => dispatch => {
+export const selectPaymentMethod = (methodName) => dispatch => {
+  dispatch({
+    type: types.SET_SELECTED_PAYMENT_METHOD,
+    payload: {
+      selectedPaymentMethod: methodName
+    }
+  })
+}
+
+export const clearSelectedPaymentMethod = () => dispatch => {
+  dispatch({
+    type: types.CLEAR_SELECTED_PAYMENT_METHOD
+  })
+}
+
+export const fetchPaymentMethods = (token) => dispatch => {
   dispatch({
     type: types.FETCHING_PAYMENT_METHODS_START
   })
@@ -31,7 +46,7 @@ export const FetchPaymentMethods = (token) => dispatch => {
     })
 }
 
-export const FetchIndividualPaymentMethod = (payment_method_id, token) => dispatch => {
+export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispatch => {
   dispatch({
     type: types.FETCHING_PAYMENT_METHODS_START
   })
@@ -61,7 +76,7 @@ export const FetchIndividualPaymentMethod = (payment_method_id, token) => dispat
 }
 
 // Do we need this action, or will it be handled solely through Stripe?
-export const AddPaymentMethod = (new_payment_menthod, token) => dispatch => {
+export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
   let requestObject = {
     pay_method_type: new_payment_menthod.payment_method_id,
     brand: new_payment_menthod.brand,
@@ -98,7 +113,7 @@ export const AddPaymentMethod = (new_payment_menthod, token) => dispatch => {
     })
 }
 
-export const RemovePaymentMethod = (payment_method_id, id) => dispatch => {
+export const removePaymentMethod = (payment_method_id, id, token) => dispatch => {
   dispatch({
     type: types.REMOVING_PAYMENT_METHOD_START
   })
@@ -125,7 +140,7 @@ export const RemovePaymentMethod = (payment_method_id, id) => dispatch => {
     })
 }
 
-export const ClearPaymentMethodsFromStore = () => dispatch => {
+export const clearPaymentMethodsFromStore = () => dispatch => {
   dispatch({
     type: types.CLEAR_PAYMENT_METHODS_FROM_STORE,
   })
