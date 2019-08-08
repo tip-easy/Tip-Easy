@@ -18,9 +18,9 @@ function expressHTTPInterfaceFunction({
 
   // Normalise all requests + pass them to handler
   expressServer.use(function(req, res) {
-    const request = normaliseExpressRequest(req);
+    const httpRequest = normaliseExpressRequest(req);
 
-    handleRequest({ request, res });
+    handleRequest({ httpRequest, res });
   });
   
   return expressServer;

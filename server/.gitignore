@@ -85,9 +85,3 @@ typings/
 
 # SQLITE Files
 *.sqlite3
-
-# Yarn Lockfile
-yarn.lock
-
-# NPM Lockfile
-package-lock.json

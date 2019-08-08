@@ -7,7 +7,7 @@ function makeInterface({ interfaceFunction, ...dependencies } = {}, requiredPara
 
   if (interfaceFunction && typeof interfaceFunction === 'function') {
     const interfaceFunctionWithInjectedDependencies = (interfaceParams) => 
-      interfaceFunction({ ...dependencies, ...interfaceParams });
+      interfaceFunction({ ...dependencies }, { ...interfaceParams });
     return interfaceFunctionWithInjectedDependencies;
   } else {
     throw new Error('makeInterface: An interface function is required as a argument.');

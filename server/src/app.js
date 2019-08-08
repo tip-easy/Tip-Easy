@@ -10,29 +10,35 @@ const expressServer = express();
 // Global helpers
 const makeInterface = require('./global-helpers/make-interface');
 
-// HTTP Helpers
+// Local Helpers
 const normaliseExpressRequest = require('./http/helpers/normalise-express-request');
+const router = require('./routes/helpers/router');
 
 // Interface Functions
 const expressHTTPInterfaceFunction = require('./http/express-http-interface');
+const routerInterfaceFunction = require('./routes/router-interface');
 
-const router = () => {};
+const routerInterface = makeInterface({
+  interfaceFunction: routerInterfaceFunction,
+  router,
+  processRequest: {}
+});
 
 const expressHTTPInterface = makeInterface({ 
-    interfaceFunction: expressHTTPInterfaceFunction,
-    expressServer,
-    cors,
-    helmet,
-    jsonSupport: express.json(),
-    normaliseExpressRequest,
-    handleRequest: router, 
-  }, 
-  [
-    'expressServer',
-    'cors',
-    'jsonSupport',
-    'normaliseExpressRequest',
-    'handleRequest'
+  interfaceFunction: expressHTTPInterfaceFunction,
+  expressServer,
+  cors,
+  helmet,
+  jsonSupport: express.json(),
+  normaliseExpressRequest,
+  handleRequest: routerInterface, 
+}, 
+[
+  'expressServer',
+  'cors',
+  'jsonSupport',
+  'normaliseExpressRequest',
+  'handleRequest'
 ]);
 
 const app = expressHTTPInterface();
