@@ -13,4 +13,4 @@ The pieces of the user flow that will use `props.history.replace()` are:
 - Payment / tipping flow 
   - The ability to go back to a previous window will be retained, however.
 - Funding the payment sender's wallet
-- Withdrawing funds from a payment receiver's wallet
+- Withdrawing funds from a payment receiver's wallet 
