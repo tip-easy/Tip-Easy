@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import { searchForTipReceiver, selectTipReceiver } from './../../../../Actions/TipReceiverActions';
+import { searchForTipReceiver, selectTipReceiver } from '../../../../Actions/TipReceiverActions';
 
 const EnterCode = (props) => {
   const [code, setCode] = useState('')

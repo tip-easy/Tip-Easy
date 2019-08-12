@@ -8,11 +8,11 @@ import "./App.scss";
 
 import Auth from './Components/Pages/Auth/Auth';
 import SelectAmount from './Components/Pages/PaymentFlow/SelectAmount/SelectAmount';
-import PaymentMethod from './Components/Pages/PaymentFlow/PaymentMethod/PaymentMethod';
-import PaymentDetails from './Components/Pages/PaymentFlow/PaymentDetails/PaymentDetails';
+import SelectPaymentMethod from './Components/Flows/PaymentMethodFlow/SelectPaymentMethod/SelectPaymentMethod';
+import PaymentMethodDetails from './Components/Flows/PaymentMethodFlow/PaymentMethodDetails/PaymentMethodDetails';
 import PaymentSuccess from './Components/Pages/PaymentFlow/PaymentSuccess/PaymentSuccess';
 import EnterCode from './Components/Pages/PaymentFlow/EnterCode/EnterCode';
-import UserProfile from './Components/Pages/UserProfile/UserProfile';
+import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
 
 // import { Footer } from './Components/Footer/Footer'; 
 
@@ -31,10 +31,10 @@ const App = () =>  {
         <Route path="/welcome" render={props => (<Auth {...props} />)} />
 
         {/* Payment Method */}
-        <Route path="/payment-method" render={props => (<PaymentMethod {...props} />)} />
+        <Route path="/payment-method" render={props => (<SelectPaymentMethod {...props} />)} />
 
         {/* Payment Details */}
-        <Route path="/details" render={props => (<PaymentDetails {...props} />)} />
+        <Route path="/details" render={props => (<PaymentMethodDetails {...props} />)} />
 
         {/* Payment Success */}
         <Route path="/tip/success" render={props => (<PaymentSuccess {...props} />)} />
