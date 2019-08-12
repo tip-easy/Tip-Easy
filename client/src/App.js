@@ -6,12 +6,12 @@ import "./App.scss";
 // Components
 // import { Navigation } from './Components/Nav/Nav'
 
-import Auth from './Components/Pages/Auth/Auth';
-import SelectAmount from './Components/Pages/PaymentFlow/SelectAmount/SelectAmount';
+import Auth from './Components/Flows/AuthenticationFlow/Auth';
+import SelectAmount from './Components/Flows/TippingFlow/SelectAmount/SelectAmount';
 import SelectPaymentMethod from './Components/Flows/PaymentMethodFlow/SelectPaymentMethod/SelectPaymentMethod';
 import PaymentMethodDetails from './Components/Flows/PaymentMethodFlow/PaymentMethodDetails/PaymentMethodDetails';
-import PaymentSuccess from './Components/Pages/PaymentFlow/PaymentSuccess/PaymentSuccess';
-import EnterCode from './Components/Pages/PaymentFlow/EnterCode/EnterCode';
+import PaymentSuccess from './Components/Pages/CommonUse/PaymentSuccess/PaymentSuccess';
+import EnterCode from './Components/Flows/TippingFlow/EnterCode/EnterCode';
 import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
 
 // import { Footer } from './Components/Footer/Footer'; 
