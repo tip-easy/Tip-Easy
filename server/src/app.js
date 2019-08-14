@@ -32,14 +32,7 @@ const expressHTTPInterface = makeInterface({
   jsonSupport: express.json(),
   normaliseExpressRequest,
   handleRequest: routerInterface, 
-}, 
-[
-  'expressServer',
-  'cors',
-  'jsonSupport',
-  'normaliseExpressRequest',
-  'handleRequest'
-]);
+});
 
 const app = expressHTTPInterface();
 
