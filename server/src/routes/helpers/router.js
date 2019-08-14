@@ -2,7 +2,7 @@ const requiredParam = require('../../global-helpers/required-parameter');
 
 async function router({ 
   httpRequest = requiredParam('httpRequest'), 
-  processRequest = requiredParam('processRequest'), 
+  processors = requiredParam('processors'), 
   res 
 } = {}) {
   switch (httpRequest.path) {

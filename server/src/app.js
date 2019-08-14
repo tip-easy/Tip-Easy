@@ -21,7 +21,7 @@ const routerInterfaceFunction = require('./routes/router-interface');
 const routerInterface = makeInterface({
   interfaceFunction: routerInterfaceFunction,
   router,
-  processRequest: {}
+  processors: {}
 });
 
 const expressHTTPInterface = makeInterface({ 
