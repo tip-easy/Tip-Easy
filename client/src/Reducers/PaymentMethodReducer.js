@@ -39,7 +39,7 @@ export const PaymentMethodReducer = (state = initialState, action) => {
         selectedPaymentMethod: action.payload.selectedPaymentMethod
       }
 
-    case types.CLEAR_SELECTED_PAYMENT_METHOD:
+    case types.CLEAR_SELECTED_PAYMENT_METHOD_FROM_STORE:
       return {
         ...state,
         selectedPaymentMethod: initialState.selectedPaymentMethod,

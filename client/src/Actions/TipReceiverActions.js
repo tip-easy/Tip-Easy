@@ -34,7 +34,7 @@ export const searchForTipReceiver = (code, token) => dispatch => {
 
 export const selectTipReceiver = (code) => dispatch => {
   dispatch({
-    type: types.TIP_RECEIVER_SET,
+    type: types.SET_TIP_RECEIVER_CODE,
     payload: {
       selectedTipReceiverCode: code
     }
@@ -43,6 +43,6 @@ export const selectTipReceiver = (code) => dispatch => {
 
 export const clearTipReceiver = () => dispatch => {
   dispatch({
-    type: types.CLEAR_TIP_RECEIVER_FROM_STORE,
+    type: types.CLEAR_TIP_RECEIVER_CODE_FROM_STORE,
   })
 }

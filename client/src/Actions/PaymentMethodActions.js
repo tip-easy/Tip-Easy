@@ -13,7 +13,7 @@ export const selectPaymentMethod = (methodName) => dispatch => {
 
 export const clearSelectedPaymentMethod = () => dispatch => {
   dispatch({
-    type: types.CLEAR_SELECTED_PAYMENT_METHOD
+    type: types.CLEAR_SELECTED_PAYMENT_METHOD_FROM_STORE
   })
 }
 
