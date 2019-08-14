@@ -3,7 +3,7 @@ const requiredDependency = require('../global-helpers/required-dependency');
 
 async function routerInterfaceFunction({
   router = requiredDependency('router'),
-  processRequest = requiredParam('processRequest'), 
+  processors = requiredParam('processors'), 
   ...optionalDependencies 
 } = {}, {
   httpRequest = requiredParam('httpRequest'),
@@ -12,7 +12,7 @@ async function routerInterfaceFunction({
   const { res } = additionalParams || {};
   
   try {
-    await router({ httpRequest, res, processRequest });
+    await router({ httpRequest, res, processors });
   }
   catch(error) {  
     // handle application errors vs request errors
