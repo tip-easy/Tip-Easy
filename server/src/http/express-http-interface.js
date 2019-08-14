@@ -16,8 +16,9 @@ function expressHTTPInterfaceFunction({
   // Optional dependencies
   helmet ? expressServer.use(helmet()) : null;
 
-  // Normalise all requests + pass them to handler
+  // Normalise all requests + pass them to handler (router)
   expressServer.use(function(req, res) {
+    // TODO: Use async await to handle all response objects received from handleRequest
     const httpRequest = normaliseExpressRequest(req);
 
     handleRequest({ httpRequest, res });

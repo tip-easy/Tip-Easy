@@ -1,7 +1,6 @@
 function normaliseExpressRequest(request = {}) {
   const hasRequiredProps = requestContainsExpressProperties(request);
   
-  
   if (request && hasRequiredProps) {
     // Returns immutable request object
     return Object.freeze({
@@ -13,6 +12,7 @@ function normaliseExpressRequest(request = {}) {
       body: request.body
     });
   } else {
+    // TODO: Import/use custom error type
     throw new Error('normaliseExpressRequest: An object containing Express request object properties is required');
   }
 
@@ -27,6 +27,5 @@ function normaliseExpressRequest(request = {}) {
     );
   }
 }
-
 
 module.exports = normaliseExpressRequest;
