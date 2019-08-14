@@ -57,13 +57,13 @@ export const TipReceiverReducer = (state = initialState, action) => {
           searchingTipReceiversMessage: action.payload.error
         }
 
-    case types.SET_TIP_RECEIVER_CODE:
+    case types.SET_SELECTED_TIP_RECEIVER_CODE:
         return {
           ...state,
           selectedTipReceiverCode: action.payload.selectedTipReceiverCode,
         }
 
-    case types.CLEAR_TIP_RECEIVER_CODE_FROM_STORE:
+    case types.CLEAR_SELECTED_TIP_RECEIVER_CODE_FROM_STORE:
         return {
           ...state,
           selectedTipReceiverCode: initialState.selectedTipReceiverCode,

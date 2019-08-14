@@ -26,37 +26,37 @@ const initialState = {
 
 export const TipReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.SET_TIP_AMOUNT:
+    case types.SET_SELECTED_TIP_AMOUNT:
       return {
         ...state,
         selectedTipAmount: action.payload.selectedTipAmount,
       }
     
-    case types.CLEAR_TIP_AMOUNT_FROM_STORE:
+    case types.CLEAR_SELECTED_TIP_AMOUNT_FROM_STORE:
       return {
         ...state,
         selectedTipAmount: initialState.selectedTipAmount
       }
 
-    case types.SET_TIP_RECEIVER_CODE:
+    case types.SET_SELECTED_TIP_RECEIVER_CODE:
       return {
         ...state,
         selectedTipReceiverCode: action.payload.selectedTipReceiverCode
       }
 
-    case types.CLEAR_TIP_RECEIVER_CODE_FROM_STORE:
+    case types.CLEAR_SELECTED_TIP_RECEIVER_CODE_FROM_STORE:
       return {
         ...state,
         selectedTipReceiverCode: initialState.selectedTipReceiverCode
       }
 
-    case types.SET_TIP_RECEIVER:
+    case types.SET_SELECTED_TIP_RECEIVER:
       return {
         ...state,
         selectedTipReceiver: action.payload.selectedTipReceiver
       }
 
-    case types.CLEAR_TIP_RECEIVER_FROM_STORE:
+    case types.CLEAR_SELECTED_TIP_RECEIVER_FROM_STORE:
       return {
         ...state,
         selectedTipReceiver: initialState.selectedTipReceiver
