@@ -1,10 +1,12 @@
-const requiredParam = require('../../global-helpers/required-parameter');
+const requiredParam = require('../global-helpers/required-parameter');
 
 async function router({ 
   httpRequest = requiredParam('httpRequest'), 
   processors = requiredParam('processors'), 
-  res 
+  res // TODO: Remove reliance on Express' res object
 } = {}) {
+  // TODO: Route request objects to relevant processors 
+  // TODO: Receive mock response data from resolved promise
   switch (httpRequest.path) {
     //====== Root Endpoint ======//
     case '/':
@@ -156,6 +158,8 @@ async function router({
   }
 }
 
+// Temporary response helper
+// Will replace with returning a 404 response object
 function unroutedRequestResponse({ httpRequest, res }) {
   if (res && httpRequest) {
     return res.status(404).send(`<pre>Cannot ${httpRequest.method} ${httpRequest.path}</pre>`);

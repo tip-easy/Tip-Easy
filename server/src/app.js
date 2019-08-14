@@ -12,7 +12,7 @@ const makeInterface = require('./global-helpers/make-interface');
 
 // Local Helpers
 const normaliseExpressRequest = require('./http/helpers/normalise-express-request');
-const router = require('./routes/helpers/router');
+const router = require('./routes/router');
 
 // Interface Functions
 const expressHTTPInterfaceFunction = require('./http/express-http-interface');
