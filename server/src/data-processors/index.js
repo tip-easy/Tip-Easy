@@ -1,6 +1,23 @@
+// Third-party modules
+const jwt = require('jsonwebtoken');
+
+// Global Helpers
 const makeInterface = require('../global-helpers/make-interface');
 const mockResponseData = require('../database/mock-response-data');
 
+// Local Helpers
+const makeVerifyAuth = require('./helpers/verify-auth');
+const verifyAuth = makeVerifyAuth({ jwt });
+
+// Processor Functions
+// TODO: Create processor functions for each endpoint
+
+
+//====== Processors ======//
+// To avoid the app.js from becoming a massive file, dependency injection
+// happens here and then is exported.
+// May refactor the other parts of the app to use a local index file for 
+// dependency injection also depending on the benefits.
 const getMeProcessor = makeInterface({
   interfaceFunction: getMeProcessorFunction,
   // verifyAuth
