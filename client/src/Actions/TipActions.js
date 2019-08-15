@@ -15,7 +15,7 @@ export const clearSelectedTipAmount = () => dispatch => {
   })
 }
 
-export const setSelectedTipReceiverCode = (selectedTipReceiverCode) => {
+export const setSelectedTipReceiverCode = (selectedTipReceiverCode) => dispatch => {
   return dispatch({
     type: types.SET_SELECTED_TIP_RECEIVER_CODE,
     payload: {
@@ -24,14 +24,14 @@ export const setSelectedTipReceiverCode = (selectedTipReceiverCode) => {
   })
 }
 
-export const clearSelectedTipReceiverCodeFromStore = () => {
+export const clearSelectedTipReceiverCodeFromStore = () => dispatch => {
   return dispatch({
     type: types.CLEAR_SELECTED_TIP_RECEIVER_CODE_FROM_STORE,
   })
 }
 
 // selectedTipReceiver
-export const setSelectedTipReceiver = (selectedTipReceiver) => {
+export const setSelectedTipReceiver = (selectedTipReceiver) => dispatch => {
   return dispatch({
     type: types.SET_SELECTED_TIP_RECEIVER,
     payload: {
@@ -40,14 +40,14 @@ export const setSelectedTipReceiver = (selectedTipReceiver) => {
   })
 }
 
-export const clearSelectedTipReceiverFromStore = () => {
+export const clearSelectedTipReceiverFromStore = () => dispatch => {
   return dispatch({
     type: types.CLEAR_SELECTED_TIP_RECEIVER_FROM_STORE,
   })
 }
 
 // selectedPaymentMethodType
-export const setSelectedPaymentMethodType = (selectedPaymentMethodType) => {
+export const setSelectedPaymentMethodType = (selectedPaymentMethodType) => dispatch => {
   return dispatch({
     type: types.SET_SELECTED_PAYMENT_METHOD_TYPE,
     payload: {
@@ -56,14 +56,14 @@ export const setSelectedPaymentMethodType = (selectedPaymentMethodType) => {
   })
 }
 
-export const clearSelectedPaymentMethodTypeFromStore = () => {
+export const clearSelectedPaymentMethodTypeFromStore = () => dispatch => {
   return dispatch({
     type: types.CLEAR_SELECTED_PAYMENT_METHOD_TYPE_FROM_STORE,
   })
 }
 
 // selectedPaymentMethod
-export const setSelectedPaymentMethod = (selectedPaymentMethod) => {
+export const setSelectedPaymentMethod = (selectedPaymentMethod) => dispatch => {
   return dispatch({
     type: types.SET_SELECTED_PAYMENT_METHOD,
     payload: {
@@ -72,14 +72,14 @@ export const setSelectedPaymentMethod = (selectedPaymentMethod) => {
   })
 }
 
-export const clearSelectedPaymentMethodFromStore = () => {
+export const clearSelectedPaymentMethodFromStore = () => dispatch => {
   return dispatch({
     type: types.CLEAR_SELECTED_PAYMENT_METHOD_FROM_STORE,
   })
 }
 
 // entire Store
-export const clearEntireTipStore = () => {
+export const clearEntireTipStore = () => dispatch => {
   return dispatch({
     type: types.CLEAR_ENTIRE_TIP_STORE,
   })
