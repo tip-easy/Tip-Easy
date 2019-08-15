@@ -2,21 +2,6 @@ import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
 
-export const selectPaymentMethod = (methodName) => dispatch => {
-  dispatch({
-    type: types.SET_SELECTED_PAYMENT_METHOD,
-    payload: {
-      selectedPaymentMethod: methodName
-    }
-  })
-}
-
-export const clearSelectedPaymentMethod = () => dispatch => {
-  dispatch({
-    type: types.CLEAR_SELECTED_PAYMENT_METHOD_FROM_STORE
-  })
-}
-
 export const fetchPaymentMethods = (token) => dispatch => {
   dispatch({
     type: types.FETCHING_PAYMENT_METHODS_START

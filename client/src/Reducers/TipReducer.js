@@ -2,6 +2,7 @@ import * as types from '../Actions/actionTypes';
 
 const initialState = {
   selectedTipAmount: 0,
+
   selectedTipReceiverCode: "",
   selectedTipReceiver: {
     // account_type: "receiver",
@@ -13,6 +14,7 @@ const initialState = {
     // organisation: "CoolStuff",
     // default_currency: "eur"
   }, 
+  
   selectedPaymentMethodType: "",
   selectedPaymentMethod: {
     // pay_method_id: "pm_dee11d4e-63c6-4d90-983c-5c9f1e79e96c",

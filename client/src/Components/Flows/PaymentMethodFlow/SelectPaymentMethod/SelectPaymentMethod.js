@@ -3,7 +3,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import { fetchPaymentMethods, selectPaymentMethod } from '../../../../Actions/PaymentMethodActions';
+import { fetchPaymentMethods } from '../../../../Actions/PaymentMethodActions';
+import { setSelectedPaymentMethod } from '../../../../Actions/TipActions';
 
 // Array with all possible payment methods we carry, used for rendering corresponding buttons
 const paymentMethodOptions = [
@@ -29,7 +30,7 @@ export const SelectPaymentMethod = (props) => {
   // Sets selected payment method, containing both the type and name. 
   // Name has capitalization, meant for display. Type follows the schema set out by the DB
   const clickHandler = (paymentMethodObject) => {
-    props.selectPaymentMethod(paymentMethodObject)
+    props.setSelectedPaymentMethod(paymentMethodObject)
     props.history.push('/details')
   }
 
@@ -88,7 +89,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     fetchPaymentMethods,
-    selectPaymentMethod,
+    setSelectedPaymentMethod,
   }, dispatch)
 }
 

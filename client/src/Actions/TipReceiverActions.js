@@ -32,11 +32,11 @@ export const searchForTipReceiver = (code, token) => dispatch => {
     })
 }
 
-export const selectTipReceiver = (code) => dispatch => {
+export const selectTipReceiver = (selectedTipReceiverCode) => dispatch => {
   dispatch({
     type: types.SET_SELECTED_TIP_RECEIVER_CODE,
     payload: {
-      selectedTipReceiverCode: code
+      selectedTipReceiverCode: selectedTipReceiverCode
     }
   })
 }
