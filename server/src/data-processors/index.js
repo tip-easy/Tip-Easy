@@ -120,17 +120,17 @@ const registerProcessor = makeInterface({
 });
 
 module.exports = Object.freeze({
-  getMeProcessor,
-  patchMeProcessor,
-  deleteMeProcessor,
-  putResetPasswordProcessor,
+  getUserProcessor,
+  updateUserProcessor,
+  deleteUserProcessor,
+  resetPasswordProcessor,
   getBalanceProcessor,
   getTransactionsProcessor,
   getPaymentMethodsProcessor,
-  postPaymentMethodsProcessor,
-  postDepositProcessor,
-  getFindReceiverProcessor,
-  postSendTransactionProcessor,
-  postLoginProcessor,
-  postRegisterProcessor
+  addPaymentMethodProcessor,
+  depositProcessor,
+  findReceiverProcessor,
+  sendTransactionProcessor,
+  loginProcessor,
+  registerProcessor
 });
