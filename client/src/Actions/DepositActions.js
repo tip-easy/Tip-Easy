@@ -27,7 +27,7 @@ export const makeDeposit = (deposit_details, token) => dispatch => {
   return axios.post(`${URL}/me/deposit`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer${token}`,
+      'Authorization': `Bearer ${token}`,
       }
     }, {amount, currency, deposit_method, deposit_method_type})
     .then(res => {
