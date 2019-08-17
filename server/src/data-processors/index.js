@@ -10,7 +10,19 @@ const makeVerifyAuth = require('./helpers/verify-auth');
 const verifyAuth = makeVerifyAuth({ jwt });
 
 // Processor Functions
-// TODO: Create processor functions for each endpoint
+const getUserProcessorFunction = async () => {};
+const updateUserProcessorFunction = async () => {};
+const deleteUserProcessorFunction = async () => {};
+const resetPasswordProcessorFunction = async () => {};
+const getBalanceProcessorFunction = async () => {};
+const getTransactionsProcessorFunction = async () => {};
+const getPaymentMethodsProcessorFunction = async () => {};
+const addPaymentMethodProcessorFunction = async () => {};
+const depositProcessorFunction = async () => {};
+const findReceiverProcessorFunction = async () => {};
+const sendTransactionProcessorFunction = async () => {};
+const loginProcessorFunction = async () => {};
+const registerProcessorFunction = async () => {};
 
 
 //====== Processors ======//
