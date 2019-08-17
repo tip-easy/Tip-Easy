@@ -154,6 +154,6 @@ export const deleteUser = ( token ) => dispatch => {
 export const logout = () => dispatch => {
   localStorage.clear('token')
   dispatch({ 
-    type: types.CLEAR_USER_FROM_STORE 
+    type: types.CAUTION_CLEAR_ENTIRE_STORE
   })
 };
