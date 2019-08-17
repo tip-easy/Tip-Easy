@@ -18,7 +18,7 @@ export const getUser = ( token ) => dispatch => {
   return axios.get(`${URL}/me`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
     }
   })
     .then(res => {
@@ -55,7 +55,7 @@ export const patchUserInfo = ( changes, token ) => dispatch => {
   return axios.patch(`${URL}/me`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
       }
     }, changes)
     .then(res => {
@@ -95,7 +95,7 @@ export const changePassword = ( changes, token ) => dispatch => {
   return axios.put(`${URL}/me/reset-password`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
       }
     }, requestObject)
     .then(res => {
@@ -127,7 +127,7 @@ export const deleteUser = ( token ) => dispatch => {
   return axios.delete(`${URL}/me`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
       }
     })
     .then(res => {

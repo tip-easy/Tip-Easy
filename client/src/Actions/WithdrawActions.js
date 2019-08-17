@@ -25,7 +25,7 @@ export const makeWithdrawal = (withdraw_details, token) => dispatch => {
   return axios.post(`${URL}/me/withdraw`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
       }
     }, requestObject)
     .then(res => {

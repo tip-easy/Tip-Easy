@@ -18,7 +18,7 @@ export const fetchPaymentMethods = (token) => dispatch => {
   return axios.get(`${URL}/me/payment-methods`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
     }
   })
     .then(res => {
@@ -53,7 +53,7 @@ export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispat
   return axios.get(`${URL}/me/payment-methods/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
     }
   })
     .then(res => {
@@ -95,7 +95,7 @@ export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
   return axios.post(`${URL}/me/payment-methods`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
       }
     }, requestObject)
     .then(res => {
@@ -131,7 +131,7 @@ export const removePaymentMethod = (payment_method_id, id, token) => dispatch =>
   return axios.delete(`${URL}/payment-methods/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
       }
     })
     .then(res => {

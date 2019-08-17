@@ -18,7 +18,7 @@ export const searchForTipReceiver = (code, token) => dispatch => {
   return axios.get(`${URL}/find-receiver?s=${code}`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
     }
   })
     .then(res => {

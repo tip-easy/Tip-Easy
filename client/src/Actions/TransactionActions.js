@@ -26,7 +26,7 @@ export const sendTransaction = (code, transactionObject, token) => dispatch => {
   return axios.post(`${URL}/send-transaction`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
       }
     }, requestObject)
     .then(res => {
@@ -56,7 +56,7 @@ export const fetchTransactions = (token) => dispatch => {
   return axios.get(`${URL}/me/transactions`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer${token}`,
     }
   })
     .then(res => {
