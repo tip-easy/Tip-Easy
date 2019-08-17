@@ -9,14 +9,18 @@ async function routerInterfaceFunction({
   httpRequest = requiredParam('httpRequest'),
   ...additionalParams
 } = {}) {
+  // TODO: Remove reliance on Express' res
   const { res } = additionalParams || {};
   
   try {
     await router({ httpRequest, res, processors });
+    // TODO: Return reponse object received from router to HTTP Interface from
   }
   catch(error) {  
     // handle application errors vs request errors
     if (error.type && error.type.match(/application/i)) {
+      // TODO: Return error object to HTTP Interface rather than using res
+      // HTTP Interface will handle all responses in future
       res.status(500).send({ message: error.message });
       throw error;
     }

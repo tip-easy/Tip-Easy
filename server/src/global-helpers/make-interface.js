@@ -1,9 +1,10 @@
 function makeInterface({ interfaceFunction, ...dependencies } = {}, requiredParams = []) {
-  requiredParams.forEach(param => {
-    if (!dependencies[param]) {
-      throw new Error(`makeInterface: "${param}" is a required dependency argument`);
-    }
-  });
+  // Not needed currently. Handling required dependencies using default object params instead
+  // requiredParams.forEach(param => {
+  //   if (!dependencies[param]) {
+  //     throw new Error(`makeInterface: "${param}" is a required dependency argument`);
+  //   }
+  // });
 
   if (interfaceFunction && typeof interfaceFunction === 'function') {
     const interfaceFunctionWithInjectedDependencies = (interfaceParams) => 
