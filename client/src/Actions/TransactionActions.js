@@ -1,10 +1,10 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
 
-export const SendTransaction = (code, transactionObject, token) => dispatch => {
+export const sendTransaction = (code, transactionObject, token) => dispatch => {
   dispatch({
     type: types.SENDING_TRANSACTION_START,
   })
@@ -27,7 +27,7 @@ export const SendTransaction = (code, transactionObject, token) => dispatch => {
     });
   }
 
-  return axios.post(`${URL}/api/send-transaction`, {
+  return axios.post(`${URL}/send-transaction`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `${token}`,
@@ -52,19 +52,12 @@ export const SendTransaction = (code, transactionObject, token) => dispatch => {
     })
 }
 
-// Not sure whether or not we need to implement this
-// export const ClearCurrentTransaction = () => dispatch => {
-//   return dispatch({
-//     type: types.CLEAR_CURRENT_TRANSACTION_FROM_STORE,
-//   })
-// }
-
-export const FetchTransactions = (token) => dispatch => {
+export const fetchTransactions = (token) => dispatch => {
   dispatch({
     type: types.FETCHING_TRANSACTIONS_START
   })
   
-  return axios.get(`${URL}/api/me/transactions`, { 
+  return axios.get(`${URL}/me/transactions`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `${token}`,
@@ -89,7 +82,7 @@ export const FetchTransactions = (token) => dispatch => {
     })
 }
 
-export const ClearTransactionList = () => dispatch => {
+export const clearTransactionList = () => dispatch => {
   return dispatch({
     type: types.CLEAR_TRANSACTIONS_LIST_FROM_STORE,
   })

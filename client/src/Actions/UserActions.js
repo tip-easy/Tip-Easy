@@ -4,7 +4,7 @@ import * as types from './actionTypes';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
 
-export const GetUser = ( token ) => dispatch => {
+export const getUser = ( token ) => dispatch => {
   dispatch({
     type: types.GETTING_USER_START
   })
@@ -44,7 +44,7 @@ export const GetUser = ( token ) => dispatch => {
     })
 }
 
-export const PatchUserInfo = ( changes, token ) => dispatch => {
+export const patchUserInfo = ( changes, token ) => dispatch => {
   dispatch({ 
     type: types.PATCHING_USER_INFO_START 
   })
@@ -84,7 +84,7 @@ export const PatchUserInfo = ( changes, token ) => dispatch => {
     })
 }
 
-export const ChangePassword = ( changes, token ) => dispatch => {
+export const changePassword = ( changes, token ) => dispatch => {
   dispatch({ 
     type: types.RESETTING_PASSWORD_START 
   })
@@ -128,7 +128,7 @@ export const ChangePassword = ( changes, token ) => dispatch => {
     })
 }
 
-export const DeleteUser = ( token ) => dispatch => {
+export const deleteUser = ( token ) => dispatch => {
   dispatch({
     type: types.DELETING_USER_START
   })
@@ -155,7 +155,7 @@ export const DeleteUser = ( token ) => dispatch => {
       })
       // Since Deletion of an account immediately results in logging out, should the ENTIRE store be cleared?
       // TODO: (?) Add general store reset action type to all reducers
-      Logout()
+      logout()
     })
     
     .catch(error => {
@@ -170,7 +170,7 @@ export const DeleteUser = ( token ) => dispatch => {
 
 // On logout, which can only be done through the UserProfile, clear the entire store by calling every individual CLEAR action
 // >>> Find a way to clear the entire store in a single go.
-export const Logout = () => dispatch => {
+export const logout = () => dispatch => {
   localStorage.clear('token')
   dispatch({ 
     type: types.CLEAR_USER_FROM_STORE 

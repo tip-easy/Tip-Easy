@@ -1,10 +1,10 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
 
-export const MakeDeposit = (deposit_details, token) => dispatch => {
+export const makeDeposit = (deposit_details, token) => dispatch => {
   dispatch({
     type: types.DEPOSITING_START,
   })
@@ -28,7 +28,7 @@ export const MakeDeposit = (deposit_details, token) => dispatch => {
     });
   }
 
-  return axios.post(`${URL}/api/me/deposit`, {
+  return axios.post(`${URL}/me/deposit`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `${token}`,
@@ -53,7 +53,7 @@ export const MakeDeposit = (deposit_details, token) => dispatch => {
     })
 }
 
-export const SetDepositAmount = (amount) => dispatch => {
+export const setDepositAmount = (amount) => dispatch => {
   return amount >= 10 ? 
     dispatch({
       type: types.SET_DEPOSIT_AMOUNT,
@@ -70,7 +70,7 @@ export const SetDepositAmount = (amount) => dispatch => {
     });
 }
 
-export const ClearDepositFromStore = () => dispatch => {
+export const clearDepositFromStore = () => dispatch => {
   return dispatch({
     type: types.CLEAR_DEPOSIT_FROM_STORE,
   })

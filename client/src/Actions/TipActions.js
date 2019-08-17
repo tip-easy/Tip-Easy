@@ -9,7 +9,7 @@ export const setSelectedTipAmountTip = selectedTipAmount => dispatch => {
   })
 }
 
-export const clearSelectedTipAmount = () => dispatch => {
+export const clearSelectedTipAmountFromStore = () => dispatch => {
   return dispatch({
     type: types.CLEAR_SELECTED_TIP_AMOUNT_FROM_STORE,
   })

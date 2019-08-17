@@ -2,7 +2,7 @@ import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
 
-import { GetUser } from './UserActions'
+import { getUser } from './UserActions'
 
 export const login = user_info => dispatch => {
   dispatch({
@@ -26,7 +26,7 @@ export const login = user_info => dispatch => {
     });  
   }
 
-  axios.post(`${URL}/api/login`, {
+  axios.post(`${URL}/login`, {
     email, password
   })
     .then(res => {
@@ -34,7 +34,7 @@ export const login = user_info => dispatch => {
         type: types.LOGGING_IN_SUCCESS,
       })
       // Found in UserActions
-      GetUser({
+      getUser({
         token: res.data.token,
       })
     })

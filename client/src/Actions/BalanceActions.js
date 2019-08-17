@@ -1,10 +1,10 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
 
-export const GetBalance = ( token ) => dispatch => {
+export const getBalance = ( token ) => dispatch => {
   dispatch({
     type: types.GETTING_BALANCE_START
   })
@@ -19,7 +19,7 @@ export const GetBalance = ( token ) => dispatch => {
     });
   }
 
-  return axios.get(`${URL}/api/me/balance`, { 
+  return axios.get(`${URL}/me/balance`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `${token}`,
@@ -46,7 +46,7 @@ export const GetBalance = ( token ) => dispatch => {
     })
 }
 
-export const ClearBalance = () => dispatch => {
+export const clearBalance = () => dispatch => {
   return dispatch({
     type: types.CLEAR_BALANCE_FROM_STORE,
   })

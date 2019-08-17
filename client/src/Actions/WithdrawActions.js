@@ -1,10 +1,10 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
 
-export const MakeWithdrawal = (withdraw_details, token) => dispatch => {
+export const makeWithdrawal = (withdraw_details, token) => dispatch => {
   dispatch({
     type: types.WITHDRAWING_START,
   })
@@ -26,7 +26,7 @@ export const MakeWithdrawal = (withdraw_details, token) => dispatch => {
     });
   }
 
-  return axios.post(`${URL}/api/me/withdraw`, {
+  return axios.post(`${URL}/me/withdraw`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `${token}`,
@@ -49,7 +49,7 @@ export const MakeWithdrawal = (withdraw_details, token) => dispatch => {
     })
 }
 
-export const SetWithdrawalAmount = (amount) => dispatch => {
+export const setWithdrawalAmount = (amount) => dispatch => {
   return dispatch({
     type: types.SET_WITHDRAWAL_AMOUNT,
     payload: {
@@ -58,7 +58,7 @@ export const SetWithdrawalAmount = (amount) => dispatch => {
   })
 }
 
-export const ClearWithdrawalFromStore = () => dispatch => {
+export const clearWithdrawalFromStore = () => dispatch => {
   return dispatch({
     type: types.CLEAR_WITHDRAWAL_FROM_STORE,
   })

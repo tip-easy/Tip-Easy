@@ -19,7 +19,7 @@ export const fetchPaymentMethods = (token) => dispatch => {
     });
   }
 
-  return axios.get(`${URL}/api/me/payment-methods`, { 
+  return axios.get(`${URL}/me/payment-methods`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `${token}`,
@@ -59,7 +59,7 @@ export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispat
     });
   }
 
-  return axios.get(`${URL}/api/me/payment-methods/${payment_method_id}`, { 
+  return axios.get(`${URL}/me/payment-methods/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `${token}`,
@@ -106,7 +106,7 @@ export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
     });
   }
 
-  return axios.post(`${URL}/api/me/payment-methods`, {
+  return axios.post(`${URL}/me/payment-methods`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `${token}`,
@@ -147,7 +147,7 @@ export const removePaymentMethod = (payment_method_id, id, token) => dispatch =>
     });
   }
 
-  return axios.delete(`${URL}/api/payment-methods/${payment_method_id}`, { 
+  return axios.delete(`${URL}/payment-methods/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `${token}`,
