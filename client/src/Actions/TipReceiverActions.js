@@ -2,15 +2,23 @@ import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
 
+import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
+
 export const searchForTipReceiver = (code, token) => dispatch => {
   dispatch({
     type: types.SEARCHING_TIP_RECEIVER_START
   })
 
-  return axios.get(`${URL}/api/find-receiver?s=${code}`, { 
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.SEARCHING_TIP_RECEIVER_FAILURE)
+  }
+
+  return axios.get(`${URL}/find-receiver?s=${code}`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => {
@@ -32,17 +40,17 @@ export const searchForTipReceiver = (code, token) => dispatch => {
     })
 }
 
-export const selectTipReceiver = (code) => dispatch => {
+export const selectTipReceiver = (selectedTipReceiverCode) => dispatch => {
   dispatch({
-    type: types.SET_TIP_RECEIVER_CODE,
+    type: types.SET_SELECTED_TIP_RECEIVER_CODE,
     payload: {
-      selectedTipReceiverCode: code
+      selectedTipReceiverCode: selectedTipReceiverCode
     }
   })
 }
 
 export const clearTipReceiver = () => dispatch => {
   dispatch({
-    type: types.CLEAR_TIP_RECEIVER_CODE_FROM_STORE,
+    type: types.CLEAR_SELECTED_TIP_RECEIVER_CODE_FROM_STORE,
   })
 }

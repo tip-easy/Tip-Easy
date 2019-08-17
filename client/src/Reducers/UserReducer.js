@@ -4,7 +4,7 @@ const initialState = {
   token: "XXXXX",
   user: {
     // Having a default / placeholder?
-    accountType: "sender",
+    account_type: "sender",
     name: "Anakin",
     email: "Vader@ImperialAcademy.com",
     profile_img: "",
@@ -15,13 +15,13 @@ const initialState = {
   },
 
   gettingUser: false,
-  updatingUser: false,
-  resettingPassword: false,
+  patchingUser: false,
+  changingPassword: false,
   deletingUser: false,
 
   gettingUserMessage: "",
-  updateMessage: "",
-  resettingPasswordMessage: "",
+  patchMessage: "",
+  changingPasswordMessage: "",
   deleteMessage: "",
 }
 
@@ -60,53 +60,53 @@ export const UserReducer = (state = initialState, action) => {
       }
 
     // UPDATING USER INFO
-    case types.UPDATING_USER_INFO_START:
+    case types.PATCHING_USER_INFO_START:
       return {
         ...state,
-        updatingUser: true,
+        patchingUser: true,
 
-        updateMessage: initialState.updateMessage,
+        patchMessage: initialState.updateMessage,
       }
 
-    case types.UPDATING_USER_INFO_SUCCESS:
+    case types.PATCHING_USER_INFO_SUCCESS:
       return {
         ...state,
         user: action.payload.user,
 
-        updatingUser: false,
+        patchingUser: false,
       }
 
-    case types.UPDATING_USER_INFO_FAILURE:
+    case types.PATCHING_USER_INFO_FAILURE:
       return {
         ...state,
-        updatingUser: false,
+        patchingUser: false,
 
-        updateMessage: "",
+        patchMessage: "",
       }
 
     // RESTTING PASSWORD 
-    case types.RESETTING_PASSWORD_START:
+    case types.CHANGING_PASSWORD_START:
       return {
         ...state,
-        resettingPassword: true,
+        changingPassword: true,
 
-        resettingPasswordMessage: initialState.resettingPasswordMessage,
+        changingPasswordMessage: initialState.changingPasswordMessage,
       }
 
-    case types.RESETTING_PASSWORD_SUCCESS:
+    case types.CHANGING_PASSWORD_SUCCESS:
       return {
         ...state,
-        resettingPassword: false,
+        changingPassword: false,
 
-        resettingPasswordMessage: "",
+        changingPasswordMessage: "",
       }
 
-    case types.RESETTING_PASSWORD_FAILURE:
+    case types.CHANGING_PASSWORD_FAILURE:
       return {
         ...state,
-        resettingPassword: false,
+        changingPassword: false,
 
-        resettingPasswordMessage: "",
+        changingPasswordMessage: "",
     }
 
     // DELETING USER
@@ -133,6 +133,9 @@ export const UserReducer = (state = initialState, action) => {
 
         deleteMessage: "",
       }
+
+    case types.CAUTION_CLEAR_ENTIRE_STORE:
+      return initialState
 
     default: 
       return state

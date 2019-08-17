@@ -1,16 +1,24 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
 
-export const GetBalance = ( token ) => dispatch => {
+import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
+
+export const getBalance = ( token ) => dispatch => {
   dispatch({
     type: types.GETTING_BALANCE_START
   })
 
-  return axios.get(`${URL}/api/me/balance`, { 
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.GETTING_BALANCE_FAILURE)
+  }
+
+  return axios.get(`${URL}/me/balance`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => {
@@ -34,7 +42,7 @@ export const GetBalance = ( token ) => dispatch => {
     })
 }
 
-export const ClearBalance = () => dispatch => {
+export const clearBalance = () => dispatch => {
   return dispatch({
     type: types.CLEAR_BALANCE_FROM_STORE,
   })

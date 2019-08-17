@@ -19,9 +19,7 @@ const initialState = {
     //   pay_method_name: "BTC Lightning"
     // }
   ],
-  selectedPaymentMethod: {},
 
-  
   fetchingPaymentMethods: false,
   addingPaymentMethod: false,
   removingPaymentMethod: false,
@@ -33,18 +31,6 @@ const initialState = {
 
 export const PaymentMethodReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.SET_SELECTED_PAYMENT_METHOD:
-      return {
-        ...state,
-        selectedPaymentMethod: action.payload.selectedPaymentMethod
-      }
-
-    case types.CLEAR_SELECTED_PAYMENT_METHOD_FROM_STORE:
-      return {
-        ...state,
-        selectedPaymentMethod: initialState.selectedPaymentMethod,
-      }
-
     case types.FETCHING_PAYMENT_METHODS_START:
       return {
         ...state,
@@ -125,6 +111,9 @@ export const PaymentMethodReducer = (state = initialState, action) => {
         paymentMethodsArray: initialState.paymentMethodsArray,
       }
     
+    case types.CAUTION_CLEAR_ENTIRE_STORE:
+      return initialState
+
     default: 
       return state
   }

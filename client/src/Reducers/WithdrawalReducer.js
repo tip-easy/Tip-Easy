@@ -46,6 +46,9 @@ export const WithdrawalReducer = (state = initialState, action) => {
         withdrawalMessage: action.payload.error,
       }
 
+    case types.CAUTION_CLEAR_ENTIRE_STORE:
+      return initialState
+
     default: 
       return state
   }

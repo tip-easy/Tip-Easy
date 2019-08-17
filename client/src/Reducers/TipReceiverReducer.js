@@ -27,7 +27,6 @@ const initialState = {
   
   searchingTipReceivers: false,
   
-  selectedTipReceiverCode: "",
   searchingTipReceiversMessage: "",
 }
 
@@ -50,24 +49,15 @@ export const TipReceiverReducer = (state = initialState, action) => {
       }
 
     case types.SEARCHING_TIP_RECEIVER_FAILURE:
-        return {
-          ...state,
-          searchingTipReceivers: false,
+      return {
+        ...state,
+        searchingTipReceivers: false,
 
-          searchingTipReceiversMessage: action.payload.error
-        }
+        searchingTipReceiversMessage: action.payload.error
+      }
 
-    case types.SET_TIP_RECEIVER_CODE:
-        return {
-          ...state,
-          selectedTipReceiverCode: action.payload.selectedTipReceiverCode,
-        }
-
-    case types.CLEAR_TIP_RECEIVER_CODE_FROM_STORE:
-        return {
-          ...state,
-          selectedTipReceiverCode: initialState.selectedTipReceiverCode,
-        }
+    case types.CAUTION_CLEAR_ENTIRE_STORE:
+      return initialState
 
     default: 
       return state

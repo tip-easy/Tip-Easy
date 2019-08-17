@@ -1,8 +1,15 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
 
-export const MakeWithdrawal = (withdraw_details, token) => dispatch => {
+import { tokenIsValid } from './../Helpers/tokenIsValid';
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid';
+
+export const makeWithdrawal = (withdraw_details, token) => dispatch => {
+  dispatch({
+    type: types.WITHDRAWING_START,
+  })
+
   let requestObject = {
     amount: withdraw_details.amount,
     currency: withdraw_details.currency,
@@ -10,13 +17,15 @@ export const MakeWithdrawal = (withdraw_details, token) => dispatch => {
     withdraw_method_type: withdraw_details.withdraw_method_type,
   }
 
-  dispatch({
-    type: types.WITHDRAWING_START,
-  })
-  return axios.post(`${URL}/api/me/withdraw`, {
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.WITHDRAWING_FAILURE)
+  }
+
+  return axios.post(`${URL}/me/withdraw`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
       }
     }, requestObject)
     .then(res => {
@@ -36,7 +45,7 @@ export const MakeWithdrawal = (withdraw_details, token) => dispatch => {
     })
 }
 
-export const SetWithdrawalAmount = (amount) => dispatch => {
+export const setWithdrawalAmount = (amount) => dispatch => {
   return dispatch({
     type: types.SET_WITHDRAWAL_AMOUNT,
     payload: {
@@ -45,7 +54,7 @@ export const SetWithdrawalAmount = (amount) => dispatch => {
   })
 }
 
-export const ClearWithdrawalFromStore = () => dispatch => {
+export const clearWithdrawalFromStore = () => dispatch => {
   return dispatch({
     type: types.CLEAR_WITHDRAWAL_FROM_STORE,
   })

@@ -2,29 +2,23 @@ import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
 
-export const selectPaymentMethod = (methodName) => dispatch => {
-  dispatch({
-    type: types.SET_SELECTED_PAYMENT_METHOD,
-    payload: {
-      selectedPaymentMethod: methodName
-    }
-  })
-}
-
-export const clearSelectedPaymentMethod = () => dispatch => {
-  dispatch({
-    type: types.CLEAR_SELECTED_PAYMENT_METHOD_FROM_STORE
-  })
-}
+import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
 
 export const fetchPaymentMethods = (token) => dispatch => {
   dispatch({
     type: types.FETCHING_PAYMENT_METHODS_START
   })
-  return axios.get(`${URL}/api/me/payment-methods`, { 
+
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE)
+  }
+
+  return axios.get(`${URL}/me/payment-methods`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => {
@@ -50,10 +44,16 @@ export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispat
   dispatch({
     type: types.FETCHING_PAYMENT_METHODS_START
   })
-  return axios.get(`${URL}/api/me/payment-methods/${payment_method_id}`, { 
+
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE)
+  }
+
+  return axios.get(`${URL}/me/payment-methods/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => {
@@ -77,20 +77,25 @@ export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispat
 
 // Do we need this action, or will it be handled solely through Stripe?
 export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
+  dispatch({
+    type: types.ADDING_PAYMENT_METHOD_START
+  })
+
   let requestObject = {
     pay_method_type: new_payment_menthod.payment_method_id,
     brand: new_payment_menthod.brand,
     // What info do we need to provide?
   }
 
-  dispatch({
-    type: types.ADDING_PAYMENT_METHOD_START
-  })
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.ADDING_PAYMENT_METHOD_FAILURE)
+  }
 
-  return axios.post(`${URL}/api/me/payment-methods`, {
+  return axios.post(`${URL}/me/payment-methods`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
       }
     }, requestObject)
     .then(res => {
@@ -118,10 +123,15 @@ export const removePaymentMethod = (payment_method_id, id, token) => dispatch =>
     type: types.REMOVING_PAYMENT_METHOD_START
   })
 
-  return axios.delete(`${URL}/api/payment-methods/${payment_method_id}`, { 
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.REMOVING_PAYMENT_METHOD_FAILURE)
+  }
+
+  return axios.delete(`${URL}/payment-methods/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
       }
     })
     .then(res => {

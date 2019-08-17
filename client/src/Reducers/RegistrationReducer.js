@@ -60,6 +60,9 @@ export const RegistrationReducer = (state = initialState, action) => {
         errorMessage: "",
       }
 
+    case types.CAUTION_CLEAR_ENTIRE_STORE:
+      return initialState
+
     default: 
       return state
   }
