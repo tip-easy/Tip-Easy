@@ -18,32 +18,32 @@ const verifyAuth = makeVerifyAuth({ jwt });
 // happens here and then is exported.
 // May refactor the other parts of the app to use a local index file for 
 // dependency injection also depending on the benefits.
-const getMeProcessor = makeInterface({
-  interfaceFunction: getMeProcessorFunction,
+const getUserProcessor = makeInterface({
+  interfaceFunction: getUserProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const patchMeProcessor = makeInterface({
-  interfaceFunction: patchMeProcessorFunction,
+const updateUserProcessor = makeInterface({
+  interfaceFunction: updateUserProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const deleteMeProcessor = makeInterface({
-  interfaceFunction: deleteMeProcessorFunction,
+const deleteUserProcessor = makeInterface({
+  interfaceFunction: deleteUserProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const putResetPasswordProcessor = makeInterface({
-  interfaceFunction: putResetPasswordProcessorFunction,
+const resetPasswordProcessor = makeInterface({
+  interfaceFunction: resetPasswordProcessorFunction,
   // verifyAuth
   // validate
   // normalise
@@ -74,46 +74,46 @@ const getPaymentMethodsProcessor = makeInterface({
   mockResponseData
 });
 
-const postPaymentMethodsProcessor = makeInterface({
-  interfaceFunction: postPaymentMethodsProcessorFunction,
+const addPaymentMethodProcessor = makeInterface({
+  interfaceFunction: addPaymentMethodProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const postDepositProcessor = makeInterface({
-  interfaceFunction: postDepositProcessorFunction,
+const depositProcessor = makeInterface({
+  interfaceFunction: depositProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const getFindReceiverProcessor = makeInterface({
-  interfaceFunction: getFindReceiverProcessorFunction,
+const findReceiverProcessor = makeInterface({
+  interfaceFunction: findReceiverProcessorFunction,
   // validate
   // normalise
   mockResponseData
 });
 
-const postSendTransactionProcessor = makeInterface({
-  interfaceFunction: postSendTransactionProcessorFunction,
+const sendTransactionProcessor = makeInterface({
+  interfaceFunction: sendTransactionProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const postLoginProcessor = makeInterface({
-  interfaceFunction: postLoginProcessorFunction,
+const loginProcessor = makeInterface({
+  interfaceFunction: loginProcessorFunction,
   // validate
   // normalise
   mockResponseData
 });
 
-const postRegisterProcessor = makeInterface({
-  interfaceFunction: postRegisterProcessorFunction,
+const registerProcessor = makeInterface({
+  interfaceFunction: registerProcessorFunction,
   // validate
   // normalise
   mockResponseData
