@@ -134,6 +134,9 @@ export const UserReducer = (state = initialState, action) => {
         deleteMessage: "",
       }
 
+    case types.CAUTION_CLEAR_ENTIRE_STORE:
+      return initialState
+
     default: 
       return state
   }

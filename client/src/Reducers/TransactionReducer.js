@@ -75,6 +75,9 @@ export const TransactionReducer = (state = initialState, action) => {
         transactionsArray: initialState.transactionsArray,
       }
 
+    case types.CAUTION_CLEAR_ENTIRE_STORE:
+      return initialState
+
     default: 
       return state
   }

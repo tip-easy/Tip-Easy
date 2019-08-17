@@ -49,12 +49,15 @@ export const TipReceiverReducer = (state = initialState, action) => {
       }
 
     case types.SEARCHING_TIP_RECEIVER_FAILURE:
-        return {
-          ...state,
-          searchingTipReceivers: false,
+      return {
+        ...state,
+        searchingTipReceivers: false,
 
-          searchingTipReceiversMessage: action.payload.error
-        }
+        searchingTipReceiversMessage: action.payload.error
+      }
+
+    case types.CAUTION_CLEAR_ENTIRE_STORE:
+      return initialState
 
     default: 
       return state

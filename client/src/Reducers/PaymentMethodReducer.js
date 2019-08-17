@@ -111,6 +111,9 @@ export const PaymentMethodReducer = (state = initialState, action) => {
         paymentMethodsArray: initialState.paymentMethodsArray,
       }
     
+    case types.CAUTION_CLEAR_ENTIRE_STORE:
+      return initialState
+
     default: 
       return state
   }

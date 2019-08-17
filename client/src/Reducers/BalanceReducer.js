@@ -27,18 +27,21 @@ export const BalanceReducer = (state = initialState, action) => {
       }
 
     case types.GETTING_BALANCE_FAILURE:
-        return {
-          ...state,
-          balanceMessage: action.payload.error
-        }
+      return {
+        ...state,
+        balanceMessage: action.payload.error
+      }
 
     case types.CLEAR_BALANCE_FROM_STORE:
-        return {
-          ...state,
-          balance: initialState.balance,
+      return {
+        ...state,
+        balance: initialState.balance,
 
-          balanceMessage: initialState.balanceMessage,
-        }
+        balanceMessage: initialState.balanceMessage,
+      }
+
+    case types.CAUTION_CLEAR_ENTIRE_STORE:
+      return initialState
 
     default: 
       return state
