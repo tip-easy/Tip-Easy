@@ -4,7 +4,7 @@ const initialState = {
   token: "XXXXX",
   user: {
     // Having a default / placeholder?
-    accountType: "sender",
+    account_type: "sender",
     name: "Anakin",
     email: "Vader@ImperialAcademy.com",
     profile_img: "",
@@ -15,12 +15,12 @@ const initialState = {
   },
 
   gettingUser: false,
-  updatingUser: false,
+  patchingUser: false,
   resettingPassword: false,
   deletingUser: false,
 
   gettingUserMessage: "",
-  updateMessage: "",
+  patchMessage: "",
   resettingPasswordMessage: "",
   deleteMessage: "",
 }
@@ -60,28 +60,28 @@ export const UserReducer = (state = initialState, action) => {
       }
 
     // UPDATING USER INFO
-    case types.UPDATING_USER_INFO_START:
+    case types.PATCHING_USER_INFO_START:
       return {
         ...state,
-        updatingUser: true,
+        patchingUser: true,
 
-        updateMessage: initialState.updateMessage,
+        patchMessage: initialState.updateMessage,
       }
 
-    case types.UPDATING_USER_INFO_SUCCESS:
+    case types.PATCHING_USER_INFO_SUCCESS:
       return {
         ...state,
         user: action.payload.user,
 
-        updatingUser: false,
+        patchingUser: false,
       }
 
-    case types.UPDATING_USER_INFO_FAILURE:
+    case types.PATCHING_USER_INFO_FAILURE:
       return {
         ...state,
-        updatingUser: false,
+        patchingUser: false,
 
-        updateMessage: "",
+        patchMessage: "",
       }
 
     // RESTTING PASSWORD 

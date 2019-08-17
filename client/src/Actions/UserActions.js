@@ -2,13 +2,24 @@ import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
 
+import { tokenIsValid } from './../Helpers/tokenIsValid'
+
 export const GetUser = ( token ) => dispatch => {
-  // Implement further data-checking.
-  
   dispatch({
     type: types.GETTING_USER_START
   })
-  return axios.get(`${URL}/api/me`, { 
+
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return dispatch({ 
+      type: types.GETTING_USER_FAILURE, 
+      payload: {
+        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
+      } 
+    });
+  }
+
+  return axios.get(`${URL}/me`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `${token}`,
@@ -23,21 +34,34 @@ export const GetUser = ( token ) => dispatch => {
         }
       })
     })
-
     .catch(error => {
       dispatch({ 
         type: types.GETTING_USER_FAILURE, 
-        payload: {error} 
+        payload: {
+          error
+        } 
       });
     })
 }
 
-export const UpdateUserInfo = ( changes, token ) => dispatch => {
+export const PatchUserInfo = ( changes, token ) => dispatch => {
   // Check incoming data in `changes` for one of the provided parameters. If not, reject it.
 
   dispatch({ 
-    type: types.UPDATING_USER_INFO_START 
+    type: types.PATCHING_USER_INFO_START 
   })
+
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return dispatch({ 
+      type: types.PATCHING_USER_INFO_FAILURE, 
+      payload: {
+        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
+      } 
+    });
+  }
+
+  // TO-DO: Figure out how to do param validation for incoming `changes` object.
 
   return axios.patch(`${URL}/api/me`, { 
     headers: {
@@ -47,7 +71,7 @@ export const UpdateUserInfo = ( changes, token ) => dispatch => {
     }, changes)
     .then(res => {
       dispatch({ 
-        type: types.UPDATING_USER_INFO_SUCCESS,
+        type: types.PATCHING_USER_INFO_SUCCESS,
         payload: {
           user: res.data.user
         }
@@ -56,7 +80,7 @@ export const UpdateUserInfo = ( changes, token ) => dispatch => {
 
     .catch(error => {
       dispatch({ 
-        type: types.UPDATING_USER_INFO_FAILURE,
+        type: types.PATCHING_USER_INFO_FAILURE,
         payload: {error} 
       })
     })

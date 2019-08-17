@@ -14,7 +14,7 @@ const initialState = {
     // organisation: "CoolStuff",
     // default_currency: "eur"
   }, 
-  
+
   selectedPaymentMethodType: "",
   selectedPaymentMethod: {
     // pay_method_id: "pm_dee11d4e-63c6-4d90-983c-5c9f1e79e96c",
@@ -28,6 +28,7 @@ const initialState = {
 
 export const TipReducer = (state = initialState, action) => {
   switch (action.type) {
+    // selectedTipAmount
     case types.SET_SELECTED_TIP_AMOUNT:
       return {
         ...state,
@@ -40,6 +41,7 @@ export const TipReducer = (state = initialState, action) => {
         selectedTipAmount: initialState.selectedTipAmount
       }
 
+    // selectedTipRecieverCode
     case types.SET_SELECTED_TIP_RECEIVER_CODE:
       return {
         ...state,
@@ -52,6 +54,7 @@ export const TipReducer = (state = initialState, action) => {
         selectedTipReceiverCode: initialState.selectedTipReceiverCode
       }
 
+    // selectedTipReceiver
     case types.SET_SELECTED_TIP_RECEIVER:
       return {
         ...state,
@@ -64,6 +67,7 @@ export const TipReducer = (state = initialState, action) => {
         selectedTipReceiver: initialState.selectedTipReceiver
       }
 
+    // selectedPaymentMethodType
     case types.SET_SELECTED_PAYMENT_METHOD_TYPE:
       return {
         ...state,
@@ -76,6 +80,7 @@ export const TipReducer = (state = initialState, action) => {
         selectedPaymentMethodType: initialState.selectedPaymentMethodType
       }
 
+    // selectedPaymentMethod
     case types.SET_SELECTED_PAYMENT_METHOD:
       return {
         ...state,
