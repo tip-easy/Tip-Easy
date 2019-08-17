@@ -3,6 +3,7 @@ import { URL } from './index';
 import * as types from './actionTypes';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid';
 
 export const makeDeposit = (deposit_details, token) => dispatch => {
   dispatch({
@@ -19,7 +20,7 @@ export const makeDeposit = (deposit_details, token) => dispatch => {
     });
   }
 
-  if (!tokenIsValid(token)) {
+  if (!tokenIsValid(token, )) {
     return dispatch({ 
       type: types.DEPOSITING_FAILURE, 
       payload: {
@@ -54,20 +55,21 @@ export const makeDeposit = (deposit_details, token) => dispatch => {
 }
 
 export const setDepositAmount = (amount) => dispatch => {
-  return amount >= 10 ? 
-    dispatch({
-      type: types.SET_DEPOSIT_AMOUNT,
-      payload: {
-        depositAmount: amount,
-      }
-    })
-    :
-    dispatch({ 
+  if (amount >= 10) {
+    return dispatch({ 
       type: types.DEPOSITING_FAILURE, 
       payload: {
         error: "The minimum deposit amount is $10"
       } 
     });
+  } else {
+    return dispatch({
+      type: types.SET_DEPOSIT_AMOUNT,
+      payload: {
+        depositAmount: amount,
+      }
+    })
+  }
 }
 
 export const clearDepositFromStore = () => dispatch => {
