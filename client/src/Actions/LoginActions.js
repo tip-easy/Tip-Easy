@@ -5,16 +5,29 @@ import * as types from './actionTypes';
 import { GetUser } from './UserActions'
 
 export const login = user_info => dispatch => {
-  // Implement further data-checking.
-  let credentials = {
-    email: user_info.email,
-    password: user_info.password
-  }
   dispatch({
     type: types.LOGGING_IN_START
   })
+
+  const {email, password} = user_info
+  
+  // Preliminairy params validation
+  if (!email || 
+    !password || 
+    typeof(email) !== "string" ||
+    typeof(password) !== "string" || 
+    password.length < 8 ) 
+  {
+    dispatch({ 
+      type: types.LOGGING_IN_FAILURE, 
+      payload: {
+        error: "Make sure you're passing a valid email and password!"
+      } 
+    });  
+  }
+
   axios.post(`${URL}/api/login`, {
-    credentials
+    email, password
   })
     .then(res => {
       dispatch({ 
@@ -22,7 +35,6 @@ export const login = user_info => dispatch => {
       })
       // Found in UserActions
       GetUser({
-        credentials,
         token: res.data.token,
       })
     })

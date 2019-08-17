@@ -2,7 +2,13 @@ import axios from 'axios';
 import URL from './index';
 import * as types from './actionTypes';
 
+import { tokenIsValid } from './../Helpers/tokenIsValid'
+
 export const SendTransaction = (code, transactionObject, token) => dispatch => {
+  dispatch({
+    type: types.SENDING_TRANSACTION_START,
+  })
+
   let requestObject = {
     amount: transactionObject.amount,
     currency: transactionObject.currency,
@@ -11,9 +17,16 @@ export const SendTransaction = (code, transactionObject, token) => dispatch => {
     pay_method_type: transactionObject.pay_method_type,
   }
 
-  dispatch({
-    type: types.SENDING_TRANSACTION_START,
-  })
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return dispatch({ 
+      type: types.SENDING_TRANSACTION_FAILURE, 
+      payload: {
+        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
+      } 
+    });
+  }
+
   return axios.post(`${URL}/api/send-transaction`, {
     headers: {
       'Content-Type': 'application/json',
