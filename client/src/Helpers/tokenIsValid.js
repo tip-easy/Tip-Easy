@@ -1,5 +1,5 @@
 export const tokenIsValid = (token) => {
-  if (typeof(token) !== "string" || token.length !== 155) {
+  if (typeof token !== "string") {
     return false
   }
   return true
