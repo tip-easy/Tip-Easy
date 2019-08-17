@@ -3,6 +3,7 @@ import { URL } from './index';
 import * as types from './actionTypes';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
 
 export const searchForTipReceiver = (code, token) => dispatch => {
   dispatch({
@@ -11,12 +12,7 @@ export const searchForTipReceiver = (code, token) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return dispatch({ 
-      type: types.SEARCHING_TIP_RECEIVER_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.SEARCHING_TIP_RECEIVER_FAILURE)
   }
 
   return axios.get(`${URL}/find-receiver?s=${code}`, { 

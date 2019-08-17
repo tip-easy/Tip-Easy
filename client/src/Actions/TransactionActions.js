@@ -3,6 +3,7 @@ import { URL } from './index';
 import * as types from './actionTypes';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
 
 export const sendTransaction = (code, transactionObject, token) => dispatch => {
   dispatch({
@@ -19,12 +20,7 @@ export const sendTransaction = (code, transactionObject, token) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return dispatch({ 
-      type: types.SENDING_TRANSACTION_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.SENDING_TRANSACTION_FAILURE)
   }
 
   return axios.post(`${URL}/send-transaction`, {

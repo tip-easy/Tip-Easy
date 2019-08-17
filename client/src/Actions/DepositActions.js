@@ -21,12 +21,7 @@ export const makeDeposit = (deposit_details, token) => dispatch => {
   }
 
   if (!tokenIsValid(token, )) {
-    return dispatch({ 
-      type: types.DEPOSITING_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.DEPOSITING_FAILURE)
   }
 
   return axios.post(`${URL}/me/deposit`, {

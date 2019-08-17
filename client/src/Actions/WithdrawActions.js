@@ -2,7 +2,8 @@ import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
 
-import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsValid } from './../Helpers/tokenIsValid';
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid';
 
 export const makeWithdrawal = (withdraw_details, token) => dispatch => {
   dispatch({
@@ -18,12 +19,7 @@ export const makeWithdrawal = (withdraw_details, token) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return dispatch({ 
-      type: types.WITHDRAWING_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.WITHDRAWING_FAILURE)
   }
 
   return axios.post(`${URL}/me/withdraw`, {

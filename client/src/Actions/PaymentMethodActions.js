@@ -3,6 +3,7 @@ import { URL } from './index';
 import * as types from './actionTypes';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
 
 export const fetchPaymentMethods = (token) => dispatch => {
   dispatch({
@@ -11,12 +12,7 @@ export const fetchPaymentMethods = (token) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return dispatch({ 
-      type: types.FETCHING_PAYMENT_METHODS_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE)
   }
 
   return axios.get(`${URL}/me/payment-methods`, { 
@@ -51,12 +47,7 @@ export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispat
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return dispatch({ 
-      type: types.FETCHING_PAYMENT_METHODS_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE)
   }
 
   return axios.get(`${URL}/me/payment-methods/${payment_method_id}`, { 
@@ -86,24 +77,19 @@ export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispat
 
 // Do we need this action, or will it be handled solely through Stripe?
 export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
+  dispatch({
+    type: types.ADDING_PAYMENT_METHOD_START
+  })
+
   let requestObject = {
     pay_method_type: new_payment_menthod.payment_method_id,
     brand: new_payment_menthod.brand,
     // What info do we need to provide?
   }
 
-  dispatch({
-    type: types.ADDING_PAYMENT_METHOD_START
-  })
-
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return dispatch({ 
-      type: types.ADDING_PAYMENT_METHOD_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.ADDING_PAYMENT_METHOD_FAILURE)
   }
 
   return axios.post(`${URL}/me/payment-methods`, {
@@ -139,12 +125,7 @@ export const removePaymentMethod = (payment_method_id, id, token) => dispatch =>
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return dispatch({ 
-      type: types.REMOVING_PAYMENT_METHOD_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.REMOVING_PAYMENT_METHOD_FAILURE)
   }
 
   return axios.delete(`${URL}/payment-methods/${payment_method_id}`, { 

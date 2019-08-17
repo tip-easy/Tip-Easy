@@ -2,7 +2,8 @@ import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
 
-import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsValid } from './../Helpers/tokenIsValid';
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid';
 
 export const getUser = ( token ) => dispatch => {
   dispatch({
@@ -11,12 +12,7 @@ export const getUser = ( token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return dispatch({ 
-      type: types.GETTING_USER_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.GETTING_BALANCE_FAILURE)
   }
 
   return axios.get(`${URL}/me`, { 
@@ -51,12 +47,7 @@ export const patchUserInfo = ( changes, token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return dispatch({ 
-      type: types.PATCHING_USER_INFO_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.PATCHING_USER_INFO_FAILURE)
   }
 
   // TO-DO: Figure out how to do param validation for incoming `changes` object.
@@ -86,7 +77,7 @@ export const patchUserInfo = ( changes, token ) => dispatch => {
 
 export const changePassword = ( changes, token ) => dispatch => {
   dispatch({ 
-    type: types.RESETTING_PASSWORD_START 
+    type: types.CHANGING_PASSWORD_START 
   })
   
   // Reformatting incoming changes object for param validation
@@ -98,12 +89,7 @@ export const changePassword = ( changes, token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return dispatch({ 
-      type: types.RESETTING_PASSWORD_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.CHANGING_PASSWORD_FAILURE)
   }
 
   return axios.put(`${URL}/me/reset-password`, { 
@@ -114,13 +100,13 @@ export const changePassword = ( changes, token ) => dispatch => {
     }, requestObject)
     .then(res => {
       dispatch({ 
-        type: types.RESETTING_PASSWORD_SUCCESS,
+        type: types.CHANGING_PASSWORD_SUCCESS,
       })
     })
 
     .catch(error => {
       dispatch({ 
-        type: types.RESETTING_PASSWORD_FAILURE,
+        type: types.CHANGING_PASSWORD_FAILURE,
         payload: {
           error
         } 
@@ -135,12 +121,7 @@ export const deleteUser = ( token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return dispatch({ 
-      type: types.DELETING_USER_FAILURE, 
-      payload: {
-        error: "The provided token is invalid, I'm afraid! Make sure it's a string of the appropriate length"
-      } 
-    });
+    return tokenIsNotValid(types.DELETING_USER_FAILURE)
   }
 
   return axios.delete(`${URL}/me`, { 

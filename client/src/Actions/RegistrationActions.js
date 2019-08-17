@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
+
 import { login } from './LoginActions';
 
 export const register = user_info => dispatch => {
