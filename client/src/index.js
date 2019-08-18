@@ -1,48 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
+import store from './store'
+
 // import * as serviceWorker from './serviceWorker';
 
 // Components
 import App from './App';
-
-// Middlewares
-import thunk from 'redux-thunk';
-
-// Reducers
-import { BalanceReducer,
-  DepositReducer,
-  LoginReducer,
-  PaymentMethodReducer,
-  RegistrationReducer,
-  TipReducer,
-  TipReceiverReducer,
-  TransactionReducer,
-  UserReducer,
-  WithdrawalReducer, 
-} from './Reducers';
-
-const rootReducer = combineReducers({
-  BalanceReducer,
-  DepositReducer,
-  LoginReducer,
-  PaymentMethodReducer,
-  RegistrationReducer,
-  TipReducer,
-  TipReceiverReducer,
-  TransactionReducer,
-  UserReducer,
-  WithdrawalReducer,
-});
-
-export const store = createStore(
-  rootReducer, {},
-  compose(
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-);
 
 ReactDOM.render(
   <Provider store={store}>

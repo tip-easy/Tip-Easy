@@ -29,7 +29,7 @@ export const SelectAmount = (props) => {
         Log In or Register
       </div>
 
-      <div className="selectAmount">
+      <div data-testid="selectAmount" className="selectAmount">
         <h2>SelectAmount</h2>
         {currency}<input type="number" value={amount} onChange={(e) => setAmount(e.target.value)}/>
         <button
@@ -65,7 +65,7 @@ export const SelectAmount = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.UserReducer.user = {default_currency: "$"}
+    user: state.UserReducer.user
   }
 }
 
