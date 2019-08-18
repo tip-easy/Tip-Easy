@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 
 import { setSelectedTipAmountTip } from '../../../../Actions/TipActions';
 
-const SelectAmount = (props) => {
+export const SelectAmount = (props) => {
   const [amount, setAmount] = useState(5)
 
   // Stretch goal: we can set user's currency in database and store it in Redux store
@@ -65,7 +65,7 @@ const SelectAmount = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.UserReducer.user
+    user: state.UserReducer.user = {default_currency: "$"}
   }
 }
 
