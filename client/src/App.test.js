@@ -1,9 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import React from 'react'
+import * as rtl from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+afterEach(rtl.cleanup);
+
+describe('App', () => {
+
+  it('renders', () => {
+    const ten = 10
+    expect(ten).toBe(10) 
+  })
+})
