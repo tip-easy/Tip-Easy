@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
+import * as creators from './ActionCreators/TransactionActionCreators';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
 import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
 
 export const sendTransaction = (code, transactionObject, token) => dispatch => {
-  dispatch({
-    type: types.SENDING_TRANSACTION_START,
-  })
+  dispatch(creators.sendingTransactionStart())
 
   let requestObject = {
     amount: transactionObject.amount,
@@ -30,28 +29,16 @@ export const sendTransaction = (code, transactionObject, token) => dispatch => {
       }
     }, requestObject)
     .then(res => {
-      dispatch({
-        type: types.SENDING_TRANSACTION_SUCCESS,
-        payload: {
-          successMessage: res.data.message
-        }
-      })
+      dispatch(creators.sendingTransactionSuccess(res.data.message))
     })
     
     .catch(error => {
-      dispatch({ 
-        type: types.SENDING_TRANSACTION_FAILURE, 
-        payload: {
-          error
-        } 
-      });
+      dispatch(creators.sendingTransactionFailure(error));
     })
 }
 
 export const fetchTransactions = (token) => dispatch => {
-  dispatch({
-    type: types.FETCHING_TRANSACTIONS_START
-  })
+  dispatch(creators.fetchingTransactionsStart())
   
   return axios.get(`${URL}/me/transactions`, { 
     headers: {
@@ -60,26 +47,14 @@ export const fetchTransactions = (token) => dispatch => {
     }
   })
     .then(res => {
-      dispatch({ 
-        type: types.FETCHING_TRANSACTIONS_SUCCESS,
-        payload: {
-          transactionArray: res.data.transactionArray
-        }
-      })
+      dispatch(creators.fetchingTransactionsSuccess(res.data.transactionArray))
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.FETCHING_TRANSACTIONS_FAILURE, 
-        payload: {
-          error
-        } 
-      });
+      dispatch(creators.fetchingTransactionsFailure(error));
     })
 }
 
 export const clearTransactionList = () => dispatch => {
-  return dispatch({
-    type: types.CLEAR_TRANSACTIONS_LIST_FROM_STORE,
-  })
+  return dispatch(creators.clearTransactionList())
 }
