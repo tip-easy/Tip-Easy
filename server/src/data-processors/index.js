@@ -21,7 +21,7 @@ const addPaymentMethodProcessorFunction = async () => {};
 const depositProcessorFunction = async () => {};
 const findReceiverProcessorFunction = async () => {};
 const sendTransactionProcessorFunction = async () => {};
-const loginProcessorFunction = async () => {};
+const loginProcessorFunction = require('./auth/login-processor');
 const registerProcessorFunction = async () => {};
 
 
@@ -119,9 +119,8 @@ const sendTransactionProcessor = makeInterface({
 
 const loginProcessor = makeInterface({
   interfaceFunction: loginProcessorFunction,
-  // validate
-  // normalise
-  mockResponseData
+  validate: (obj) => obj,
+  normalise: (obj) => obj
 });
 
 const registerProcessor = makeInterface({
