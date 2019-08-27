@@ -4,7 +4,7 @@ import { login } from './LoginActions';
 import { addPaymentMethod, fetchPaymentMethods, fetchIndividualPaymentMethod, removePaymentMethod, clearPaymentMethodsFromStore } from './PaymentMethodActions';
 import { register } from './RegistrationActions';
 import { 
-  setSelectedTipAmountTip,  clearSelectedTipAmountFromStore,
+  setSelectedTipAmount,  clearSelectedTipAmountFromStore,
   setSelectedTipReceiverCode, clearSelectedTipReceiverCodeFromStore,
   setSelectedTipReceiver, clearSelectedTipReceiverFromStore,
   setSelectedPaymentMethodType, clearSelectedPaymentMethodTypeFromStore,
@@ -37,7 +37,7 @@ export {
 
   register,
 
-  setSelectedTipAmountTip,
+  setSelectedTipAmount,
   clearSelectedTipAmountFromStore,
   setSelectedTipReceiverCode, 
   clearSelectedTipReceiverCodeFromStore,
