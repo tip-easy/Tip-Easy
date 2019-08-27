@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
+import * as creators from './ActionCreators/WithdrawActionCreators';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid';
 import { tokenIsNotValid } from './../Helpers/tokenIsNotValid';
 
 export const makeWithdrawal = (withdraw_details, token) => dispatch => {
-  dispatch({
-    type: types.WITHDRAWING_START,
-  })
+  dispatch(creators.withdrawingStart())
 
   let requestObject = {
     amount: withdraw_details.amount,
@@ -29,33 +28,18 @@ export const makeWithdrawal = (withdraw_details, token) => dispatch => {
       }
     }, requestObject)
     .then(res => {
-      dispatch({
-        type: types.WITHDRAWING_SUCCESS,
-        payload: {
-          successMessage: res.data.message
-        }
-      })
+      dispatch(creators.withdrawingSuccess(res.data.message))
     })
     
     .catch(error => {
-      dispatch({ 
-        type: types.WITHDRAWING_FAILURE, 
-        payload: {error} 
-      });
+      dispatch(creators.withdrawingFailure(error));
     })
 }
 
 export const setWithdrawalAmount = (amount) => dispatch => {
-  return dispatch({
-    type: types.SET_WITHDRAWAL_AMOUNT,
-    payload: {
-      withdrawalAmount: amount,
-    }
-  })
+  return dispatch(creators.setAmount(amount))
 }
 
 export const clearWithdrawalFromStore = () => dispatch => {
-  return dispatch({
-    type: types.CLEAR_WITHDRAWAL_FROM_STORE,
-  })
+  return dispatch(creators.clearWithdrawal())
 }
