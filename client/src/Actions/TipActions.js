@@ -1,4 +1,3 @@
-import * as types from './actionTypes';
 import * as creators from './ActionCreators/TipActionCreators';
 
 export const setSelectedTipAmount = selectedTipAmount => dispatch => {
