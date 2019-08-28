@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
+import * as creators from './ActionCreators/BalanceActionCreators';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
 import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
 
 export const getBalance = ( token ) => dispatch => {
-  dispatch({
-    type: types.GETTING_BALANCE_START
-  })
+  dispatch(creators.gettingBalanceStart())
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
@@ -22,28 +21,15 @@ export const getBalance = ( token ) => dispatch => {
     }
   })
     .then(res => {
-      dispatch({ 
-        type: types.GETTING_BALANCE_SUCCESS,
-        payload: {
-          estimated_balance: res.data.estimated_balance,
-          currency: res.data.currency,
-          wallet_type: res.data.wallet_type,
-        }
-      })
+      const { estimated_balance, currency, wallet_type } = res.data
+      dispatch(creators.gettingBalanceSuccess(estimated_balance, currency, wallet_type))
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.GETTING_BALANCE_FAILURE, 
-        payload: {
-          error
-        } 
-      });
+      dispatch(creators.gettingBalanceError(error));
     })
 }
 
 export const clearBalance = () => dispatch => {
-  return dispatch({
-    type: types.CLEAR_BALANCE_FROM_STORE,
-  })
+  return dispatch(creators.clearBalance())
 }

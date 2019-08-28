@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
+import * as creators from './ActionCreators/PaymentMethodActionCreators';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid'
 import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
 
 export const fetchPaymentMethods = (token) => dispatch => {
-  dispatch({
-    type: types.FETCHING_PAYMENT_METHODS_START
-  })
+  dispatch(creators.fetchingPaymentMethodsStart())
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
@@ -22,28 +21,16 @@ export const fetchPaymentMethods = (token) => dispatch => {
     }
   })
     .then(res => {
-      dispatch({ 
-        type: types.FETCHING_PAYMENT_METHODS_SUCCESS,
-        payload: {
-          paymentMethodsArray: res.data.paymentMethodsArray
-        }
-      })
+      dispatch(creators.fetchingPaymentMethodsSuccess(res.data.paymentMethodsArray))
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.FETCHING_PAYMENT_METHODS_FAILURE, 
-        payload: {
-          error
-        } 
-      });
+      dispatch(creators.fetchingPaymentMethodsFailure(error));
     })
 }
 
 export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispatch => {
-  dispatch({
-    type: types.FETCHING_PAYMENT_METHODS_START
-  })
+  dispatch(creators.fetchingPaymentMethodsStart())
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
@@ -57,29 +44,17 @@ export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispat
     }
   })
     .then(res => {
-      dispatch({ 
-        type: types.FETCHING_PAYMENT_METHODS_SUCCESS,
-        payload: {
-          individualPaymentMethod: res.data.payment_method,
-        }
-      })
+      dispatch(creators.fetchingIndividualPaymentMethodSuccess(res.data.payment_method))
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.FETCHING_PAYMENT_METHODS_FAILURE, 
-        payload: {
-          error
-        } 
-      });
+      dispatch(creators.fetchingPaymentMethodsFailure(error));
     })
 }
 
 // Do we need this action, or will it be handled solely through Stripe?
 export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
-  dispatch({
-    type: types.ADDING_PAYMENT_METHOD_START
-  })
+  dispatch(creators.addingPaymentMethodStart())
 
   let requestObject = {
     pay_method_type: new_payment_menthod.payment_method_id,
@@ -99,29 +74,16 @@ export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
       }
     }, requestObject)
     .then(res => {
-      dispatch({
-        type: types.ADDING_PAYMENT_METHOD_SUCCESS,
-        payload: {
-          paymentMethodsArray: res.data.paymentMethodsArray,
-          successMessage: res.data.message
-        }
-      })
+      dispatch(creators.addingPaymentMethodSuccess(res.data.paymentMethodsArray, res.data.message))
     })
     
     .catch(error => {
-      dispatch({ 
-        type: types.ADDING_PAYMENT_METHOD_FAILURE, 
-        payload: {
-          error
-        } 
-      });
+      dispatch(creators.addingPaymentMethodFailure(error));
     })
 }
 
 export const removePaymentMethod = (payment_method_id, id, token) => dispatch => {
-  dispatch({
-    type: types.REMOVING_PAYMENT_METHOD_START
-  })
+  dispatch(creators.removingPaymentMethodStart())
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
@@ -135,23 +97,14 @@ export const removePaymentMethod = (payment_method_id, id, token) => dispatch =>
       }
     })
     .then(res => {
-      dispatch({
-        type: types.REMOVING_PAYMENT_METHOD_SUCCESS
-      })
+      dispatch(creators.removingPaymentMethodSuccess())
     })
     
     .catch(error => {
-      dispatch({ 
-        type: types.REMOVING_PAYMENT_METHOD_FAILURE,
-        payload: {
-          error
-        } 
-      })
+      dispatch(creators.removingPaymentMethodFailure(error))
     })
 }
 
 export const clearPaymentMethodsFromStore = () => dispatch => {
-  dispatch({
-    type: types.CLEAR_PAYMENT_METHODS_FROM_STORE,
-  })
+  dispatch(creators.clearPaymentMethods())
 }

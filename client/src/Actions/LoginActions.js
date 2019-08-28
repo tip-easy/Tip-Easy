@@ -1,13 +1,11 @@
 import axios from 'axios';
 import { URL } from './index';
-import * as types from './actionTypes';
+import * as creators from './ActionCreators/LoginActionCreators';
 
 import { getUser } from './UserActions'
 
 export const login = user_info => dispatch => {
-  dispatch({
-    type: types.LOGGING_IN_START
-  })
+  dispatch(creators.loggingInStart())
 
   const {email, password} = user_info
   
@@ -18,21 +16,14 @@ export const login = user_info => dispatch => {
     typeof(password) !== "string" || 
     password.length < 8 ) 
   {
-    dispatch({ 
-      type: types.LOGGING_IN_FAILURE, 
-      payload: {
-        error: "Make sure you're passing a valid email and password!"
-      } 
-    });  
+    dispatch(creators.loggingInFailureIncompleteParams());  
   }
 
   axios.post(`${URL}/login`, {
     email, password
   })
     .then(res => {
-      dispatch({ 
-        type: types.LOGGING_IN_SUCCESS,
-      })
+      dispatch(creators.loggingInSuccess())
       // Found in UserActions
       getUser({
         token: res.data.token,
@@ -40,11 +31,6 @@ export const login = user_info => dispatch => {
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.LOGGING_IN_FAILURE, 
-        payload: {
-          error
-        } 
-      });
+      dispatch(creators.loggingInFailure(error));
     })
 };

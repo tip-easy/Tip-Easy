@@ -4,14 +4,14 @@ import { login } from './LoginActions';
 import { addPaymentMethod, fetchPaymentMethods, fetchIndividualPaymentMethod, removePaymentMethod, clearPaymentMethodsFromStore } from './PaymentMethodActions';
 import { register } from './RegistrationActions';
 import { 
-  setSelectedTipAmountTip,  clearSelectedTipAmountFromStore,
+  setSelectedTipAmount,  clearSelectedTipAmountFromStore,
   setSelectedTipReceiverCode, clearSelectedTipReceiverCodeFromStore,
   setSelectedTipReceiver, clearSelectedTipReceiverFromStore,
   setSelectedPaymentMethodType, clearSelectedPaymentMethodTypeFromStore,
   setSelectedPaymentMethod, clearSelectedPaymentMethodFromStore,
   clearEntireTipStore
 } from './TipActions';
-import { searchForTipReceiver, clearTipReceiver } from './TipReceiverActions';
+import { searchForTipReceiver, clearTipReceiverFromStore } from './TipReceiverActions';
 import { sendTransaction, fetchTransactions, clearTransactionList } from './TransactionActions';
 import { getUser, patchUserInfo, changePassword, deleteUser, logout } from './UserActions'
 import { makeWithdrawal, setWithdrawalAmount, clearWithdrawalFromStore } from './WithdrawActions';
@@ -37,7 +37,7 @@ export {
 
   register,
 
-  setSelectedTipAmountTip,
+  setSelectedTipAmount,
   clearSelectedTipAmountFromStore,
   setSelectedTipReceiverCode, 
   clearSelectedTipReceiverCodeFromStore,
@@ -50,7 +50,7 @@ export {
   clearEntireTipStore,
 
   searchForTipReceiver,
-  clearTipReceiver,
+  clearTipReceiverFromStore,
 
   sendTransaction,
   fetchTransactions,

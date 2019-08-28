@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { URL } from './index';
 import * as types from './actionTypes';
+import * as creators from './ActionCreators/UserActionCreators';
 
 import { tokenIsValid } from './../Helpers/tokenIsValid';
 import { tokenIsNotValid } from './../Helpers/tokenIsNotValid';
 
 export const getUser = ( token ) => dispatch => {
-  dispatch({
-    type: types.GETTING_USER_START
-  })
+  dispatch(creators.gettingUserStart())
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
@@ -22,28 +21,15 @@ export const getUser = ( token ) => dispatch => {
     }
   })
     .then(res => {
-      dispatch({ 
-        type: types.GETTING_USER_SUCCESS,
-        payload: {
-          user: res.data.user,
-          token
-        }
-      })
+      dispatch(creators.gettingUserSuccess(res.data.user))
     })
     .catch(error => {
-      dispatch({ 
-        type: types.GETTING_USER_FAILURE, 
-        payload: {
-          error
-        } 
-      });
+      dispatch(creators.gettingUserFailure(error));
     })
 }
 
 export const patchUserInfo = ( changes, token ) => dispatch => {
-  dispatch({ 
-    type: types.PATCHING_USER_INFO_START 
-  })
+  dispatch(creators.patchingUserInfoStart())
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
@@ -59,26 +45,16 @@ export const patchUserInfo = ( changes, token ) => dispatch => {
       }
     }, changes)
     .then(res => {
-      dispatch({ 
-        type: types.PATCHING_USER_INFO_SUCCESS,
-        payload: {
-          user: res.data.user
-        }
-      })
+      dispatch(creators.patchingUserInfoSuccess(res.data.user))
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.PATCHING_USER_INFO_FAILURE,
-        payload: {error} 
-      })
+      dispatch(creators.patchingUserInfoFailure(error))
     })
 }
 
 export const changePassword = ( changes, token ) => dispatch => {
-  dispatch({ 
-    type: types.CHANGING_PASSWORD_START 
-  })
+  dispatch(creators.changingPasswordStart())
   
   // Reformatting incoming changes object for param validation
   const requestObject = {
@@ -99,25 +75,16 @@ export const changePassword = ( changes, token ) => dispatch => {
       }
     }, requestObject)
     .then(res => {
-      dispatch({ 
-        type: types.CHANGING_PASSWORD_SUCCESS,
-      })
+      dispatch(creators.changingPasswordSuccess())
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.CHANGING_PASSWORD_FAILURE,
-        payload: {
-          error
-        } 
-      })
+      dispatch(creators.changingPasswordFailure(error))
     })
 }
 
 export const deleteUser = ( token ) => dispatch => {
-  dispatch({
-    type: types.DELETING_USER_START
-  })
+  dispatch(creators.deletingUserStart())
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
@@ -131,21 +98,14 @@ export const deleteUser = ( token ) => dispatch => {
       }
     })
     .then(res => {
-      dispatch({
-        type: types.DELETING_USER_SUCCESS
-      })
+      dispatch(creators.deletingUserSuccess())
       // Since Deletion of an account immediately results in logging out, should the ENTIRE store be cleared?
       // TODO: (?) Add general store reset action type to all reducers
       logout()
     })
     
     .catch(error => {
-      dispatch({ 
-        type: types.DELETING_USER_FAILURE,
-        payload: {
-          error
-        } 
-      })
+      dispatch(creators.deletingUserFailure(error))
     })
 }
 
@@ -153,7 +113,5 @@ export const deleteUser = ( token ) => dispatch => {
 // >>> Find a way to clear the entire store in a single go.
 export const logout = () => dispatch => {
   localStorage.clear('token')
-  dispatch({ 
-    type: types.CAUTION_CLEAR_ENTIRE_STORE
-  })
+  dispatch(creators.clearEntireStore())
 };
