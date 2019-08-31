@@ -14,11 +14,15 @@ export const DepositReducer = (state = initialState, action) => {
       return {
         ...state,
         depositAmount: action.payload.depositAmount,
+
+        depositMessage: initialState.depositMessage,
       }
     
     case types.CLEAR_DEPOSIT_FROM_STORE:
       return {
         ...state,
+        depositMessage: initialState.depositMessage,
+
         depositAmount: initialState.depositAmount,
       }
 
@@ -33,7 +37,10 @@ export const DepositReducer = (state = initialState, action) => {
     case types.DEPOSITING_SUCCESS:
         return {
           ...state,
+          depositMessage: action.payload.successMessage,
+
           depositing: false,
+
         }
 
     case types.DEPOSITING_FAILURE:
