@@ -6,11 +6,11 @@ export const gettingBalanceStart = () => {
   }
 }
 
-export const gettingBalanceSuccess = (estimated_balance, currency, wallet_type) => {
+export const gettingBalanceSuccess = (calculated_balance, currency, wallet_type) => {
   return { 
     type: types.GETTING_BALANCE_SUCCESS,
     payload: {
-      estimated_balance: estimated_balance,
+      calculated_balance: calculated_balance,
       currency: currency,
       wallet_type: wallet_type,
     }

@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import { setSelectedTipAmount } from '../../../../Actions/TipActions';
+import { setSelectedTipAmount } from '../../../../Actions';
+import { makeDeposit, setDepositAmount, clearDepositFromStore} from '../../../../Actions';
 
 const SelectAmount = (props) => {
+  
   const [amount, setAmount] = useState(5)
 
   // Stretch goal: we can set user's currency in database and store it in Redux store
@@ -24,7 +26,10 @@ const SelectAmount = (props) => {
     <>
       <div 
         className="upperRow"
-        onClick={() => props.history.push('/welcome')}
+        onClick={() => 
+          props.clearBalance()
+          // props.history.push('/welcome')
+        }
       >
         Log In or Register
       </div>
@@ -71,7 +76,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    setSelectedTipAmount
+    setSelectedTipAmount,
+    makeDeposit, setDepositAmount, clearDepositFromStore
   }, dispatch)
 }
 

@@ -22,8 +22,9 @@ export const getBalance = ( token ) => dispatch => {
     }
   })
     .then(res => {
-      const { estimated_balance, currency, wallet_type } = res.data
-      dispatch(creators.gettingBalanceSuccess(estimated_balance, currency, wallet_type))
+      const { calculated_balance, currency, wallet_type } = res.data[0]
+      
+      dispatch(creators.gettingBalanceSuccess(calculated_balance, currency, wallet_type))
     })
 
     .catch(error => {
