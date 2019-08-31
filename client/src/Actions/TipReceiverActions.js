@@ -3,8 +3,8 @@ import { URL } from './index';
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/TipReceiverActionCreators';
 
-import { tokenIsValid } from './../Helpers/tokenIsValid'
-import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
+import { tokenIsValid } from '../Utils/tokenIsValid'
+import { tokenIsNotValid } from '../Utils/tokenIsNotValid'
 
 export const searchForTipReceiver = (code, token) => dispatch => {
   dispatch(creators.searchingTipReceiverStart())
