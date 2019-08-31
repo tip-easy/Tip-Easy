@@ -22,7 +22,8 @@ export const fetchPaymentMethods = (token) => dispatch => {
     }
   })
     .then(res => {
-      dispatch(creators.fetchingPaymentMethodsSuccess(res.data.paymentMethodsArray))
+      console.log(res.data)
+      dispatch(creators.fetchingPaymentMethodsSuccess(res.data))
     })
 
     .catch(error => {
@@ -75,7 +76,8 @@ export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
       }
     }, requestObject)
     .then(res => {
-      dispatch(creators.addingPaymentMethodSuccess(res.data.paymentMethodsArray, res.data.message))
+      console.log(res.data)
+      dispatch(creators.addingPaymentMethodSuccess(res.data.message))
     })
     
     .catch(error => {
@@ -83,7 +85,7 @@ export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
     })
 }
 
-export const removePaymentMethod = (payment_method_id, id, token) => dispatch => {
+export const removePaymentMethod = (payment_method_id, token) => dispatch => {
   dispatch(creators.removingPaymentMethodStart())
 
   // Preliminary token validation

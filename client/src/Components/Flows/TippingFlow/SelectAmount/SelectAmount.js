@@ -4,13 +4,11 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 import { setSelectedTipAmount } from '../../../../Actions';
-import {  } from '../../../../Actions';
+import { fetchPaymentMethods, addPaymentMethod, removePaymentMethod, clearPaymentMethodsFromStore } from '../../../../Actions';
 
 const SelectAmount = (props) => {
   
   const [amount, setAmount] = useState(5)
-
-  // Stretch goal: we can set user's currency in database and store it in Redux store
 
   const submitHandler = () => {
     props.setSelectedTipAmount(amount)
@@ -34,9 +32,11 @@ const SelectAmount = (props) => {
     <>
       <div 
         className="upperRow"
-        onClick={() => 
-          props.history.push('/welcome')
-        }
+        onClick={() => {
+          props.removePaymentMethod("111-222-333-444","token")
+          
+          // props.history.push('/welcome')
+        }}
       >
         Log In or Register
       </div>
@@ -84,6 +84,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setSelectedTipAmount,
+    fetchPaymentMethods, addPaymentMethod, removePaymentMethod, clearPaymentMethodsFromStore
   }, dispatch)
 }
 
