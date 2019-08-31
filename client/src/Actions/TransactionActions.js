@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { URL } from './index';
+
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/TransactionActionCreators';
 
+import { pathObj } from '../Utils/pathVariables';
 import { tokenIsValid } from '../Utils/tokenIsValid'
 import { tokenIsNotValid } from '../Utils/tokenIsNotValid'
 
@@ -22,7 +23,7 @@ export const sendTransaction = (code, transactionObject, token) => dispatch => {
     return tokenIsNotValid(types.SENDING_TRANSACTION_FAILURE)
   }
 
-  return axios.post(`${URL}/send-transaction`, {
+  return axios.post(`${pathObj.sendTransactionPath}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -40,7 +41,7 @@ export const sendTransaction = (code, transactionObject, token) => dispatch => {
 export const fetchTransactions = (token) => dispatch => {
   dispatch(creators.fetchingTransactionsStart())
   
-  return axios.get(`${URL}/me/transactions`, { 
+  return axios.get(`${pathObj.getTransactionsPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,

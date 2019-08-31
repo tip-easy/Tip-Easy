@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { URL } from './index';
+
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/TipReceiverActionCreators';
 
+import { pathObj } from '../Utils/pathVariables';
 import { tokenIsValid } from '../Utils/tokenIsValid'
 import { tokenIsNotValid } from '../Utils/tokenIsNotValid'
 
@@ -14,7 +15,7 @@ export const searchForTipReceiver = (code, token) => dispatch => {
     return tokenIsNotValid(types.SEARCHING_TIP_RECEIVER_FAILURE)
   }
 
-  return axios.get(`${URL}/find-receiver?s=${code}`, { 
+  return axios.get(`${pathObj.searchTipReceiverPath}?s=${code}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,

@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { URL } from './index';
+
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/PaymentMethodActionCreators';
 
+import { pathObj } from '../Utils/pathVariables';
 import { tokenIsValid } from '../Utils/tokenIsValid'
 import { tokenIsNotValid } from '../Utils/tokenIsNotValid'
 
@@ -14,7 +15,7 @@ export const fetchPaymentMethods = (token) => dispatch => {
     return tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE)
   }
 
-  return axios.get(`${URL}/me/payment-methods`, { 
+  return axios.get(`${pathObj.getPaymentMethodsPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -37,7 +38,7 @@ export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispat
     return tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE)
   }
 
-  return axios.get(`${URL}/me/payment-methods/${payment_method_id}`, { 
+  return axios.get(`${pathObj.getPaymentMethodsPath}/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -67,7 +68,7 @@ export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
     return tokenIsNotValid(types.ADDING_PAYMENT_METHOD_FAILURE)
   }
 
-  return axios.post(`${URL}/me/payment-methods`, {
+  return axios.post(`${pathObj.addPaymentMethodPath}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -90,7 +91,7 @@ export const removePaymentMethod = (payment_method_id, id, token) => dispatch =>
     return tokenIsNotValid(types.REMOVING_PAYMENT_METHOD_FAILURE)
   }
 
-  return axios.delete(`${URL}/payment-methods/${payment_method_id}`, { 
+  return axios.delete(`${pathObj.deletePaymentMethodPath}/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,

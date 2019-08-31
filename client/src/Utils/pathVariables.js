@@ -20,11 +20,15 @@ export const pathObj = {
   getTransactionsPath: `${URL}/me/transactions`,
 
   // Deposit
-  sendDepositPath: `${URL}/me/payment-methods`,
+  depositPath: `${URL}/me/deposit`,
+
+  // Withdrawal
+  withdrawalPath: `${URL}/me/withdrawal`,
 
   // Payment Methods
   getPaymentMethodsPath: `${URL}/me/payment-methods`,
   addPaymentMethodPath: `${URL}/me/payment-methods`,
+  deletePaymentMethodPath: `${URL}/me/payment-methods`,
 
   // Tip Receivers
   searchTipReceiverPath: `${URL}/find-receiver`,

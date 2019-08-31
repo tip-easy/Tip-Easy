@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { URL } from './index';
+
 import * as creators from './ActionCreators/LoginActionCreators';
 
+import { pathObj } from '../Utils/pathVariables';
 import { getUser } from './UserActions'
 
 export const login = user_info => dispatch => {
@@ -19,7 +20,7 @@ export const login = user_info => dispatch => {
     dispatch(creators.loggingInFailureIncompleteParams());  
   }
 
-  axios.post(`${URL}/login`, {
+  axios.post(`${pathObj.loginPath}`, {
     email, password
   })
     .then(res => {

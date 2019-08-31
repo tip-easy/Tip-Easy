@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { URL } from './index';
+
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/UserActionCreators';
 
+import { pathObj } from '../Utils/pathVariables';
 import { tokenIsValid } from '../Utils/tokenIsValid';
 import { tokenIsNotValid } from '../Utils/tokenIsNotValid';
 
@@ -14,7 +15,7 @@ export const getUser = ( token ) => dispatch => {
     return tokenIsNotValid(types.GETTING_BALANCE_FAILURE)
   }
 
-  return axios.get(`${URL}/me`, { 
+  return axios.get(`${pathObj.getUserPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -38,7 +39,7 @@ export const patchUserInfo = ( changes, token ) => dispatch => {
 
   // TO-DO: Figure out how to do param validation for incoming `changes` object.
 
-  return axios.patch(`${URL}/me`, { 
+  return axios.patch(`${pathObj.patchUserPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -68,7 +69,7 @@ export const changePassword = ( changes, token ) => dispatch => {
     return tokenIsNotValid(types.CHANGING_PASSWORD_FAILURE)
   }
 
-  return axios.put(`${URL}/me/reset-password`, { 
+  return axios.put(`${pathObj.changePasswordPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -91,7 +92,7 @@ export const deleteUser = ( token ) => dispatch => {
     return tokenIsNotValid(types.DELETING_USER_FAILURE)
   }
 
-  return axios.delete(`${URL}/me`, { 
+  return axios.delete(`${pathObj.deleteUserPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,

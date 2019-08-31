@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { URL } from './index';
+
 import * as creators from './ActionCreators/RegistrationActionCreators';
 
+import { pathObj } from '../Utils/pathVariables';
 import { login } from './LoginActions';
 
 export const register = user_info => dispatch => {
@@ -12,7 +13,7 @@ export const register = user_info => dispatch => {
     dispatch(creators.registeringFailureInvalidParams());  
   }
 
-  return axios.post(`${URL}/api/register`, {email, password, default_currency})
+  return axios.post(`${pathObj.registrationPath}`, {email, password, default_currency})
     .then(res => {
       dispatch(creators.registeringSuccess())
       
