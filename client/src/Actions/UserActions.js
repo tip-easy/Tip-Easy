@@ -8,11 +8,12 @@ import { tokenIsValid } from '../Utils/tokenIsValid';
 import { tokenIsNotValid } from '../Utils/tokenIsNotValid';
 
 export const getUser = ( token ) => dispatch => {
+  console.log('her')
   dispatch(creators.gettingUserStart())
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.GETTING_BALANCE_FAILURE)
+    return tokenIsNotValid(types.GETTING_USER_FAILURE)
   }
 
   return axios.get(`${pathObj.getUserPath}`, { 

@@ -11,7 +11,7 @@ const initialState = {
     unique_code: "AA0000",
     location: "Coruscant",
     organisation: "Sith Order",
-    default_currency: "$",
+    default_currency: "usd",
   },
 
   gettingUser: false,
