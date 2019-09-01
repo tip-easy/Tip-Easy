@@ -1,123 +1,110 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
+import * as creators from './ActionCreators/PaymentMethodActionCreators';
 
-export const FetchPaymentMethods = (token) => dispatch => {
-  dispatch({
-    type: types.FETCHING_PAYMENT_METHODS_START
-  })
-  return axios.get(`${URL}/api/me/payment-methods`, { 
+import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
+
+export const fetchPaymentMethods = (token) => dispatch => {
+  dispatch(creators.fetchingPaymentMethodsStart())
+
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE)
+  }
+
+  return axios.get(`${URL}/me/payment-methods`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => {
-      dispatch({ 
-        type: types.FETCHING_PAYMENT_METHODS_SUCCESS,
-        payload: {
-          paymentMethodsArray: res.data.payment_method_array
-        }
-      })
+      dispatch(creators.fetchingPaymentMethodsSuccess(res.data.paymentMethodsArray))
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.FETCHING_PAYMENT_METHODS_FAILURE, 
-        payload: {error} 
-      });
+      dispatch(creators.fetchingPaymentMethodsFailure(error));
     })
 }
 
-export const FetchIndividualPaymentMethod = (payment_method_id, token) => dispatch => {
-  dispatch({
-    type: types.FETCHING_PAYMENT_METHODS_START
-  })
-  return axios.get(`${URL}/api/me/payment-methods/${payment_method_id}`, { 
+export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispatch => {
+  dispatch(creators.fetchingPaymentMethodsStart())
+
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE)
+  }
+
+  return axios.get(`${URL}/me/payment-methods/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => {
-      dispatch({ 
-        type: types.FETCHING_PAYMENT_METHODS_SUCCESS,
-        payload: {
-          individualPaymentMethod: res.data.payment_method,
-        }
-      })
+      dispatch(creators.fetchingIndividualPaymentMethodSuccess(res.data.payment_method))
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.FETCHING_PAYMENT_METHODS_FAILURE, 
-        payload: {error} 
-      });
+      dispatch(creators.fetchingPaymentMethodsFailure(error));
     })
 }
 
 // Do we need this action, or will it be handled solely through Stripe?
-export const AddPaymentMethod = (new_payment_menthod, token) => dispatch => {
+export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
+  dispatch(creators.addingPaymentMethodStart())
+
   let requestObject = {
     pay_method_type: new_payment_menthod.payment_method_id,
     brand: new_payment_menthod.brand,
     // What info do we need to provide?
   }
 
-  dispatch({
-    type: types.ADDING_PAYMENT_METHOD_START
-  })
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.ADDING_PAYMENT_METHOD_FAILURE)
+  }
 
-  return axios.post(`${URL}/api/me/payment-methods`, {
+  return axios.post(`${URL}/me/payment-methods`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
       }
     }, requestObject)
     .then(res => {
-      dispatch({
-        type: types.ADDING_PAYMENT_METHOD_SUCCESS,
-        payload: {
-          successMessage: res.data.message
-        }
-      })
+      dispatch(creators.addingPaymentMethodSuccess(res.data.paymentMethodsArray, res.data.message))
     })
     
     .catch(error => {
-      dispatch({ 
-        type: types.ADDING_PAYMENT_METHOD_FAILURE, 
-        payload: {error} 
-      });
+      dispatch(creators.addingPaymentMethodFailure(error));
     })
 }
 
-export const RemovePaymentMethod = (payment_method_id, id) => dispatch => {
-  dispatch({
-    type: types.REMOVING_PAYMENT_METHOD_START
-  })
+export const removePaymentMethod = (payment_method_id, id, token) => dispatch => {
+  dispatch(creators.removingPaymentMethodStart())
 
-  return axios.delete(`${URL}/api/payment-methods/${payment_method_id}`, { 
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.REMOVING_PAYMENT_METHOD_FAILURE)
+  }
+
+  return axios.delete(`${URL}/payment-methods/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
       }
     })
     .then(res => {
-      dispatch({
-        type: types.REMOVING_PAYMENT_METHOD_SUCCESS
-      })
+      dispatch(creators.removingPaymentMethodSuccess())
     })
     
     .catch(error => {
-      dispatch({ 
-        type: types.REMOVING_PAYMENT_METHOD_FAILURE,
-        payload: {error} 
-      })
+      dispatch(creators.removingPaymentMethodFailure(error))
     })
 }
 
-export const ClearPaymentMethodsFromStore = () => dispatch => {
-  dispatch({
-    type: types.CLEAR_PAYMENT_METHODS_FROM_STORE,
-  })
+export const clearPaymentMethodsFromStore = () => dispatch => {
+  dispatch(creators.clearPaymentMethods())
 }

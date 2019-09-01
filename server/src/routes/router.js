@@ -36,8 +36,6 @@ async function router({
     case '/login':
       if (httpRequest.method === 'POST') {
         const response = await loginProcessor(httpRequest);
-        console.log(response);
-        
         return res.send(response);
       }
 

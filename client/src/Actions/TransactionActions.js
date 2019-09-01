@@ -1,79 +1,60 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
+import * as creators from './ActionCreators/TransactionActionCreators';
 
-export const SendTransaction = (code, transactionObject, token) => dispatch => {
+import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
+
+export const sendTransaction = (code, transactionObject, token) => dispatch => {
+  dispatch(creators.sendingTransactionStart())
+
   let requestObject = {
     amount: transactionObject.amount,
     currency: transactionObject.currency,
     unique_code: code,
     pay_method_string: transactionObject.pay_method_string,
     pay_method_type: transactionObject.pay_method_type,
-    // initiated_at: generateTimestamp()
   }
 
-  dispatch({
-    type: types.SENDING_TRANSACTION_START,
-  })
-  return axios.post(`${URL}/api/send-transaction`, {
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.SENDING_TRANSACTION_FAILURE)
+  }
+
+  return axios.post(`${URL}/send-transaction`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
       }
     }, requestObject)
     .then(res => {
-      dispatch({
-        type: types.SENDING_TRANSACTION_SUCCESS,
-        payload: {
-          successMessage: res.data.message
-        }
-      })
+      dispatch(creators.sendingTransactionSuccess(res.data.message))
     })
     
     .catch(error => {
-      dispatch({ 
-        type: types.SENDING_TRANSACTION_FAILURE, 
-        payload: {error} 
-      });
+      dispatch(creators.sendingTransactionFailure(error));
     })
 }
 
-export const ClearCurrentTransaction = () => dispatch => {
-  return dispatch({
-    type: types.CLEAR_CURRENT_TRANSACTION_FROM_STORE,
-  })
-}
-
-export const FetchTransactions = (token) => dispatch => {
-  dispatch({
-    type: types.FETCHING_TRANSACTIONS_START
-  })
+export const fetchTransactions = (token) => dispatch => {
+  dispatch(creators.fetchingTransactionsStart())
   
-  return axios.get(`${URL}/api/me/transactions`, { 
+  return axios.get(`${URL}/me/transactions`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => {
-      dispatch({ 
-        type: types.FETCHING_TRANSACTIONS_SUCCESS,
-        payload: {
-          transactionArray: res.data.transactionArray
-        }
-      })
+      dispatch(creators.fetchingTransactionsSuccess(res.data.transactionArray))
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.FETCHING_TRANSACTIONS_FAILURE, 
-        payload: {error} 
-      });
+      dispatch(creators.fetchingTransactionsFailure(error));
     })
 }
 
-export const ClearTransactionList = () => dispatch => {
-  return dispatch({
-    type: types.CLEAR_TRANSACTIONS_LIST_FROM_STORE,
-  })
+export const clearTransactionList = () => dispatch => {
+  return dispatch(creators.clearTransactionList())
 }

@@ -1,46 +1,38 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
+import * as creators from './ActionCreators/TipReceiverActionCreators';
 
-export const SearchForTipReceiver = (code, token) => dispatch => {
-  dispatch({
-    type: types.SEARCHING_TIP_RECEIVER_START
-  })
+import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
 
-  return axios.get(`${URL}/api/find-receiver?s=${code}`, { 
+export const searchForTipReceiver = (code, token) => dispatch => {
+  dispatch(creators.searchingTipReceiverStart())
+
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.SEARCHING_TIP_RECEIVER_FAILURE)
+  }
+
+  return axios.get(`${URL}/find-receiver?s=${code}`, { 
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => {
-      dispatch({ 
-        type: types.SEARCHING_TIP_RECEIVER_SUCCESS,
-        payload: {
-          receiverSearchResultArray: res.data.receiverArray
-        }
-      })
+      dispatch(creators.searchingTipReceiverSuccess(res.data.receiverArray))
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.SEARCHING_TIP_RECEIVER_FAILURE, 
-        payload: {error} 
-      });
+      dispatch(creators.searchingTipReceiverFailure(error));
     })
 }
 
-export const SelectTipReceiver = (code) => dispatch => {
-  dispatch({
-    type: types.TIP_RECEIVER_SET,
-    payload: {
-      selectedTipReceiverCode: code
-    }
-  })
+export const selectTipReceiver = (selectedTipReceiverCode) => dispatch => {
+  dispatch(creators.setTipReceiverCode(selectedTipReceiverCode))
 }
 
-export const ClearTipReceiver = () => dispatch => {
-  dispatch({
-    type: types.CLEAR_TIP_RECEIVER_FROM_STORE,
-  })
+export const clearTipReceiverFromStore = () => dispatch => {
+  dispatch(creators.clearTipReceiver())
 }

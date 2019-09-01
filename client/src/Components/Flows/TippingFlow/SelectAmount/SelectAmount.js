@@ -3,17 +3,23 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-export const SelectAmount = (props) => {
+import { setSelectedTipAmount } from '../../../../Actions/TipActions';
+
+const SelectAmount = (props) => {
   const [amount, setAmount] = useState(5)
 
   // Stretch goal: we can set user's currency in database and store it in Redux store
-  const currency = "$"
 
   const submitHandler = () => {
-    // Go to 'Enter Code'
+    props.setSelectedTipAmount(amount)
     props.history.push('/tip')
   }
 
+  const currency = props.user.default_currency === 
+    "btc" ? "₿" 
+      : 
+    props.user.default_currency;
+  
   return (
     <>
       <div 
@@ -25,7 +31,7 @@ export const SelectAmount = (props) => {
 
       <div className="selectAmount">
         <h2>SelectAmount</h2>
-        $<input type="number" value={amount} onChange={(e) => setAmount(e.target.value)}/>
+        {currency}<input type="number" value={amount} onChange={(e) => setAmount(e.target.value)}/>
         <button
           onClick={() => submitHandler()}
         >
@@ -34,22 +40,23 @@ export const SelectAmount = (props) => {
       </div>
 
       <div className="buttonRow">
+        {/* TO-DO: Generate these buttons through map */}
         <button
           onClick={() => setAmount(5)}
         >
-          {currency}5
+          {currency} 5
         </button>
 
         <button
           onClick={() => setAmount(10)}
         >
-          {currency}10
+          {currency} 10
         </button>
 
         <button
           onClick={() => setAmount(15)}
         >
-          {currency}15
+          {currency} 15
         </button>
       </div>
     </>
@@ -58,13 +65,13 @@ export const SelectAmount = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-
+    user: state.UserReducer.user
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-
+    setSelectedTipAmount
   }, dispatch)
 }
 

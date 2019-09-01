@@ -3,10 +3,10 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-export const PaymentDetails = () => {
+export const UserSettings = () => {
   return (
     <div>
-      PaymentDetails
+      ShowReceiverCode
     </div>
   )
 }
@@ -23,4 +23,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PaymentDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(UserSettings);
