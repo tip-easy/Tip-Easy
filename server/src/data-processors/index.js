@@ -24,7 +24,7 @@ const depositProcessorFunction = async () => {};
 const findReceiverProcessorFunction = async () => {};
 const sendTransactionProcessorFunction = async () => {};
 const loginProcessorFunction = require('./auth/login-processor');
-const registerProcessorFunction = async () => {};
+const registerProcessorFunction = require('./auth/register-processor');
 
 
 //====== Processors ======//
@@ -128,9 +128,8 @@ const loginProcessor = makeInterface({
 
 const registerProcessor = makeInterface({
   interfaceFunction: registerProcessorFunction,
-  // validate
-  // normalise
-  mockResponseData
+  validate: (obj) => obj,
+  normalise: (obj) => obj
 });
 
 module.exports = Object.freeze({

@@ -36,14 +36,13 @@ async function router({
     case '/login':
       if (httpRequest.method === 'POST') {
         const response = await loginProcessor(httpRequest);
-        console.log(response);
-        
         return res.send(response);
       }
 
     case '/register':
       if (httpRequest.method === 'POST') {
-        return res.status(201).send({ message: "successfully registered" });
+        const response = await registerProcessor(httpRequest);
+        return res.status(201).send(response);
       }
 
     //====== User Endpoints ======//
