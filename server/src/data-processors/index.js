@@ -7,7 +7,9 @@ const mockResponseData = require('../database/mock-response-data');
 
 // Local Helpers
 const makeVerifyAuth = require('./helpers/verify-auth');
+const makeGenerateToken = require('./helpers/generate-token');
 const verifyAuth = makeVerifyAuth({ jwt });
+const generateToken = makeGenerateToken({ jwt });
 
 // Processor Functions
 const getUserProcessorFunction = async () => {};
@@ -119,6 +121,7 @@ const sendTransactionProcessor = makeInterface({
 
 const loginProcessor = makeInterface({
   interfaceFunction: loginProcessorFunction,
+  generateToken,
   validate: (obj) => obj,
   normalise: (obj) => obj
 });
