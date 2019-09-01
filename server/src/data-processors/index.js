@@ -10,7 +10,19 @@ const makeVerifyAuth = require('./helpers/verify-auth');
 const verifyAuth = makeVerifyAuth({ jwt });
 
 // Processor Functions
-// TODO: Create processor functions for each endpoint
+const getUserProcessorFunction = async () => {};
+const updateUserProcessorFunction = async () => {};
+const deleteUserProcessorFunction = async () => {};
+const resetPasswordProcessorFunction = async () => {};
+const getBalanceProcessorFunction = async () => {};
+const getTransactionsProcessorFunction = async () => {};
+const getPaymentMethodsProcessorFunction = async () => {};
+const addPaymentMethodProcessorFunction = async () => {};
+const depositProcessorFunction = async () => {};
+const findReceiverProcessorFunction = async () => {};
+const sendTransactionProcessorFunction = async () => {};
+const loginProcessorFunction = require('./auth/login-processor');
+const registerProcessorFunction = async () => {};
 
 
 //====== Processors ======//
@@ -18,32 +30,32 @@ const verifyAuth = makeVerifyAuth({ jwt });
 // happens here and then is exported.
 // May refactor the other parts of the app to use a local index file for 
 // dependency injection also depending on the benefits.
-const getMeProcessor = makeInterface({
-  interfaceFunction: getMeProcessorFunction,
+const getUserProcessor = makeInterface({
+  interfaceFunction: getUserProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const patchMeProcessor = makeInterface({
-  interfaceFunction: patchMeProcessorFunction,
+const updateUserProcessor = makeInterface({
+  interfaceFunction: updateUserProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const deleteMeProcessor = makeInterface({
-  interfaceFunction: deleteMeProcessorFunction,
+const deleteUserProcessor = makeInterface({
+  interfaceFunction: deleteUserProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const putResetPasswordProcessor = makeInterface({
-  interfaceFunction: putResetPasswordProcessorFunction,
+const resetPasswordProcessor = makeInterface({
+  interfaceFunction: resetPasswordProcessorFunction,
   // verifyAuth
   // validate
   // normalise
@@ -74,63 +86,62 @@ const getPaymentMethodsProcessor = makeInterface({
   mockResponseData
 });
 
-const postPaymentMethodsProcessor = makeInterface({
-  interfaceFunction: postPaymentMethodsProcessorFunction,
+const addPaymentMethodProcessor = makeInterface({
+  interfaceFunction: addPaymentMethodProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const postDepositProcessor = makeInterface({
-  interfaceFunction: postDepositProcessorFunction,
+const depositProcessor = makeInterface({
+  interfaceFunction: depositProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const getFindReceiverProcessor = makeInterface({
-  interfaceFunction: getFindReceiverProcessorFunction,
+const findReceiverProcessor = makeInterface({
+  interfaceFunction: findReceiverProcessorFunction,
   // validate
   // normalise
   mockResponseData
 });
 
-const postSendTransactionProcessor = makeInterface({
-  interfaceFunction: postSendTransactionProcessorFunction,
+const sendTransactionProcessor = makeInterface({
+  interfaceFunction: sendTransactionProcessorFunction,
   // verifyAuth
   // validate
   // normalise
   mockResponseData
 });
 
-const postLoginProcessor = makeInterface({
-  interfaceFunction: postLoginProcessorFunction,
-  // validate
-  // normalise
-  mockResponseData
+const loginProcessor = makeInterface({
+  interfaceFunction: loginProcessorFunction,
+  validate: (obj) => obj,
+  normalise: (obj) => obj
 });
 
-const postRegisterProcessor = makeInterface({
-  interfaceFunction: postRegisterProcessorFunction,
+const registerProcessor = makeInterface({
+  interfaceFunction: registerProcessorFunction,
   // validate
   // normalise
   mockResponseData
 });
 
 module.exports = Object.freeze({
-  getMeProcessor,
-  patchMeProcessor,
-  deleteMeProcessor,
-  putResetPasswordProcessor,
+  getUserProcessor,
+  updateUserProcessor,
+  deleteUserProcessor,
+  resetPasswordProcessor,
   getBalanceProcessor,
   getTransactionsProcessor,
   getPaymentMethodsProcessor,
-  postPaymentMethodsProcessor,
-  postDepositProcessor,
-  getFindReceiverProcessor,
-  postSendTransactionProcessor,
-  postLoginProcessor,
-  postRegisterProcessor
+  addPaymentMethodProcessor,
+  depositProcessor,
+  findReceiverProcessor,
+  sendTransactionProcessor,
+  loginProcessor,
+  registerProcessor
 });
