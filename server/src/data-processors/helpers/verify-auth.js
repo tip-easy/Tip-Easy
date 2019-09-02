@@ -1,5 +1,6 @@
 const requiredDependency = require('../../global-helpers/required-dependency');
 const throwError = require('../../global-helpers/throw-error');
+const getType = require('../../global-helpers/get-type');
 
 function makeVerifyAuth({ jwt = requiredDependency('jwt') } = {}) {
   const jwtParamHasVerifyMethod = 'verify' in jwt;
@@ -12,7 +13,7 @@ function makeVerifyAuth({ jwt = requiredDependency('jwt') } = {}) {
     return function (token) {
       let message, tokenBody;
   
-      if (token && typeof token === 'string') {
+      if (token && getType(token) === 'string') {
         jwt.verify(token, process.env.AUTHSECRET, (err, decodedTokenBody) => {
           if (err) {
             throwError('You need authorisation to access this endpoint.', 'authorisation');
@@ -27,10 +28,10 @@ function makeVerifyAuth({ jwt = requiredDependency('jwt') } = {}) {
           body: tokenBody
         });
       }
-      else if(typeof token === 'undefined') {
+      else if(token === false || token === undefined) {
         throwError('A token is required to verify authorisation.', 'application');
       }
-      else if(typeof token !== 'string') {
+      else if (getType(token) !== 'string') {
         throwError('A token of type "string" is required to verify authorisation.', 'application');
       } else {
         throwError('You need authorisation to access this endpoint.', 'authorisation');
