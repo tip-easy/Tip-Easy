@@ -4,24 +4,24 @@ const initialState = {
   receiverSearchResultsArray: [
     {
       name: "Gabe",
-      company: "Lambda School",
-      code: "AG6373",
-      imgUrl: "",
-      imgAlt: "",
+      organisation: "Lambda School",
+      unique_code: "AG6373",
+      profile_img: "",
+      location: ""
     },
     {
       name: "Dustin",
-      company: "Chick-Fill-A",
-      code: "CC1138",
-      imgUrl: "",
-      imgAlt: "",
+      organisation: "Chick-Fill-A",
+      unique_code: "CC1138",
+      profile_img: "",
+      location: ""
     },
     {
       name: "Tom",
-      company: "Apple",
-      code: "WC4659",
-      imgUrl: "",
-      imgAlt: "",
+      organisation: "Apple",
+      unique_code: "WC4659",
+      profile_img: "",
+      location: ""
     }
   ],
   
@@ -55,6 +55,8 @@ export const TipReceiverReducer = (state = initialState, action) => {
 
         searchingTipReceiversMessage: action.payload.error
       }
+
+      
 
     case types.CAUTION_CLEAR_ENTIRE_STORE:
       return initialState

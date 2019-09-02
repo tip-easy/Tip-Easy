@@ -22,18 +22,10 @@ export const searchForTipReceiver = (code, token) => dispatch => {
     }
   })
     .then(res => {
-      dispatch(creators.searchingTipReceiverSuccess(res.data.receiverArray))
+      dispatch(creators.searchingTipReceiverSuccess(res.data))
     })
 
     .catch(error => {
       dispatch(creators.searchingTipReceiverFailure(error));
     })
-}
-
-export const selectTipReceiver = (selectedTipReceiverCode) => dispatch => {
-  dispatch(creators.setTipReceiverCode(selectedTipReceiverCode))
-}
-
-export const clearTipReceiverFromStore = () => dispatch => {
-  dispatch(creators.clearTipReceiver())
 }

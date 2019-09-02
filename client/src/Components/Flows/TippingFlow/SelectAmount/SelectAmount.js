@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 import { setSelectedTipAmount } from '../../../../Actions';
-import { register } from '../../../../Actions';
+import { searchForTipReceiver } from '../../../../Actions';
 
 const SelectAmount = (props) => {
   
@@ -34,7 +34,7 @@ const SelectAmount = (props) => {
       <div 
         className="upperRow"
         onClick={() => {
-          props.register({email: "john@gmail.com", password: "123456"})
+          props.searchForTipReceiver("1234567890", "token")
           
           // props.history.push('/welcome')
         }}
@@ -85,7 +85,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setSelectedTipAmount,
-    register
+    searchForTipReceiver
   }, dispatch)
 }
 
