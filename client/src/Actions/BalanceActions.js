@@ -12,7 +12,7 @@ export const getBalance = ( token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.GETTING_BALANCE_FAILURE)
+    return dispatch(tokenIsNotValid(types.GETTING_BALANCE_FAILURE))
   }
 
   axios.get(`${pathObj.getBalancePath}`, { 

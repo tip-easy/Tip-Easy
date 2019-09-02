@@ -1,6 +1,7 @@
 export const tokenIsValid = (token) => {
-  if (typeof token !== "string") {
+  if (!token || typeof token !== "string") {
     return false
+  } else {
+    return true
   }
-  return true
 }

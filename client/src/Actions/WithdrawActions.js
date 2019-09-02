@@ -18,7 +18,7 @@ export const makeWithdrawal = (withdraw_details, token) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.WITHDRAWING_FAILURE)
+    return dispatch(tokenIsNotValid(types.WITHDRAWING_FAILURE))
   }
 
   return axios.post(`${pathObj.withdrawalPath}`, {

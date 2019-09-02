@@ -12,7 +12,7 @@ export const getUser = ( token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.GETTING_USER_FAILURE)
+    return dispatch(tokenIsNotValid(types.GETTING_USER_FAILURE))
   }
 
   return axios.get(`${pathObj.getUserPath}`, { 
@@ -34,7 +34,7 @@ export const patchUserInfo = ( changes, token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.PATCHING_USER_INFO_FAILURE)
+    return dispatch(tokenIsNotValid(types.PATCHING_USER_INFO_FAILURE))
   }
 
   // TO-DO: Figure out how to do param validation for incoming `changes` object.
@@ -66,7 +66,7 @@ export const changePassword = ( changes, token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.CHANGING_PASSWORD_FAILURE)
+    return dispatch(tokenIsNotValid(types.CHANGING_PASSWORD_FAILURE))
   }
 
   return axios.put(`${pathObj.changePasswordPath}`, { 
@@ -89,7 +89,7 @@ export const deleteUser = ( token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.DELETING_USER_FAILURE)
+    return dispatch(tokenIsNotValid(types.DELETING_USER_FAILURE))
   }
 
   return axios.delete(`${pathObj.deleteUserPath}`, { 

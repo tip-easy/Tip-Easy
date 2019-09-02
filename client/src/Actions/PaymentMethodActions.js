@@ -12,7 +12,7 @@ export const fetchPaymentMethods = (token) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE)
+    return dispatch(tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE))
   }
 
   return axios.get(`${pathObj.getPaymentMethodsPath}`, { 
@@ -35,7 +35,7 @@ export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispat
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE)
+    return dispatch(tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE))
   }
 
   return axios.get(`${pathObj.getPaymentMethodsPath}/${payment_method_id}`, { 
@@ -65,7 +65,7 @@ export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.ADDING_PAYMENT_METHOD_FAILURE)
+    return dispatch(tokenIsNotValid(types.ADDING_PAYMENT_METHOD_FAILURE))
   }
 
   return axios.post(`${pathObj.addPaymentMethodPath}`, {
@@ -88,7 +88,7 @@ export const removePaymentMethod = (payment_method_id, token) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.REMOVING_PAYMENT_METHOD_FAILURE)
+    return dispatch(tokenIsNotValid(types.REMOVING_PAYMENT_METHOD_FAILURE))
   }
 
   return axios.delete(`${pathObj.deletePaymentMethodPath}/${payment_method_id}`, { 

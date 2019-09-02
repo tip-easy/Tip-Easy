@@ -12,7 +12,7 @@ export const searchForTipReceiver = (code, token) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.SEARCHING_TIP_RECEIVER_FAILURE)
+    return dispatch(tokenIsNotValid(types.SEARCHING_TIP_RECEIVER_FAILURE))
   }
 
   return axios.get(`${pathObj.searchTipReceiverPath}?s=${code}`, { 

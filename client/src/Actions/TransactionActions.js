@@ -21,7 +21,7 @@ export const sendTransaction = (code, transactionObject, token) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.SENDING_TRANSACTION_FAILURE)
+    return dispatch(tokenIsNotValid(types.SENDING_TRANSACTION_FAILURE))
   }
 
   return axios.post(`${pathObj.sendTransactionPath}`, {
