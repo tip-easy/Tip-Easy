@@ -1,53 +1,46 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
+import * as creators from './ActionCreators/DepositActionCreators';
 
-export const MakeDeposit = (deposit_details, token) => dispatch => {
-  let requestObject = {
-    amount: deposit_details.amount,
-    currency: deposit_details.currency,
-    deposit_method: deposit_details.deposit_method,
-    deposit_method_type: deposit_details.deposit_method_type,
-    // initiated_at: generateTimestamp()
+import { tokenIsValid } from './../Helpers/tokenIsValid'
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid';
+
+export const makeDeposit = (deposit_details, token) => dispatch => {
+  dispatch(creators.makeDepositStart())
+
+  const { amount, currency, deposit_method, deposit_method_type} = deposit_details;
+  if (!amount || !currency || deposit_method || deposit_method_type) {
+    return dispatch(creators.makeDepositFailureMissingParams());
   }
 
-  dispatch({
-    type: types.DEPOSITING_START,
-  })
-  return axios.post(`${URL}/api/me/deposit`, {
+  if (!tokenIsValid(token, )) {
+    return tokenIsNotValid(types.DEPOSITING_FAILURE)
+  }
+
+  return axios.post(`${URL}/me/deposit`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
       }
-    }, requestObject)
+    }, {amount, currency, deposit_method, deposit_method_type})
     .then(res => {
-      dispatch({
-        type: types.DEPOSITING_SUCCESS,
-        payload: {
-          successMessage: res.data.message
-        }
-      })
+      dispatch(creators.makeDepositSuccess(res.data.message))
     })
     
     .catch(error => {
-      dispatch({ 
-        type: types.DEPOSITING_FAILURE, 
-        payload: {error} 
-      });
+      dispatch(creators.makeDepositFailure(error));
     })
 }
 
-export const SetDepositAmount = (amount) => dispatch => {
-  return dispatch({
-    type: types.SET_DEPOSIT_AMOUNT,
-    payload: {
-      amount,
-    }
-  })
+export const setDepositAmount = (amount) => dispatch => {
+  if (amount >= 10 && amount <= 1000) {
+    return dispatch(creators.makeDepositFailure("The minimum deposit amount is $10 and is limited to $1000"))
+  } else {
+    return dispatch(creators.setDepositAmountSuccess(amount))
+  }
 }
 
-export const ClearDepositFromStore = () => dispatch => {
-  return dispatch({
-    type: types.CLEAR_DEPOSIT_FROM_STORE,
-  })
+export const clearDepositFromStore = () => dispatch => {
+  return dispatch(creators.clearDeposit())
 }

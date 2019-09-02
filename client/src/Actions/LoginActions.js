@@ -1,41 +1,36 @@
 import axios from 'axios';
-import URL from './index';
-import * as types from './actionTypes';
+import { URL } from './index';
+import * as creators from './ActionCreators/LoginActionCreators';
 
-import { GetUser } from './UserActions'
+import { getUser } from './UserActions'
 
-export const Login = user_info => dispatch => {
-  // Implement further data-checking.
+export const login = user_info => dispatch => {
+  dispatch(creators.loggingInStart())
+
+  const {email, password} = user_info
   
-  let credentials = {
-    email: user_info.email,
-    password: user_info.password
+  // Preliminairy params validation
+  if (!email || 
+    !password || 
+    typeof(email) !== "string" ||
+    typeof(password) !== "string" || 
+    password.length < 8 ) 
+  {
+    dispatch(creators.loggingInFailureIncompleteParams());  
   }
 
-  dispatch({
-    type: types.LOGGING_IN_START
-  })
-  return axios.post(`${URL}/api/login`, {
-    credentials
+  axios.post(`${URL}/login`, {
+    email, password
   })
     .then(res => {
-      dispatch({ 
-        type: types.LOGGING_IN_SUCCESS,
-        payload: {
-          token: res.data.token,
-        }
-      })
+      dispatch(creators.loggingInSuccess())
       // Found in UserActions
-      GetUser({
-        credentials,
-        token
+      getUser({
+        token: res.data.token,
       })
     })
 
     .catch(error => {
-      dispatch({ 
-        type: types.LOGGING_IN_FAILURE, 
-        payload: {error} 
-      });
+      dispatch(creators.loggingInFailure(error));
     })
 };

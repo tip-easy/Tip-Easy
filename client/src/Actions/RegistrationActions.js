@@ -1,31 +1,29 @@
 import axios from 'axios';
-import URL from './index';
-import * as types from './actionTypes';
-import { Login } from './LoginActions';
+import { URL } from './index';
+import * as creators from './ActionCreators/RegistrationActionCreators';
 
-export const Register = user_info => dispatch => {
-  // Clearly define what user_info will contain and manually pass it in the request body.
+import { login } from './LoginActions';
 
-  dispatch({ 
-    type: types.REGISTERING_START 
-  });
-  return axios.post(`${URL}/api/register`, {user_info})
+export const register = user_info => dispatch => {
+  dispatch(creators.registeringStart());
+
+  const {email, password, default_currency} = user_info;
+  if (!email || !password || typeof(email) !== "string" || typeof(password) !== "string" || password.length < 8 ) {
+    dispatch(creators.registeringFailureInvalidParams());  
+  }
+
+  return axios.post(`${URL}/api/register`, {email, password, default_currency})
     .then(res => {
-      dispatch({
-        type: types.REGISTRATION_SUCCESS
-      })
+      dispatch(creators.registeringSuccess())
       
       // Found in LoginActions
-      Login({
+      login({
         email: user_info.email, 
         password: user_info.password
       })
     })
     
     .catch(error => {
-      dispatch({ 
-        type: types.REGISTERING_FAILURE, 
-        payload: {error} 
-      });
+      dispatch(creators.registeringFailure(error));
     })
 };

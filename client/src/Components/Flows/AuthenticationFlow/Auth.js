@@ -1,18 +1,21 @@
 import React, { useState} from 'react';
 
 // Components
-import { Login } from './Login';
-import { Register } from './Register';
+import LoginForm from './Elements/LoginForm';
+import RegistrationForm from './Elements/RegistrationForm';
 
+// HOCs
+import LoggedIn from './../../HOCs/LoggedIn'
+
+// TO-DO: Add HOC to check for user info in store.
+//        If found, redirect to `SelectAmount` (if Sender) or `ReceiverWallet` (if Receiver)
 export const Auth = (props) => {
   const [page, setPage] = useState('login')
-  const [loginDisabled, setLoginDisabled] = useState(true)
-  const [registerDisabled, setRegisterDisabled] = useState(false)
 
   // These handler methods have to be placed on non-nested components to access props.
   // These get passed to <Login> and <Register>, to be called depending on user interaction and database response.
-  const pushToSelectAmount = () => props.history.push('/');
-  const pushToUserProfile = () => props.history.push('/user');
+  const goToSelectAmount = () => props.history.replace('/');
+  const goToUserProfile = () => props.history.replace('/user');
 
   return (
     <>
@@ -22,10 +25,8 @@ export const Auth = (props) => {
         <button 
           onClick={() => {
             setPage('login'); 
-            setLoginDisabled(true);
-            setRegisterDisabled(false)
           }}
-          disabled={loginDisabled}
+          disabled={page === 'login' ? true : false}
         >
           Login
         </button>
@@ -33,10 +34,8 @@ export const Auth = (props) => {
         <button 
           onClick={() => {
             setPage('register');
-            setRegisterDisabled(true);
-            setLoginDisabled(false);
           }}
-          disabled={registerDisabled}  
+          disabled={page === 'register' ? true : false}  
         >
           Register
         </button>
@@ -44,14 +43,14 @@ export const Auth = (props) => {
 
       <div className="inputContainer">
         {page === 'login' ? 
-          <Login 
-            pushToSelectAmount={pushToSelectAmount}
-            pushToUserProfile={pushToUserProfile}  
+          <LoginForm
+            goToSelectAmount={goToSelectAmount}
+            goToUserProfile={goToUserProfile}  
           />
           :
-          <Register 
-            pushToSelectAmount={pushToSelectAmount}
-            pushToUserProfile={pushToUserProfile}
+          <RegistrationForm 
+            goToSelectAmount={goToSelectAmount}
+            goToUserProfile={goToUserProfile}
           />
         }
       </div>
@@ -59,4 +58,4 @@ export const Auth = (props) => {
   )
 }
 
-export default Auth;
+export default LoggedIn(Auth);

@@ -1,53 +1,45 @@
 import axios from 'axios';
-import URL from './index';
+import { URL } from './index';
 import * as types from './actionTypes';
+import * as creators from './ActionCreators/WithdrawActionCreators';
 
-export const MakeWithdrawal = (withdraw_details, token) => dispatch => {
+import { tokenIsValid } from './../Helpers/tokenIsValid';
+import { tokenIsNotValid } from './../Helpers/tokenIsNotValid';
+
+export const makeWithdrawal = (withdraw_details, token) => dispatch => {
+  dispatch(creators.withdrawingStart())
+
   let requestObject = {
     amount: withdraw_details.amount,
     currency: withdraw_details.currency,
     withdraw_method: withdraw_details.withdraw_method,
     withdraw_method_type: withdraw_details.withdraw_method_type,
-    // initiated_at: generateTimestamp()
   }
 
-  dispatch({
-    type: types.WITHDRAWING_START,
-  })
-  return axios.post(`${URL}/api/me/withdraw`, {
+  // Preliminary token validation
+  if (!tokenIsValid(token)) {
+    return tokenIsNotValid(types.WITHDRAWING_FAILURE)
+  }
+
+  return axios.post(`${URL}/me/withdraw`, {
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `${token}`,
+      'Authorization': `Bearer ${token}`,
       }
     }, requestObject)
     .then(res => {
-      dispatch({
-        type: types.WITHDRAWING_SUCCESS,
-        payload: {
-          successMessage: res.data.message
-        }
-      })
+      dispatch(creators.withdrawingSuccess(res.data.message))
     })
     
     .catch(error => {
-      dispatch({ 
-        type: types.WITHDRAWING_FAILURE, 
-        payload: {error} 
-      });
+      dispatch(creators.withdrawingFailure(error));
     })
 }
 
-export const SetWithdrawalAmount = (amount) => dispatch => {
-  return dispatch({
-    type: types.SET_WITHDRAWAL_AMOUNT,
-    payload: {
-      amount,
-    }
-  })
+export const setWithdrawalAmount = (amount) => dispatch => {
+  return dispatch(creators.setAmount(amount))
 }
 
-export const ClearWithdrawalFromStore = () => dispatch => {
-  return dispatch({
-    type: types.CLEAR_WITHDRAWAL_FROM_STORE,
-  })
+export const clearWithdrawalFromStore = () => dispatch => {
+  return dispatch(creators.clearWithdrawal())
 }
