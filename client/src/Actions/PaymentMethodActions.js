@@ -22,7 +22,6 @@ export const fetchPaymentMethods = (token) => dispatch => {
     }
   })
     .then(res => {
-      console.log(res.data)
       dispatch(creators.fetchingPaymentMethodsSuccess(res.data))
     })
 
@@ -76,7 +75,6 @@ export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
       }
     }, requestObject)
     .then(res => {
-      console.log(res.data)
       dispatch(creators.addingPaymentMethodSuccess(res.data.message))
     })
     

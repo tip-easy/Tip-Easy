@@ -30,7 +30,6 @@ export const login = user_info => dispatch => {
     })
     // Login Catch
     .catch(error => {
-      console.log(error)
       dispatch(creators.loggingInFailure(error));
     })
 };

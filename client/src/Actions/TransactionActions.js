@@ -49,7 +49,6 @@ export const fetchTransactions = (token) => dispatch => {
     }
   })
     .then(res => {
-      console.log(res.data)
       dispatch(creators.fetchingTransactionsSuccess(res.data))
     })
 

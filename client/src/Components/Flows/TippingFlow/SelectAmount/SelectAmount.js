@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 import { setSelectedTipAmount } from '../../../../Actions';
-import { getUser, patchUserInfo, changePassword, deleteUser, logout } from '../../../../Actions';
 
 const SelectAmount = (props) => {
   
@@ -34,9 +33,7 @@ const SelectAmount = (props) => {
       <div 
         className="upperRow"
         onClick={() => {
-          props.deleteUser("token")
-          
-          // props.history.push('/welcome')
+          props.history.push('/welcome')
         }}
       >
         Log In or Register
@@ -85,7 +82,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setSelectedTipAmount,
-    getUser, patchUserInfo, changePassword, deleteUser, logout
   }, dispatch)
 }
 

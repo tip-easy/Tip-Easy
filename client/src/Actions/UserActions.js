@@ -99,7 +99,6 @@ export const deleteUser = ( token ) => dispatch => {
       }
     })
     .then(res => {
-      console.log(res.data)
       dispatch(creators.deletingUserSuccess())
       // Since Deletion of an account immediately results in logging out, should the ENTIRE store be cleared?
       // TODO: (?) Add general store reset action type to all reducers
