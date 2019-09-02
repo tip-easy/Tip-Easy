@@ -7,6 +7,7 @@ import { pathObj } from '../Utils/pathVariables';
 import { tokenIsValid } from '../Utils/tokenIsValid'
 import { tokenIsNotValid } from '../Utils/tokenIsNotValid'
 
+// TO-DO: Review Stripe API to figure out what endpoints to hit and what data to send in the request.
 export const sendTransaction = (code, transactionObject, token) => dispatch => {
   dispatch(creators.sendingTransactionStart())
 
@@ -48,7 +49,8 @@ export const fetchTransactions = (token) => dispatch => {
     }
   })
     .then(res => {
-      dispatch(creators.fetchingTransactionsSuccess(res.data.transactionArray))
+      console.log(res.data)
+      dispatch(creators.fetchingTransactionsSuccess(res.data))
     })
 
     .catch(error => {
