@@ -60,7 +60,9 @@ export const DepositReducer = (state = initialState, action) => {
         }
 
     case types.CAUTION_CLEAR_ENTIRE_STORE:
-      return initialState
+        return {
+          ...initialState
+        }
 
     default: 
       return state

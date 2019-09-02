@@ -55,9 +55,12 @@ export const changingPasswordStart = () => {
   }
 }
 
-export const changingPasswordSuccess = () => {
+export const changingPasswordSuccess = (message) => {
   return { 
     type: types.CHANGING_PASSWORD_SUCCESS,
+    payload: {
+      message: message
+    }
   }
 }
 

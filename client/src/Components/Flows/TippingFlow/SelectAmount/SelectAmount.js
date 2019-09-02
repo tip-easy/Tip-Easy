@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 import { setSelectedTipAmount } from '../../../../Actions';
-import { sendTransaction, fetchTransactions, clearTransactionList } from '../../../../Actions';
+import { getUser, patchUserInfo, changePassword, deleteUser, logout } from '../../../../Actions';
 
 const SelectAmount = (props) => {
   
@@ -34,12 +34,7 @@ const SelectAmount = (props) => {
       <div 
         className="upperRow"
         onClick={() => {
-          props.sendTransaction("1234567890", {
-            amount: 10,
-            currency: 'usd',
-            pay_method_string: 'card',
-            pay_method_type: 'card',},
-          "token")
+          props.deleteUser("token")
           
           // props.history.push('/welcome')
         }}
@@ -90,7 +85,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setSelectedTipAmount,
-    sendTransaction, fetchTransactions, clearTransactionList
+    getUser, patchUserInfo, changePassword, deleteUser, logout
   }, dispatch)
 }
 

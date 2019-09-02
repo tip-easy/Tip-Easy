@@ -11,7 +11,7 @@ export const pathObj = {
   getUserPath: `${URL}/me`,
   patchUserPath: `${URL}/me`,
   deleteUserPath: `${URL}/me`,
-  changePasswordPath: `${URL}/me`,
+  changePasswordPath: `${URL}/me/reset-password`,
 
   // Balance
   getBalancePath: `${URL}/me/balance`,
