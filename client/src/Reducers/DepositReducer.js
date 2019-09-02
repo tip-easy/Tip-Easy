@@ -51,6 +51,14 @@ export const DepositReducer = (state = initialState, action) => {
           depositMessage: action.payload.error,
         }
 
+    case types.DEPOSITING_FAILURE_INVALID_PARAMS:
+        return {
+          ...state,
+          depositing: false,
+
+          depositMessage: action.payload.error,
+        }
+
     case types.CAUTION_CLEAR_ENTIRE_STORE:
       return initialState
 

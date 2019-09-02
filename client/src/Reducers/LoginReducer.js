@@ -27,7 +27,15 @@ export const LoginReducer = (state = initialState, action) => {
         ...state,
         loggingIn: false,
 
-        loginErrorMessage: "Something's gone wrong in trying to log you in. Please try again."
+        loginErrorMessage: action.payload.error
+      }
+
+    case types.LOGGING_IN_FAILURE_INVALID_PARAMS:
+      return {
+        ...state,
+        loggingIn: false,
+
+        loginErrorMessage: action.payload.error
       }
 
     case types.LOGGING_IN_FAILURE_INVALID_EMAIL:

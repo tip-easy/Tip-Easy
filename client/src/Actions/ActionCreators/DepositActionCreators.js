@@ -8,7 +8,7 @@ export const makeDepositStart = () => {
 
 export const makeDepositFailureMissingParams = () => {
   return { 
-    type: types.DEPOSITING_FAILURE, 
+    type: types.DEPOSITING_FAILURE_INVALID_PARAMS, 
     payload: {
       error: "Specify the amount, currency, deposit_method, and deposit_method_type"
     } 

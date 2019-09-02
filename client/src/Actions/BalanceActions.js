@@ -15,7 +15,7 @@ export const getBalance = ( token ) => dispatch => {
     return tokenIsNotValid(types.GETTING_BALANCE_FAILURE)
   }
 
-  return axios.get(`${pathObj.getBalancePath}`, { 
+  axios.get(`${pathObj.getBalancePath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -24,11 +24,11 @@ export const getBalance = ( token ) => dispatch => {
     .then(res => {
       const { calculated_balance, currency, wallet_type } = res.data[0]
       
-      dispatch(creators.gettingBalanceSuccess(calculated_balance, currency, wallet_type))
+      return dispatch(creators.gettingBalanceSuccess(calculated_balance, currency, wallet_type))
     })
 
     .catch(error => {
-      dispatch(creators.gettingBalanceError(error));
+      return dispatch(creators.gettingBalanceError(error));
     })
 }
 
