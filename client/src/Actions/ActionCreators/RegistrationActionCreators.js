@@ -8,16 +8,19 @@ export const registeringStart = () => {
 
 export const registeringFailureInvalidParams = () => {
   return { 
-    type: types.LOGGING_IN_FAILURE, 
+    type: types.REGISTERING_FAILURE_INVALID_PARAMS, 
     payload: {
       error: "Make sure you're passing a valid email and password, as well as the default currency!"
     } 
   }
 }
 
-export const registeringSuccess = () => {
+export const registeringSuccess = (successMessage) => {
   return {
-    type: types.REGISTERING_SUCCESS
+    type: types.REGISTERING_SUCCESS,
+    payload: {
+      successMessage: successMessage
+    }
   }
 }
 

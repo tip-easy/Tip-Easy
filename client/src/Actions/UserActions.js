@@ -8,7 +8,6 @@ import { tokenIsValid } from '../Utils/tokenIsValid';
 import { tokenIsNotValid } from '../Utils/tokenIsNotValid';
 
 export const getUser = ( token ) => dispatch => {
-  console.log('her')
   dispatch(creators.gettingUserStart())
 
   // Preliminary token validation
@@ -23,7 +22,7 @@ export const getUser = ( token ) => dispatch => {
     }
   })
     .then(res => {
-      dispatch(creators.gettingUserSuccess(res.data.user))
+      dispatch(creators.gettingUserSuccess(res.data, token))
     })
     .catch(error => {
       dispatch(creators.gettingUserFailure(error));

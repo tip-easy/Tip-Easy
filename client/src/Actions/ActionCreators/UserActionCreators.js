@@ -6,10 +6,11 @@ export const gettingUserStart = () => {
   }
 }
 
-export const gettingUserSuccess = (user) => {
+export const gettingUserSuccess = (user, token) => {
   return { 
     type: types.GETTING_USER_SUCCESS,
     payload: {
+      token: token,
       user: user
     }
   }

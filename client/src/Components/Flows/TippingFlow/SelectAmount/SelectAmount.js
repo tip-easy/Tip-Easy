@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 import { setSelectedTipAmount } from '../../../../Actions';
-import { fetchPaymentMethods, addPaymentMethod, removePaymentMethod, clearPaymentMethodsFromStore } from '../../../../Actions';
+import { register } from '../../../../Actions';
 
 const SelectAmount = (props) => {
   
@@ -15,6 +15,7 @@ const SelectAmount = (props) => {
     props.history.push('/tip')
   }
 
+  // TO-DO: Make into separate Utility Function with semi-exhaustive currency list
   let currency = "$"
   switch (props.user.default_currency) {
     case "eur":
@@ -33,7 +34,7 @@ const SelectAmount = (props) => {
       <div 
         className="upperRow"
         onClick={() => {
-          props.removePaymentMethod("111-222-333-444","token")
+          props.register({email: "john@gmail.com", password: "123456"})
           
           // props.history.push('/welcome')
         }}
@@ -84,7 +85,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setSelectedTipAmount,
-    fetchPaymentMethods, addPaymentMethod, removePaymentMethod, clearPaymentMethodsFromStore
+    register
   }, dispatch)
 }
 
