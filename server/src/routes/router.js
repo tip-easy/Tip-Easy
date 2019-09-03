@@ -41,22 +41,15 @@ async function router({
 
     case '/register':
       if (httpRequest.method === 'POST') {
-        return res.status(201).send({ message: "successfully registered" });
+        const response = await registerProcessor(httpRequest);
+        return res.status(201).send(response);
       }
 
     //====== User Endpoints ======//
     case '/me':
       if (httpRequest.method === 'GET') {
-        return res.send({
-          account_type: "receiver",
-          name: "Anthony",
-          email: "anthony@company.com",
-          profile_img: "",
-          unique_code: "DSE2986",
-          location: "Netherlands",
-          organisation: "CoolStuff",
-          default_currency: "eur"
-        });
+          const response = await getUserProcessor(httpRequest);
+          return res.send(response);
       }
       else if (httpRequest.method === 'PATCH') {
         return res.send({

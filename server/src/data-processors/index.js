@@ -6,11 +6,14 @@ const makeInterface = require('../global-helpers/make-interface');
 const mockResponseData = require('../database/mock-response-data');
 
 // Local Helpers
+const extractTokenFromAuthHeader = require('./helpers/extract-token');
 const makeVerifyAuth = require('./helpers/verify-auth');
+const makeGenerateToken = require('./helpers/generate-token');
 const verifyAuth = makeVerifyAuth({ jwt });
+const generateToken = makeGenerateToken({ jwt });
 
 // Processor Functions
-const getUserProcessorFunction = async () => {};
+const getUserProcessorFunction = require('./user/get-user-processor');
 const updateUserProcessorFunction = async () => {};
 const deleteUserProcessorFunction = async () => {};
 const resetPasswordProcessorFunction = async () => {};
@@ -22,7 +25,7 @@ const depositProcessorFunction = async () => {};
 const findReceiverProcessorFunction = async () => {};
 const sendTransactionProcessorFunction = async () => {};
 const loginProcessorFunction = require('./auth/login-processor');
-const registerProcessorFunction = async () => {};
+const registerProcessorFunction = require('./auth/register-processor');
 
 
 //====== Processors ======//
@@ -32,10 +35,8 @@ const registerProcessorFunction = async () => {};
 // dependency injection also depending on the benefits.
 const getUserProcessor = makeInterface({
   interfaceFunction: getUserProcessorFunction,
-  // verifyAuth
-  // validate
-  // normalise
-  mockResponseData
+  extractTokenFromAuthHeader,
+  verifyAuth
 });
 
 const updateUserProcessor = makeInterface({
@@ -119,15 +120,15 @@ const sendTransactionProcessor = makeInterface({
 
 const loginProcessor = makeInterface({
   interfaceFunction: loginProcessorFunction,
+  generateToken,
   validate: (obj) => obj,
   normalise: (obj) => obj
 });
 
 const registerProcessor = makeInterface({
   interfaceFunction: registerProcessorFunction,
-  // validate
-  // normalise
-  mockResponseData
+  validate: (obj) => obj,
+  normalise: (obj) => obj
 });
 
 module.exports = Object.freeze({
