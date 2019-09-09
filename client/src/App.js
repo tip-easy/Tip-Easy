@@ -21,36 +21,66 @@ const App = () =>  {
     <main>
       <Router>
         <Switch>
-          {/* Commented out for now until we decide on if we need a header */}
-          {/* <Navigation /> */}
-
-          {/* Select Amount */}
+          {/* DEFAULT: Select Tipping Amount */}
           <Route path="/" exact render={props => (<SelectAmount {...props} />)} />
 
-          {/* Login & Registration */}
-          <Route path="/welcome" render={props => (<Auth {...props} />)} />
 
-          {/* Payment Method */}
-          <Route path="/payment-method" render={props => (<SelectPaymentMethod {...props} />)} />
+          {/* -- AUTHENTICATION --- */}
+            {/* Login & Registration */}
+            <Route path="/welcome" render={props => (<Auth {...props} />)} />
 
-          {/* Payment Details */}
-          <Route path="/details" render={props => (<PaymentMethodDetails {...props} />)} />
 
-          {/* Payment Success */}
-          <Route path="/tip/success" render={props => (<PaymentSuccess {...props} />)} />
+          {/* --- TIPPING FLOW --- */}
+            {/* Enter Tip Receiver Code */}
+            <Route path="/select-tip-receiver" render={props => (<EnterCode {...props} />)} />
 
-          {/* Enter Code */}
-          <Route path="/tip" render={props => (<EnterCode {...props} />)} />
+            {/* Tipping Success Page */}
+            <Route path="/tip-success" render={props => (<PaymentSuccess {...props} />)} />
 
-          {/* Enter Code */}
-          <Route path="/user" render={props => (<UserProfile {...props} />)} />
+          {/* --- PAYMENT METHOD FLOW --- */}
+            {/* Select Payment Method */}
+            <Route path="/select-payment-method" render={props => (<SelectPaymentMethod {...props} />)} />
+          
+            {/* Enter Payment Method Details */} 
+            {/* Add Payment Method; includes CC number, name, etc. */}
+            <Route path="/payment-method-details" render={props => (<PaymentMethodDetails {...props} />)} />
+          
+
+          {/* --- USER-RELATED ROUTES --- */}
+            {/* User Profile */}
+            {/* Contains Receiver Code - if applicable */}
+            <Route path="/user" render={props => (<UserProfile {...props} />)} />
+
+            {/* User Settings */}
+            {/* Contains Change Password, Delete Account, etc. */}
+            <Route path="/user/settings" render={props => (<div/>)} />
+
+            {/* Wallet */}
+            {/* Both Sender && Receiver */}
+            <Route path="/user/wallet" render={props => (<div/>)} />
+
+          {/* WALLET WITHDRAWAL ROUTES: */}
+            {/* Withdraw Tips */}
+            {/* Entered from Receiver Wallet */}
+            <Route path="/withdraw" render={props => (<div/>)} />
+
+            {/* Withdraw Success */}
+            <Route path="/withdraw/success" render={props => (<div/>)} />
+
+
+          {/* FUND WALLET ROUTES: */}
+            {/* Enter Funding Amount */}
+            <Route path="/fund" render={props => (<div/>)} />
+
+            {/* Select Funding Method */}
+            {/* Same options as Payment Methods; card, PayPal, etc. */}
+            <Route path="/fund/method" render={props => (<div/>)} />
+
+            {/* Funding Success */}
+            <Route path="/fund/success" render={props => (<div/>)} />
 
           {/* Catch-All 404 Page */}
           <Route render={props => (<SelectAmount {...props} />)} />
-
-
-        {/* Commented out for now until we decide on if we need a footer */}
-        {/* <Footer /> */}
         </Switch>
       </Router>
     </main>
