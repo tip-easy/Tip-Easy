@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import "./App.scss";
 
@@ -18,38 +18,42 @@ import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
 
 const App = () =>  {
   return (
-    <Router>
-      {/* Commented out for now until we decide on if we need a header */}
-      {/* <Navigation /> */}
+    <main>
+      <Router>
+        <Switch>
+          {/* Commented out for now until we decide on if we need a header */}
+          {/* <Navigation /> */}
 
-      <main>
+          {/* Select Amount */}
+          <Route path="/" exact render={props => (<SelectAmount {...props} />)} />
 
-        {/* Select Amount */}
-        <Route path="/" exact render={props => (<SelectAmount {...props} />)} />
+          {/* Login & Registration */}
+          <Route path="/welcome" render={props => (<Auth {...props} />)} />
 
-        {/* Login & Registration */}
-        <Route path="/welcome" render={props => (<Auth {...props} />)} />
+          {/* Payment Method */}
+          <Route path="/payment-method" render={props => (<SelectPaymentMethod {...props} />)} />
 
-        {/* Payment Method */}
-        <Route path="/payment-method" render={props => (<SelectPaymentMethod {...props} />)} />
+          {/* Payment Details */}
+          <Route path="/details" render={props => (<PaymentMethodDetails {...props} />)} />
 
-        {/* Payment Details */}
-        <Route path="/details" render={props => (<PaymentMethodDetails {...props} />)} />
+          {/* Payment Success */}
+          <Route path="/tip/success" render={props => (<PaymentSuccess {...props} />)} />
 
-        {/* Payment Success */}
-        <Route path="/tip/success" render={props => (<PaymentSuccess {...props} />)} />
+          {/* Enter Code */}
+          <Route path="/tip" render={props => (<EnterCode {...props} />)} />
 
-        {/* Enter Code */}
-        <Route path="/tip" render={props => (<EnterCode {...props} />)} />
+          {/* Enter Code */}
+          <Route path="/user" render={props => (<UserProfile {...props} />)} />
 
-        {/* Enter Code */}
-        <Route path="/user" render={props => (<UserProfile {...props} />)} />
+          {/* Catch-All 404 Page */}
+          <Route render={props => (<SelectAmount {...props} />)} />
 
-      </main>
 
-      {/* Commented out for now until we decide on if we need a footer */}
-      {/* <Footer /> */}
-    </Router>
+        {/* Commented out for now until we decide on if we need a footer */}
+        {/* <Footer /> */}
+        </Switch>
+      </Router>
+    </main>
   )
 }
 
