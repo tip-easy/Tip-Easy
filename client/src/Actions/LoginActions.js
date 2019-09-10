@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as creators from './ActionCreators/LoginActionCreators';
 
 import { endpointURLs } from '../Utils/pathVariables';
-import { getUser } from '.';
+import { getUser } from './index';
 
 export const login = user_info => dispatch => {
   dispatch(creators.loggingInStart())
