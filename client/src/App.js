@@ -37,6 +37,7 @@ const App = () =>  {
             {/* Tipping Success Page */}
             <Route path="/tip-success" render={props => (<PaymentSuccess {...props} />)} />
 
+
           {/* --- PAYMENT METHOD FLOW --- */}
             {/* Select Payment Method */}
             <Route path="/select-payment-method" render={props => (<SelectPaymentMethod {...props} />)} />
@@ -58,6 +59,7 @@ const App = () =>  {
             {/* Wallet */}
             {/* Both Sender && Receiver */}
             <Route path="/user/wallet" render={props => (<div/>)} />
+
 
           {/* WALLET WITHDRAWAL ROUTES: */}
             {/* Withdraw Tips */}
