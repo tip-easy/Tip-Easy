@@ -4,19 +4,22 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import "./App.scss";
 
 // Components
+import SelectAmount from './Components/Flows/TippingFlow/SelectAmount/SelectAmount';
+
 import Auth from './Components/Flows/AuthenticationFlow/Auth';
+
+import EnterCode from './Components/Flows/TippingFlow/EnterCode/EnterCode';
+import SuccessPage from './Components/Pages/CommonUse/SuccessPage/SuccessPage';
 
 import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
 import UserSettings from './Components/Pages/CommonUse/UserSettings/UserSettings';
 
+import SelectPaymentMethod from './Components/Flows/PaymentMethodFlow/SelectPaymentMethod/SelectPaymentMethod';
+import PaymentMethodDetails from './Components/Flows/PaymentMethodFlow/PaymentMethodDetails/PaymentMethodDetails';
+
 
 import Wallet from './Components/Pages/CommonUse/Wallet/Wallet';
 
-import SelectAmount from './Components/Flows/TippingFlow/SelectAmount/SelectAmount';
-import SelectPaymentMethod from './Components/Flows/PaymentMethodFlow/SelectPaymentMethod/SelectPaymentMethod';
-import PaymentMethodDetails from './Components/Flows/PaymentMethodFlow/PaymentMethodDetails/PaymentMethodDetails';
-import SuccessPage from './Components/Pages/CommonUse/SuccessPage/SuccessPage';
-import EnterCode from './Components/Flows/TippingFlow/EnterCode/EnterCode';
 
 const App = () =>  {
   return (
@@ -42,12 +45,15 @@ const App = () =>  {
 
           {/* --- PAYMENT METHOD FLOW --- */}
             {/* Select Payment Method */}
-            <Route path="/select-payment-method" render={props => (<SelectPaymentMethod {...props} />)} />
+            <Route exact path="/payment-method" render={props => (<SelectPaymentMethod {...props} />)} />
           
             {/* Enter Payment Method Details */} 
             {/* Add Payment Method; includes CC number, name, etc. */}
-            <Route path="/payment-method-details" render={props => (<PaymentMethodDetails {...props} />)} />
+            <Route path="/payment-method/details" render={props => (<PaymentMethodDetails {...props} />)} />
           
+            {/* Add Payment Method Success */}
+            <Route path="/payment-method/success" render={props => (<SuccessPage {...props} type="paymentMethod" />)} />
+
 
           {/* --- USER-RELATED ROUTES --- */}
             {/* User Profile */}

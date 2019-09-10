@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 export const SuccessPage = (props) => {
-  console.log(props.type)
   switch(props.type) {
     case "tippingSuccess":
       return (
@@ -20,6 +19,12 @@ export const SuccessPage = (props) => {
         </div>
       )
     case "fundingSuccess":
+      return (
+        <div>
+          Funding Success!
+        </div>
+      )
+    case "paymentMethod":
       return (
         <div>
           Funding Success!
