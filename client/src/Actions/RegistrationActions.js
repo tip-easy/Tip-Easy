@@ -8,7 +8,7 @@ import { login } from './LoginActions';
 export const register = user_info => dispatch => {
   dispatch(creators.registeringStart());
 
-  if (!user_info.email || !user_info.password || typeof(user_info.email) !== "string" || typeof(user_info.password) !== "string" || user_info.password.length < 6 ) {
+  if (!user_info.email || !user_info.password || typeof user_info.email !== "string" || typeof user_info.password !== "string" || user_info.password.length < 6 ) {
       return dispatch(creators.registeringFailureInvalidParams());  
   }
 
