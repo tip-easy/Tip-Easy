@@ -11,15 +11,18 @@ import Auth from './Components/Flows/AuthenticationFlow/Auth';
 import EnterCode from './Components/Flows/TippingFlow/EnterCode/EnterCode';
 import SuccessPage from './Components/Pages/CommonUse/SuccessPage/SuccessPage';
 
-import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
-import UserSettings from './Components/Pages/CommonUse/UserSettings/UserSettings';
-
 import SelectPaymentMethod from './Components/Flows/PaymentMethodFlow/SelectPaymentMethod/SelectPaymentMethod';
 import PaymentMethodDetails from './Components/Flows/PaymentMethodFlow/PaymentMethodDetails/PaymentMethodDetails';
 
-
+import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
+import UserSettings from './Components/Pages/CommonUse/UserSettings/UserSettings';
 import Wallet from './Components/Pages/CommonUse/Wallet/Wallet';
 
+// Withdrawal
+import WithdrawalAmount from './Components/Flows/WithdrawalFlow/WithdrawalAmount/WithdrawalAmount';
+import WithdrawalAccounts from './Components/Flows/WithdrawalFlow/WithdrawalAccounts/WithdrawalAccounts';
+
+// Funding
 
 const App = () =>  {
   return (
@@ -72,7 +75,10 @@ const App = () =>  {
           {/* WALLET WITHDRAWAL ROUTES: */}
             {/* Withdraw Tips */}
             {/* Entered from Receiver Wallet */}
-            <Route exact path="/withdraw" render={props => (<div/>)} />
+            <Route exact path="/withdraw" render={props => (<WithdrawalAmount {...props} />)} />
+
+            {/* Select Account To Send Withdrawal */}
+            <Route exact path="/withdraw/accounts" render={props => (<WithdrawalAccounts {...props} />)} />
 
             {/* Withdraw Success */}
             <Route path="/withdraw/success" render={props => (<SuccessPage {...props} type="withdrawalSuccess" />)} />
