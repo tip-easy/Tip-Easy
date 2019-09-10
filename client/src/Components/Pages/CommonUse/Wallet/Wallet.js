@@ -3,10 +3,14 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-export const UserSettings = () => {
+import ReceiverWallet from '../../Receiver/ReceiverWallet/ReceiverWallet'
+import SenderWallet from './../../Sender/SenderWallet/SenderWallet'
+
+export const Wallet = () => {
   return (
     <div>
-      UserSettings
+      <ReceiverWallet />
+      <SenderWallet />
     </div>
   )
 }
@@ -23,4 +27,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserSettings);
+export default connect(mapStateToProps, mapDispatchToProps)(Wallet);

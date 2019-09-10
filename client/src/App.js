@@ -4,17 +4,19 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import "./App.scss";
 
 // Components
-// import { Navigation } from './Components/Nav/Nav'
-
 import Auth from './Components/Flows/AuthenticationFlow/Auth';
+
+import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
+import UserSettings from './Components/Pages/CommonUse/UserSettings/UserSettings';
+
+
+import Wallet from './Components/Pages/CommonUse/Wallet/Wallet';
+
 import SelectAmount from './Components/Flows/TippingFlow/SelectAmount/SelectAmount';
 import SelectPaymentMethod from './Components/Flows/PaymentMethodFlow/SelectPaymentMethod/SelectPaymentMethod';
 import PaymentMethodDetails from './Components/Flows/PaymentMethodFlow/PaymentMethodDetails/PaymentMethodDetails';
 import SuccessPage from './Components/Pages/CommonUse/SuccessPage/SuccessPage';
 import EnterCode from './Components/Flows/TippingFlow/EnterCode/EnterCode';
-import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
-
-// import { Footer } from './Components/Footer/Footer'; 
 
 const App = () =>  {
   return (
@@ -50,15 +52,15 @@ const App = () =>  {
           {/* --- USER-RELATED ROUTES --- */}
             {/* User Profile */}
             {/* Contains Receiver Code - if applicable */}
-            <Route path="/user" render={props => (<UserProfile {...props} />)} />
+            <Route exact path="/user" render={props => (<UserProfile {...props} />)} />
 
             {/* User Settings */}
             {/* Contains Change Password, Delete Account, etc. */}
-            <Route path="/user/settings" render={props => (<div/>)} />
+            <Route path="/user/settings" render={props => (<UserSettings {...props} />)} />
 
             {/* Wallet */}
             {/* Both Sender && Receiver */}
-            <Route path="/user/wallet" render={props => (<div/>)} />
+            <Route path="/user/wallet" render={props => (<Wallet {...props} />)} />
 
 
           {/* WALLET WITHDRAWAL ROUTES: */}
