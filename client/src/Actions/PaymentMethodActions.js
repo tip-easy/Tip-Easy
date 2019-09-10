@@ -54,12 +54,12 @@ export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispat
 }
 
 // Do we need this action, or will it be handled solely through Stripe?
-export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
+export const addPaymentMethod = (new_payment_method, token) => dispatch => {
   dispatch(creators.addingPaymentMethodStart())
 
   let requestObject = {
-    pay_method_type: new_payment_menthod.payment_method_id,
-    brand: new_payment_menthod.brand,
+    pay_method_type: new_payment_method.payment_method_id,
+    brand: new_payment_method.brand,
     // What info do we need to provide?
   }
 
