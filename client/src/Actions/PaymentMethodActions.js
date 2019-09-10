@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/PaymentMethodActionCreators';
 
-import { pathObj } from '../Utils/pathVariables';
+import { endpointURLs } from '../Utils/pathVariables';
 import { tokenIsValid } from '../Utils/tokenIsValid'
 import { tokenIsNotValid } from '../Utils/tokenIsNotValid'
 
@@ -15,7 +15,7 @@ export const fetchPaymentMethods = (token) => dispatch => {
     return dispatch(tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE))
   }
 
-  return axios.get(`${pathObj.getPaymentMethodsPath}`, { 
+  return axios.get(`${endpointURLs.getPaymentMethodsPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -38,7 +38,7 @@ export const fetchIndividualPaymentMethod = (payment_method_id, token) => dispat
     return dispatch(tokenIsNotValid(types.FETCHING_PAYMENT_METHODS_FAILURE))
   }
 
-  return axios.get(`${pathObj.getPaymentMethodsPath}/${payment_method_id}`, { 
+  return axios.get(`${endpointURLs.getPaymentMethodsPath}/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -68,7 +68,7 @@ export const addPaymentMethod = (new_payment_menthod, token) => dispatch => {
     return dispatch(tokenIsNotValid(types.ADDING_PAYMENT_METHOD_FAILURE))
   }
 
-  return axios.post(`${pathObj.addPaymentMethodPath}`, {
+  return axios.post(`${endpointURLs.addPaymentMethodPath}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -91,7 +91,7 @@ export const removePaymentMethod = (payment_method_id, token) => dispatch => {
     return dispatch(tokenIsNotValid(types.REMOVING_PAYMENT_METHOD_FAILURE))
   }
 
-  return axios.delete(`${pathObj.deletePaymentMethodPath}/${payment_method_id}`, { 
+  return axios.delete(`${endpointURLs.deletePaymentMethodPath}/${payment_method_id}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,

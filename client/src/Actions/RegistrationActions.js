@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import * as creators from './ActionCreators/RegistrationActionCreators';
 
-import { pathObj } from '../Utils/pathVariables';
+import { endpointURLs } from '../Utils/pathVariables';
 import { login } from './LoginActions';
 
 export const register = user_info => dispatch => {
@@ -14,7 +14,7 @@ export const register = user_info => dispatch => {
 
   const {email, password, default_currency} = user_info;
   
-  axios.post(`${pathObj.registrationPath}`, {email, password, default_currency})
+  axios.post(`${endpointURLs.registrationPath}`, {email, password, default_currency})
     .then(res => {
       dispatch(creators.registeringSuccess(res.data.message))
       
