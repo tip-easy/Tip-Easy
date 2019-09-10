@@ -10,7 +10,7 @@ import Auth from './Components/Flows/AuthenticationFlow/Auth';
 import SelectAmount from './Components/Flows/TippingFlow/SelectAmount/SelectAmount';
 import SelectPaymentMethod from './Components/Flows/PaymentMethodFlow/SelectPaymentMethod/SelectPaymentMethod';
 import PaymentMethodDetails from './Components/Flows/PaymentMethodFlow/PaymentMethodDetails/PaymentMethodDetails';
-import PaymentSuccess from './Components/Pages/CommonUse/PaymentSuccess/PaymentSuccess';
+import SuccessPage from './Components/Pages/CommonUse/SuccessPage/SuccessPage';
 import EnterCode from './Components/Flows/TippingFlow/EnterCode/EnterCode';
 import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
 
@@ -35,7 +35,7 @@ const App = () =>  {
             <Route path="/select-tip-receiver" render={props => (<EnterCode {...props} />)} />
 
             {/* Tipping Success Page */}
-            <Route path="/tip-success" render={props => (<PaymentSuccess {...props} />)} />
+            <Route path="/tip/success" render={props => (<SuccessPage {...props} type="tippingSuccess" />)} />
 
 
           {/* --- PAYMENT METHOD FLOW --- */}
@@ -64,22 +64,22 @@ const App = () =>  {
           {/* WALLET WITHDRAWAL ROUTES: */}
             {/* Withdraw Tips */}
             {/* Entered from Receiver Wallet */}
-            <Route path="/withdraw" render={props => (<div/>)} />
+            <Route exact path="/withdraw" render={props => (<div/>)} />
 
             {/* Withdraw Success */}
-            <Route path="/withdraw/success" render={props => (<div/>)} />
+            <Route path="/withdraw/success" render={props => (<SuccessPage {...props} type="withdrawalSuccess" />)} />
 
 
           {/* FUND WALLET ROUTES: */}
             {/* Enter Funding Amount */}
-            <Route path="/fund" render={props => (<div/>)} />
+            <Route exact path="/funding" render={props => (<div/>)} />
 
             {/* Select Funding Method */}
             {/* Same options as Payment Methods; card, PayPal, etc. */}
-            <Route path="/fund/method" render={props => (<div/>)} />
+            <Route path="/funding/method" render={props => (<div/>)} />
 
             {/* Funding Success */}
-            <Route path="/fund/success" render={props => (<div/>)} />
+            <Route path="/funding/success" render={props => (<SuccessPage {...props} type="fundingSuccess"/>)} />
 
           {/* Catch-All 404 Page */}
           <Route render={props => (<SelectAmount {...props} />)} />
