@@ -15,7 +15,7 @@ export const makeDeposit = (deposit_details, token) => dispatch => {
     return dispatch(creators.makeDepositFailureMissingParams());
   }
 
-  if (!tokenIsValid(token, )) {
+  if (!tokenIsValid(token)) {
     return tokenIsNotValid(types.DEPOSITING_FAILURE)
   }
 
