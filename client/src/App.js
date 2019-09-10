@@ -18,11 +18,11 @@ import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
 import UserSettings from './Components/Pages/CommonUse/UserSettings/UserSettings';
 import Wallet from './Components/Pages/CommonUse/Wallet/Wallet';
 
-// Withdrawal
 import WithdrawalAmount from './Components/Flows/WithdrawalFlow/WithdrawalAmount/WithdrawalAmount';
 import WithdrawalAccounts from './Components/Flows/WithdrawalFlow/WithdrawalAccounts/WithdrawalAccounts';
 
-// Funding
+import FundingAmount from './Components/Flows/FundingFlow/FundingAmount/FundingAmount';
+import FundingMethods from './Components/Flows/FundingFlow/FundingMethod/FundingMethods';
 
 const App = () =>  {
   return (
@@ -86,11 +86,11 @@ const App = () =>  {
 
           {/* FUND WALLET ROUTES: */}
             {/* Enter Funding Amount */}
-            <Route exact path="/funding" render={props => (<div/>)} />
+            <Route exact path="/funding" render={props => (<FundingAmount {...props} />)} />
 
             {/* Select Funding Method */}
             {/* Same options as Payment Methods; card, PayPal, etc. */}
-            <Route path="/funding/method" render={props => (<div/>)} />
+            <Route path="/funding/methods" render={props => (<FundingMethods {...props} />)} />
 
             {/* Funding Success */}
             <Route path="/funding/success" render={props => (<SuccessPage {...props} type="fundingSuccess"/>)} />
