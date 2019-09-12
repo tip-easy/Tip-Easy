@@ -6,10 +6,11 @@ export const gettingUserStart = () => {
   }
 }
 
-export const gettingUserSuccess = (user) => {
+export const gettingUserSuccess = (user, token) => {
   return { 
     type: types.GETTING_USER_SUCCESS,
     payload: {
+      token: token,
       user: user
     }
   }
@@ -54,9 +55,12 @@ export const changingPasswordStart = () => {
   }
 }
 
-export const changingPasswordSuccess = () => {
+export const changingPasswordSuccess = (message) => {
   return { 
     type: types.CHANGING_PASSWORD_SUCCESS,
+    payload: {
+      message: message
+    }
   }
 }
 

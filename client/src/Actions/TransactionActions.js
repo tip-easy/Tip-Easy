@@ -1,11 +1,13 @@
 import axios from 'axios';
-import { URL } from './index';
+
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/TransactionActionCreators';
 
-import { tokenIsValid } from './../Helpers/tokenIsValid'
-import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
+import { endpointURLs } from '../Utils/pathVariables';
+import { tokenIsValid } from '../Utils/tokenIsValid'
+import { tokenIsNotValid } from '../Utils/tokenIsNotValid'
 
+// TO-DO: Review Stripe API to figure out what endpoints to hit and what data to send in the request.
 export const sendTransaction = (code, transactionObject, token) => dispatch => {
   dispatch(creators.sendingTransactionStart())
 
@@ -19,10 +21,10 @@ export const sendTransaction = (code, transactionObject, token) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.SENDING_TRANSACTION_FAILURE)
+    return dispatch(tokenIsNotValid(types.SENDING_TRANSACTION_FAILURE))
   }
 
-  return axios.post(`${URL}/send-transaction`, {
+  return axios.post(`${endpointURLs.sendTransactionPath}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -40,14 +42,14 @@ export const sendTransaction = (code, transactionObject, token) => dispatch => {
 export const fetchTransactions = (token) => dispatch => {
   dispatch(creators.fetchingTransactionsStart())
   
-  return axios.get(`${URL}/me/transactions`, { 
+  return axios.get(`${endpointURLs.getTransactionsPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => {
-      dispatch(creators.fetchingTransactionsSuccess(res.data.transactionArray))
+      dispatch(creators.fetchingTransactionsSuccess(res.data))
     })
 
     .catch(error => {

@@ -11,7 +11,7 @@ import {
   setSelectedPaymentMethod, clearSelectedPaymentMethodFromStore,
   clearEntireTipStore
 } from './TipActions';
-import { searchForTipReceiver, clearTipReceiverFromStore } from './TipReceiverActions';
+import { searchForTipReceiver } from './TipReceiverActions';
 import { sendTransaction, fetchTransactions, clearTransactionList } from './TransactionActions';
 import { getUser, patchUserInfo, changePassword, deleteUser, logout } from './UserActions'
 import { makeWithdrawal, setWithdrawalAmount, clearWithdrawalFromStore } from './WithdrawActions';
@@ -50,7 +50,6 @@ export {
   clearEntireTipStore,
 
   searchForTipReceiver,
-  clearTipReceiverFromStore,
 
   sendTransaction,
   fetchTransactions,

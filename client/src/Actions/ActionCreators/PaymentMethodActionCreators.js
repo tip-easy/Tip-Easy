@@ -39,11 +39,10 @@ export const addingPaymentMethodStart = () => {
   }
 }
 
-export const addingPaymentMethodSuccess = (paymentMethodsArray, message) => {
+export const addingPaymentMethodSuccess = (message) => {
   return {
     type: types.ADDING_PAYMENT_METHOD_SUCCESS,
     payload: {
-      paymentMethodsArray: paymentMethodsArray,
       successMessage: message
     }
   }

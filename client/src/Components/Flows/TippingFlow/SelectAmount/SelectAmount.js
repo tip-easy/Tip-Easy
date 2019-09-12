@@ -3,28 +3,38 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import { setSelectedTipAmount } from '../../../../Actions/TipActions';
+import { setSelectedTipAmount } from '../../../../Actions';
 
 const SelectAmount = (props) => {
+  
   const [amount, setAmount] = useState(5)
-
-  // Stretch goal: we can set user's currency in database and store it in Redux store
 
   const submitHandler = () => {
     props.setSelectedTipAmount(amount)
     props.history.push('/tip')
   }
 
-  const currency = props.user.default_currency === 
-    "btc" ? "₿" 
-      : 
-    props.user.default_currency;
-  
+  // TO-DO: Make into separate Utility Function with semi-exhaustive currency list
+  let currency = "$"
+  switch (props.user.default_currency) {
+    case "eur":
+      currency = "€"
+      break;
+    case "btc":
+      currency= "₿"
+      break;
+    default:
+      currency = "$"
+      break;
+  }
+
   return (
     <>
       <div 
         className="upperRow"
-        onClick={() => props.history.push('/welcome')}
+        onClick={() => {
+          props.history.push('/welcome')
+        }}
       >
         Log In or Register
       </div>
@@ -71,7 +81,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    setSelectedTipAmount
+    setSelectedTipAmount,
   }, dispatch)
 }
 

@@ -1,8 +1,9 @@
 import axios from 'axios';
-import { URL } from './index';
+
 import * as creators from './ActionCreators/LoginActionCreators';
 
-import { getUser } from './UserActions'
+import { endpointURLs } from '../Utils/pathVariables';
+import { getUser } from './index';
 
 export const login = user_info => dispatch => {
   dispatch(creators.loggingInStart())
@@ -14,22 +15,20 @@ export const login = user_info => dispatch => {
     !password || 
     typeof(email) !== "string" ||
     typeof(password) !== "string" || 
-    password.length < 8 ) 
-  {
-    dispatch(creators.loggingInFailureIncompleteParams());  
+    password.length < 6 ) {
+    return dispatch(creators.loggingInFailureIncompleteParams());  
   }
 
-  axios.post(`${URL}/login`, {
+  axios.post(`${endpointURLs.loginPath}`, {
     email, password
   })
     .then(res => {
       dispatch(creators.loggingInSuccess())
-      // Found in UserActions
-      getUser({
-        token: res.data.token,
-      })
-    })
+      const token = res.data.token
 
+      return dispatch(getUser(token))
+    })
+    // Login Catch
     .catch(error => {
       dispatch(creators.loggingInFailure(error));
     })

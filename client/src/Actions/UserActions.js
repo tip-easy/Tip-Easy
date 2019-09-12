@@ -1,27 +1,28 @@
 import axios from 'axios';
-import { URL } from './index';
+
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/UserActionCreators';
 
-import { tokenIsValid } from './../Helpers/tokenIsValid';
-import { tokenIsNotValid } from './../Helpers/tokenIsNotValid';
+import { endpointURLs } from '../Utils/pathVariables';
+import { tokenIsValid } from '../Utils/tokenIsValid';
+import { tokenIsNotValid } from '../Utils/tokenIsNotValid';
 
 export const getUser = ( token ) => dispatch => {
   dispatch(creators.gettingUserStart())
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.GETTING_BALANCE_FAILURE)
+    return dispatch(tokenIsNotValid(types.GETTING_USER_FAILURE))
   }
 
-  return axios.get(`${URL}/me`, { 
+  return axios.get(`${endpointURLs.getUserPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => {
-      dispatch(creators.gettingUserSuccess(res.data.user))
+      dispatch(creators.gettingUserSuccess(res.data, token))
     })
     .catch(error => {
       dispatch(creators.gettingUserFailure(error));
@@ -33,19 +34,19 @@ export const patchUserInfo = ( changes, token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.PATCHING_USER_INFO_FAILURE)
+    return dispatch(tokenIsNotValid(types.PATCHING_USER_INFO_FAILURE))
   }
 
   // TO-DO: Figure out how to do param validation for incoming `changes` object.
 
-  return axios.patch(`${URL}/me`, { 
+  return axios.patch(`${endpointURLs.patchUserPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
       }
     }, changes)
     .then(res => {
-      dispatch(creators.patchingUserInfoSuccess(res.data.user))
+      dispatch(creators.patchingUserInfoSuccess(res.data))
     })
 
     .catch(error => {
@@ -65,17 +66,17 @@ export const changePassword = ( changes, token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.CHANGING_PASSWORD_FAILURE)
+    return dispatch(tokenIsNotValid(types.CHANGING_PASSWORD_FAILURE))
   }
 
-  return axios.put(`${URL}/me/reset-password`, { 
+  return axios.put(`${endpointURLs.changePasswordPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
       }
     }, requestObject)
     .then(res => {
-      dispatch(creators.changingPasswordSuccess())
+      dispatch(creators.changingPasswordSuccess(res.data.message))
     })
 
     .catch(error => {
@@ -88,10 +89,10 @@ export const deleteUser = ( token ) => dispatch => {
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.DELETING_USER_FAILURE)
+    return dispatch(tokenIsNotValid(types.DELETING_USER_FAILURE))
   }
 
-  return axios.delete(`${URL}/me`, { 
+  return axios.delete(`${endpointURLs.deleteUserPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -101,7 +102,7 @@ export const deleteUser = ( token ) => dispatch => {
       dispatch(creators.deletingUserSuccess())
       // Since Deletion of an account immediately results in logging out, should the ENTIRE store be cleared?
       // TODO: (?) Add general store reset action type to all reducers
-      logout()
+      dispatch(logout())
     })
     
     .catch(error => {

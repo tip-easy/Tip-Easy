@@ -1,32 +1,34 @@
 import axios from 'axios';
-import { URL } from './index';
+
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/BalanceActionCreators';
 
-import { tokenIsValid } from './../Helpers/tokenIsValid'
-import { tokenIsNotValid } from './../Helpers/tokenIsNotValid'
+import { endpointURLs } from '../Utils/pathVariables';
+import { tokenIsValid } from '../Utils/tokenIsValid'
+import { tokenIsNotValid } from '../Utils/tokenIsNotValid'
 
 export const getBalance = ( token ) => dispatch => {
   dispatch(creators.gettingBalanceStart())
 
   // Preliminary token validation
   if (!tokenIsValid(token)) {
-    return tokenIsNotValid(types.GETTING_BALANCE_FAILURE)
+    return dispatch(tokenIsNotValid(types.GETTING_BALANCE_FAILURE))
   }
 
-  return axios.get(`${URL}/me/balance`, { 
+  axios.get(`${endpointURLs.getBalancePath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
     }
   })
     .then(res => {
-      const { estimated_balance, currency, wallet_type } = res.data
-      dispatch(creators.gettingBalanceSuccess(estimated_balance, currency, wallet_type))
+      const { calculated_balance, currency, wallet_type } = res.data[0]
+      
+      return dispatch(creators.gettingBalanceSuccess(calculated_balance, currency, wallet_type))
     })
 
     .catch(error => {
-      dispatch(creators.gettingBalanceError(error));
+      return dispatch(creators.gettingBalanceError(error));
     })
 }
 

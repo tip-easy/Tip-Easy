@@ -11,7 +11,7 @@ const initialState = {
     unique_code: "AA0000",
     location: "Coruscant",
     organisation: "Sith Order",
-    default_currency: "$",
+    default_currency: "usd",
   },
 
   gettingUser: false,
@@ -98,7 +98,7 @@ export const UserReducer = (state = initialState, action) => {
         ...state,
         changingPassword: false,
 
-        changingPasswordMessage: "",
+        changingPasswordMessage: action.payload.message,
       }
 
     case types.CHANGING_PASSWORD_FAILURE:
@@ -135,7 +135,9 @@ export const UserReducer = (state = initialState, action) => {
       }
 
     case types.CAUTION_CLEAR_ENTIRE_STORE:
-      return initialState
+      return {
+        ...initialState
+      }
 
     default: 
       return state

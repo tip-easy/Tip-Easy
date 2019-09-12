@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import { searchForTipReceiver, selectTipReceiver } from '../../../../Actions/TipReceiverActions';
+import { searchForTipReceiver, setSelectedTipReceiver } from '../../../../Actions';
 
 const EnterCode = (props) => {
   const [code, setCode] = useState('')
@@ -52,7 +52,7 @@ const EnterCode = (props) => {
   }
 
   const clickHandler = (code) => {
-    props.selectTipReceiver(code)
+    props.setSelectedTipReceiver(code)
     props.history.push('/payment-method')
   }
 
@@ -107,7 +107,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     searchForTipReceiver, 
-    selectTipReceiver,
+    setSelectedTipReceiver,
   }, dispatch)
 }
 
