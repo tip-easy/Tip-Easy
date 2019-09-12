@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/BalanceActionCreators';
 
-import { pathObj } from '../Utils/pathVariables';
+import { endpointURLs } from '../Utils/pathVariables';
 import { tokenIsValid } from '../Utils/tokenUtils/tokenIsValid'
 import { tokenIsNotValid } from '../Utils/tokenUtils/tokenIsNotValid'
 
@@ -15,7 +15,7 @@ export const getBalance = ( token ) => dispatch => {
     return dispatch(tokenIsNotValid(types.GETTING_BALANCE_FAILURE))
   }
 
-  axios.get(`${pathObj.getBalancePath}`, { 
+  axios.get(`${endpointURLs.getBalancePath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,

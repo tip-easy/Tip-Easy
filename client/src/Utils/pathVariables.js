@@ -2,7 +2,7 @@ export const URL = process.env.API_URL || "http://localhost:7000"
 
 // Path contains the 'base' of the URL but does not includes params
 // These will have to be included separately in the Axios request
-export const pathObj = {
+export const endpointURLs = {
   // Authentication
   loginPath: `${URL}/login`,
   registrationPath: `${URL}/register`,

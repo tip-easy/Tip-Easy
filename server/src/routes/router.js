@@ -7,6 +7,22 @@ async function router({
 } = {}) {
   // TODO: Route request objects to relevant processors 
   // TODO: Receive mock response data from resolved promise
+  const {
+    getUserProcessor,
+    updateUserProcessor,
+    deleteUserProcessor,
+    resetPasswordProcessor,
+    getBalanceProcessor,
+    getTransactionsProcessor,
+    getPaymentMethodsProcessor,
+    addPaymentMethodProcessor,
+    depositProcessor,
+    findReceiverProcessor,
+    sendTransactionProcessor,
+    loginProcessor,
+    registerProcessor,
+  } = processors;
+
   switch (httpRequest.path) {
     //====== Root Endpoint ======//
     case '/':
@@ -19,30 +35,21 @@ async function router({
     //====== Auth Endpoints ======//
     case '/login':
       if (httpRequest.method === 'POST') {
-        return res.send({
-          message: `Welcome ${httpRequest.body.name}`,
-          token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-        });
+        const response = await loginProcessor(httpRequest);
+        return res.send(response);
       }
 
     case '/register':
       if (httpRequest.method === 'POST') {
-        return res.status(201).send({ message: "successfully registered" });
+        const response = await registerProcessor(httpRequest);
+        return res.status(201).send(response);
       }
 
     //====== User Endpoints ======//
     case '/me':
       if (httpRequest.method === 'GET') {
-        return res.send({
-          account_type: "receiver",
-          name: "Anthony",
-          email: "anthony@company.com",
-          profile_img: "",
-          unique_code: "DSE2986",
-          location: "Netherlands",
-          organisation: "CoolStuff",
-          default_currency: "eur"
-        });
+          const response = await getUserProcessor(httpRequest);
+          return res.send(response);
       }
       else if (httpRequest.method === 'PATCH') {
         return res.send({

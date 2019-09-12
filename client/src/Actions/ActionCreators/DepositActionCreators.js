@@ -16,7 +16,6 @@ export const makeDepositFailureMissingParams = () => {
 }
 
 export const makeDepositSuccess = (message) => {
-  console.log(message)
   return {
     type: types.DEPOSITING_SUCCESS,
     payload: {

@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "server": "nodemon src/index.js",
+    "start": "node src",
+    "server": "nodemon src",
     "test": "cross-env DB_ENV=testing jest --watchAll"
   },
   "keywords": [],

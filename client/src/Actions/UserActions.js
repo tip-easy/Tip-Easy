@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/UserActionCreators';
 
-import { pathObj } from '../Utils/pathVariables';
+import { endpointURLs } from '../Utils/pathVariables';
 import { tokenIsValid } from '../Utils/tokenUtils/tokenIsValid';
 import { tokenIsNotValid } from '../Utils/tokenUtils/tokenIsNotValid';
 
@@ -15,7 +15,7 @@ export const getUser = ( token ) => dispatch => {
     return dispatch(tokenIsNotValid(types.GETTING_USER_FAILURE))
   }
 
-  return axios.get(`${pathObj.getUserPath}`, { 
+  return axios.get(`${endpointURLs.getUserPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -39,7 +39,7 @@ export const patchUserInfo = ( changes, token ) => dispatch => {
 
   // TO-DO: Figure out how to do param validation for incoming `changes` object.
 
-  return axios.patch(`${pathObj.patchUserPath}`, { 
+  return axios.patch(`${endpointURLs.patchUserPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -69,7 +69,7 @@ export const changePassword = ( changes, token ) => dispatch => {
     return dispatch(tokenIsNotValid(types.CHANGING_PASSWORD_FAILURE))
   }
 
-  return axios.put(`${pathObj.changePasswordPath}`, { 
+  return axios.put(`${endpointURLs.changePasswordPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
@@ -92,7 +92,7 @@ export const deleteUser = ( token ) => dispatch => {
     return dispatch(tokenIsNotValid(types.DELETING_USER_FAILURE))
   }
 
-  return axios.delete(`${pathObj.deleteUserPath}`, { 
+  return axios.delete(`${endpointURLs.deleteUserPath}`, { 
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,

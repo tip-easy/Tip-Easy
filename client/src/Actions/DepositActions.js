@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/DepositActionCreators';
 
-import { pathObj } from '../Utils/pathVariables';
+import { endpointURLs } from '../Utils/pathVariables';
 import { tokenIsValid } from '../Utils/tokenUtils/tokenIsValid'
 import { tokenIsNotValid } from '../Utils/tokenUtils/tokenIsNotValid';
 
@@ -15,11 +15,11 @@ export const makeDeposit = (deposit_details, token) => dispatch => {
     return dispatch(creators.makeDepositFailureMissingParams());
   }
 
-  if (!tokenIsValid(token, )) {
+  if (!tokenIsValid(token)) {
     return tokenIsNotValid(types.DEPOSITING_FAILURE)
   }
 
-  return axios.post(`${pathObj.depositPath}`, {
+  return axios.post(`${endpointURLs.depositPath}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as types from './actionTypes';
 import * as creators from './ActionCreators/WithdrawActionCreators';
-import { pathObj } from '../Utils/pathVariables';
+import { endpointURLs } from '../Utils/pathVariables';
 
 import { tokenIsValid } from '../Utils/tokenUtils/tokenIsValid';
 import { tokenIsNotValid } from '../Utils/tokenUtils/tokenIsNotValid';
@@ -21,7 +21,7 @@ export const makeWithdrawal = (withdraw_details, token) => dispatch => {
     return dispatch(tokenIsNotValid(types.WITHDRAWING_FAILURE))
   }
 
-  return axios.post(`${pathObj.withdrawalPath}`, {
+  return axios.post(`${endpointURLs.withdrawalPath}`, {
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,

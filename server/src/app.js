@@ -17,11 +17,12 @@ const router = require('./routes/router');
 // Interface Functions
 const expressHTTPInterfaceFunction = require('./http/express-http-interface');
 const routerInterfaceFunction = require('./routes/router-interface');
+const processors = require('./data-processors/index');
 
 const routerInterface = makeInterface({
   interfaceFunction: routerInterfaceFunction,
   router,
-  processors: {}
+  processors
 });
 
 const expressHTTPInterface = makeInterface({ 
