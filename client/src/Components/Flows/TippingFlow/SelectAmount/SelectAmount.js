@@ -6,17 +6,17 @@ import { bindActionCreators } from 'redux';
 import { setSelectedTipAmount } from '../../../../Actions';
 
 const SelectAmount = (props) => {
-  
   const [amount, setAmount] = useState(5)
+  const { user } = props.UserReducer;
 
   const submitHandler = () => {
     props.setSelectedTipAmount(amount)
-    props.history.push('/tip')
+    props.history.push('/select-tip-receiver')
   }
 
   // TO-DO: Make into separate Utility Function with semi-exhaustive currency list
   let currency = "$"
-  switch (props.user.default_currency) {
+  switch (user.default_currency) {
     case "eur":
       currency = "€"
       break;
@@ -66,7 +66,7 @@ const SelectAmount = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.UserReducer.user
+    UserReducer: state.UserReducer
   }
 }
 

@@ -10,7 +10,7 @@ import SelectAmount from './Components/Flows/TippingFlow/SelectAmount/SelectAmou
 
 import Auth from './Components/Flows/AuthenticationFlow/Auth';
 
-import EnterCode from './Components/Flows/TippingFlow/EnterCode/EnterCode';
+import EnterReceiverCode from './Components/Flows/TippingFlow/EnterReceiverCode/EnterReceiverCode';
 import SuccessPage from './Components/Pages/CommonUse/SuccessPage/SuccessPage';
 
 import SelectPaymentMethod from './Components/Flows/PaymentMethodFlow/SelectPaymentMethod/SelectPaymentMethod';
@@ -43,7 +43,7 @@ const App = (props) =>  {
 
           {/* --- TIPPING FLOW --- */}
             {/* Enter Tip Receiver Code */}
-            <Route path="/select-tip-receiver" render={props => (<EnterCode {...props} />)} />
+            <Route path="/select-tip-receiver" render={props => (<EnterReceiverCode {...props} />)} />
 
             {/* Tipping Success Page */}
             <Route path="/tip/success" render={props => (<SuccessPage {...props} type="tippingSuccess" />)} />

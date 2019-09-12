@@ -4,9 +4,11 @@ import { connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 // Actions
-import { login } from '../../../../Actions/LoginActions'
+import { login, getUser } from '../../../../Actions'
 
 const LoginForm = (props) => {
+  const { token, user } = props.UserReducer
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -16,12 +18,14 @@ const LoginForm = (props) => {
       email,
       password,
     })
-    if (props.user.name) {
-    props.user.accountType === 'sender' ? 
-      props.goToSelectAmount()
-        : 
-      props.goToUserProfile()
-    }
+    // props.getUser(token)
+      if (user.email) {
+        console.log('here')
+        user.accountType === 'sender' ? 
+          props.goToSelectAmount()
+            : 
+          props.goToUserProfile()
+      }
   }
 
   return (
@@ -46,13 +50,14 @@ const LoginForm = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.UserReducer.user
+    UserReducer: state.UserReducer
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    login
+    login,
+    getUser
   }, dispatch);
 }
 

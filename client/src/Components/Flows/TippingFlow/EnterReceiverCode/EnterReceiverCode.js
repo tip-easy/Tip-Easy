@@ -5,7 +5,8 @@ import { bindActionCreators } from 'redux';
 
 import { searchForTipReceiver, setSelectedTipReceiver } from '../../../../Actions';
 
-const EnterCode = (props) => {
+const EnterReceiverCode = (props) => {
+  const { token, user } = props.UserReducer
   const [code, setCode] = useState('')
 
   const changeHandler = (e) => {
@@ -32,7 +33,7 @@ const EnterCode = (props) => {
       let newDigit = e.target.value.slice(input.length-1, input.length);
       if (newDigit.match(/[0-9]/i)) {
         setCode(e.target.value)
-        props.searchForTipReceiver(input, props.token)
+        props.searchForTipReceiver(input, token)
       } else {
         setCode(code)
       }
@@ -47,13 +48,17 @@ const EnterCode = (props) => {
     if (code.length < 6) {
       return console.log('Make sure you fill out the six-digit code!')
     } else {
-      props.searchForTipReceiver(code, props.token)
+      props.searchForTipReceiver(code, token)
     }
   }
 
   const clickHandler = (code) => {
     props.setSelectedTipReceiver(code)
-    props.history.push('/payment-method')
+    !token && !user.email 
+      ?
+      props.history.push('/payment-method')
+      :
+      props.history.replace('/tip/success')
   }
 
   return (
@@ -100,7 +105,7 @@ const EnterCode = (props) => {
 const mapStateToProps = (state) => {
   return {
     receiverSearchResultsArray: state.TipReceiverReducer.receiverSearchResultsArray,
-    token: state.UserReducer.token
+    UserReducer: state.UserReducer
   }
 }
 
@@ -111,4 +116,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnterCode);
+export default connect(mapStateToProps, mapDispatchToProps)(EnterReceiverCode);
