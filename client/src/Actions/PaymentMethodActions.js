@@ -4,8 +4,8 @@ import * as types from './actionTypes';
 import * as creators from './ActionCreators/PaymentMethodActionCreators';
 
 import { pathObj } from '../Utils/pathVariables';
-import { tokenIsValid } from '../Utils/tokenIsValid'
-import { tokenIsNotValid } from '../Utils/tokenIsNotValid'
+import { tokenIsValid } from '../Utils/tokenUtils/tokenIsValid'
+import { tokenIsNotValid } from '../Utils/tokenUtils/tokenIsNotValid'
 
 export const fetchPaymentMethods = (token) => dispatch => {
   dispatch(creators.fetchingPaymentMethodsStart())

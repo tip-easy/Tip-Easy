@@ -4,8 +4,8 @@ import * as types from './actionTypes';
 import * as creators from './ActionCreators/TransactionActionCreators';
 
 import { pathObj } from '../Utils/pathVariables';
-import { tokenIsValid } from '../Utils/tokenIsValid'
-import { tokenIsNotValid } from '../Utils/tokenIsNotValid'
+import { tokenIsValid } from '../Utils/tokenUtils/tokenIsValid'
+import { tokenIsNotValid } from '../Utils/tokenUtils/tokenIsNotValid'
 
 // TO-DO: Review Stripe API to figure out what endpoints to hit and what data to send in the request.
 export const sendTransaction = (code, transactionObject, token) => dispatch => {
