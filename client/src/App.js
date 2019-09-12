@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import "./App.scss";
 
 // Components
+import AuthenticationHeader from './Components/General/AuthenticationHeader'
 import SelectAmount from './Components/Flows/TippingFlow/SelectAmount/SelectAmount';
 
 import Auth from './Components/Flows/AuthenticationFlow/Auth';
@@ -25,10 +26,11 @@ import WithdrawalAccounts from './Components/Flows/WithdrawalFlow/WithdrawalAcco
 import FundingAmount from './Components/Flows/FundingFlow/FundingAmount/FundingAmount';
 import FundingMethods from './Components/Flows/FundingFlow/FundingMethod/FundingMethods';
 
-const App = () =>  {
+const App = (props) =>  {
   return (
     <main>
       <Router>
+        <AuthenticationHeader / >
         <Switch>
           {/* DEFAULT: Select Tipping Amount */}
           <Route path="/" exact render={props => (<SelectAmount {...props} />)} />
@@ -104,4 +106,4 @@ const App = () =>  {
   )
 }
 
-export default App
+export default App;

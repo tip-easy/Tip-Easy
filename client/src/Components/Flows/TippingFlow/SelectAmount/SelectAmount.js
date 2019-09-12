@@ -30,15 +30,6 @@ const SelectAmount = (props) => {
 
   return (
     <>
-      <div 
-        className="upperRow"
-        onClick={() => {
-          props.history.push('/welcome')
-        }}
-      >
-        Log In or Register
-      </div>
-
       <div className="selectAmount">
         <h2>SelectAmount</h2>
         {currency}<input type="number" value={amount} onChange={(e) => setAmount(e.target.value)}/>
