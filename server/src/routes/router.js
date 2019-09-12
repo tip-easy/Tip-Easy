@@ -37,12 +37,16 @@ async function router({
       if (httpRequest.method === 'POST') {
         const response = await loginProcessor(httpRequest);
         return res.send(response);
+      } else {
+        return unroutedRequestResponse({ httpRequest, res });
       }
 
     case '/register':
       if (httpRequest.method === 'POST') {
         const response = await registerProcessor(httpRequest);
         return res.status(201).send(response);
+      } else {
+        return unroutedRequestResponse({ httpRequest, res });
       }
 
     //====== User Endpoints ======//
@@ -128,6 +132,8 @@ async function router({
         return res.status(201).send({
           message: "Successfully added payment method"
         });
+      } else {
+        return unroutedRequestResponse({ httpRequest, res });
       }
     
     case '/me/deposit':
@@ -135,6 +141,8 @@ async function router({
         return res.status(201).send({
           message: `Successfully deposited ${httpRequest.body.amount} into your wallet.`
         });
+      } else {
+        return unroutedRequestResponse({ httpRequest, res });
       }
     
     //====== Search Endpoints ======//
@@ -149,6 +157,8 @@ async function router({
           location: "New York",
           organisation: "Example Company"
         }]);
+      } else {
+        return unroutedRequestResponse({ httpRequest, res });
       }
 
     //====== Transaction Endpoints ======//
@@ -157,11 +167,12 @@ async function router({
         return res.send({
           message: `Payment to ${httpRequest.body.unique_code} successful.`
         });
+      } else {
+        return unroutedRequestResponse({ httpRequest, res });
       }
       
     default:
-      unroutedRequestResponse({ httpRequest, res });
-      break;
+      return unroutedRequestResponse({ httpRequest, res });
   }
 }
 
