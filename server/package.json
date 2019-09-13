@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node src",
-    "server": "nodemon src",
+    "serve": "nodemon src",
     "test": "cross-env DB_ENV=testing jest --watchAll"
   },
   "keywords": [],

@@ -7,34 +7,12 @@ const helmet = require('helmet');
 
 const expressServer = express();
 
-// Global helpers
-const makeInterface = require('./global-helpers/make-interface');
+expressServer.use(helmet());
+expressServer.use(cors());
+expressServer.use(express.json());
 
-// Local Helpers
-const normaliseExpressRequest = require('./http/helpers/normalise-express-request');
-const router = require('./routes/router');
-
-// Interface Functions
-const expressHTTPInterfaceFunction = require('./http/express-http-interface');
-const routerInterfaceFunction = require('./routes/router-interface');
-const processors = require('./data-processors/index');
-
-const routerInterface = makeInterface({
-  interfaceFunction: routerInterfaceFunction,
-  router,
-  processors
+expressServer.get('/', (req, res) => {
+  return res.send({ message: 'API Success!' });
 });
 
-const expressHTTPInterface = makeInterface({ 
-  interfaceFunction: expressHTTPInterfaceFunction,
-  expressServer,
-  cors,
-  helmet,
-  jsonSupport: express.json(),
-  normaliseExpressRequest,
-  handleRequest: routerInterface, 
-});
-
-const app = expressHTTPInterface();
-
-module.exports = app;
+module.exports = expressServer;
