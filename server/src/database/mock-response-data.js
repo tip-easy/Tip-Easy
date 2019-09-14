@@ -141,6 +141,19 @@ module.exports = {
         last_4_chars: 'ff4c'
       }
     ]),
+  getPaymentMethodByIdResponse: () =>
+    Promise.resolve({
+      pay_method_id: 'pm_dee11d4e-63c6-4d90-983c-5c9f1e79e96c',
+      pay_method_type: 'card',
+      created_at: 1565094311,
+      last_used: 1565097311,
+      brand: 'visa',
+      last_4_chars: '4242'
+    }),
+  deletePaymentMethodByIdResponse: () =>
+    Promise.resolve({
+      message: 'successfully deleted payment method'
+    }),
   postPaymentMethodResponse: () =>
     Promise.resolve({
       message: 'successfully added payment method'

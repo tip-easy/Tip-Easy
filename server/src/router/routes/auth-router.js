@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const mockResponseData = require('../database/mock-response-data');
+const mockResponseData = require('../../database/mock-response-data');
 
 router.post('/login', async (req, res) => {
   try {

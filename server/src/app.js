@@ -7,14 +7,15 @@ const helmet = require('helmet');
 
 const expressServer = express();
 
-const router = require('./routes/index');
+const router = require('./router/index');
 
 // Use third-party middleware
 expressServer.use(helmet());
 expressServer.use(cors());
 expressServer.use(express.json());
 
-expressServer.use('/', router.authRouter);
+expressServer.use(router.authRouter);
+expressServer.use(router.userRouter);
 
 expressServer.get('/', (req, res) => {
   res.send('API Success!');
