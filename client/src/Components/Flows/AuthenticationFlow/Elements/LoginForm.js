@@ -7,12 +7,12 @@ import { bindActionCreators } from 'redux';
 import { login } from '../../../../Actions'
 
 const LoginForm = (props) => {
-  const { user } = props.UserReducer
+  const user = props.user
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const submitHandler = async (event) => {
+  const submitHandler = (event) => {
     event.preventDefault();
     props.login({
       email,
@@ -53,7 +53,7 @@ const LoginForm = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    UserReducer: state.UserReducer
+    user: state.UserReducer.user
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux';
 import { register } from '../../../../Actions/RegistrationActions'
 
 export const RegistrationForm = (props) => {
+  const user = props.user
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -15,13 +17,17 @@ export const RegistrationForm = (props) => {
       email,
       password,
     })
-    if (props.user.name) {
-      props.user.accountType === 'sender' ? 
-        props.goToSelectAmount()
-          : 
-        props.pushToUserProfile()
-    }
   }
+
+  useEffect(() => {
+    // Used to evaluate if Registration and the nested Login and GetUser have been successful and a user object has been returned from the back-end
+    if (user.email) {
+      user.accountType === 'sender' ? 
+        props.goToSelectAmount()
+      : 
+        props.goToUserProfile()
+    }
+  });
 
   return (
     <form onSubmit={(event) => submitHandler(event)}>
