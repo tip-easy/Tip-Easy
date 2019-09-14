@@ -14,8 +14,11 @@ expressServer.use(helmet());
 expressServer.use(cors());
 expressServer.use(express.json());
 
-expressServer.use(router.authRouter);
-expressServer.use(router.userRouter);
+expressServer.use(
+  router.authRouter,
+  router.userRouter,
+  router.transactionRouter
+);
 
 expressServer.get('/', (req, res) => {
   res.send('API Success!');

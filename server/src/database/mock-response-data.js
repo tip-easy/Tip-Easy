@@ -158,9 +158,13 @@ module.exports = {
     Promise.resolve({
       message: 'successfully added payment method'
     }),
+  postWithdrawResponse: requestData =>
+    Promise.resolve({
+      message: `x successfully withdrawn.`
+    }),
   postDepositResponse: requestData =>
     Promise.resolve({
-      message: `Successfully deposited ${requestData.amount} into your wallet.`
+      message: `Successfully deposited x into your wallet.`
     }),
   getFindReceiverResponse: () =>
     Promise.resolve([
@@ -181,6 +185,6 @@ module.exports = {
     ]),
   postSendTransactionResponse: requestData =>
     Promise.resolve({
-      message: `Payment to ${requestData.unique_code} successful.`
+      message: `Payment to x successful.`
     })
 };
