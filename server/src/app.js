@@ -10,9 +10,11 @@ const expressServer = express();
 const router = require('./router/index');
 
 // Use third-party middleware
-expressServer.use(helmet());
-expressServer.use(cors());
-expressServer.use(express.json());
+expressServer.use(
+  helmet(),
+  cors(),
+  express.json()
+);
 
 expressServer.use(
   router.authRoutes,
