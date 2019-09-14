@@ -25,6 +25,7 @@ export const login = user_info => dispatch => {
     .then(res => {
       dispatch(creators.loggingInSuccess())
       const token = res.data.token
+      
       dispatch(getUser(token))
     })
     // Login Catch

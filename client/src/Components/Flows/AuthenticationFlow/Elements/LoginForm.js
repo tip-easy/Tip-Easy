@@ -1,50 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect} from 'react-redux';
 
 import { bindActionCreators } from 'redux';
 
 // Actions
-import { login, getUser } from '../../../../Actions'
+import { login } from '../../../../Actions'
 
 const LoginForm = (props) => {
-  const { token, user } = props.UserReducer
+  const { user } = props.UserReducer
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
     props.login({
       email,
       password,
     })
-    // props.getUser(token)
-      if (user.email) {
-        console.log('here')
-        user.accountType === 'sender' ? 
-          props.goToSelectAmount()
-            : 
-          props.goToUserProfile()
-      }
   }
 
+  useEffect(() => {
+    // Used to evaluate if the Login and nested GetUser have been successful and a user object has been returned from the back-end
+    if (user.email) {
+      user.accountType === 'sender' ? 
+        props.goToSelectAmount()
+      : 
+        props.goToUserProfile()
+    }
+  });
+
+
   return (
-    <form onSubmit={(event) => submitHandler(event)}>
-      <input 
-        type="text" 
-        placeholder="Email" 
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input 
-        type="password" 
-        placeholder="Password" 
-        onChange={(e) => setPassword(e.target.value)}
-      />
-        
-      <button onClick={(event) => submitHandler(event)}>
-        Log In
-      </button>
-    </form>
+      <form onSubmit={async (event) => submitHandler(event)}>
+        <input 
+          type="text" 
+          placeholder="Email" 
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input 
+          type="password" 
+          placeholder="Password" 
+          onChange={(e) => setPassword(e.target.value)}
+        />
+          
+        <button onClick={(event) => submitHandler(event)}>
+          Log In
+        </button>
+      </form>
   )
 }
 
@@ -57,7 +60,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     login,
-    getUser
   }, dispatch);
 }
 
