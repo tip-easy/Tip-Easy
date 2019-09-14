@@ -15,9 +15,9 @@ expressServer.use(cors());
 expressServer.use(express.json());
 
 expressServer.use(
-  router.authRouter,
-  router.userRouter,
-  router.transactionRouter
+  router.authRoutes,
+  router.userRoutes,
+  router.transactionRoutes
 );
 
 expressServer.get('/', (req, res) => {
