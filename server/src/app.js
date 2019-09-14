@@ -19,7 +19,8 @@ expressServer.use(
 expressServer.use(
   router.authRoutes,
   router.userRoutes,
-  router.transactionRoutes
+  router.transactionRoutes,
+  router.searchRoutes
 );
 
 expressServer.get('/', (req, res) => {
