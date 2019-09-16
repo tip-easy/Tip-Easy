@@ -3,6 +3,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 export const SuccessPage = (props) => {
   switch(props.type) {
@@ -16,6 +17,7 @@ export const SuccessPage = (props) => {
       return (
         <div>
           Withdrawing Success!
+          <br/><Link to="/wallet">Back to Wallet</Link>
         </div>
       )
     case "fundingSuccess":
