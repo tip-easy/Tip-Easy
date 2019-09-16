@@ -15,7 +15,7 @@ export const Auth = (props) => {
   // These handler methods have to be placed on non-nested components to access props.
   // These get passed to <Login> and <Register>, to be called depending on user interaction and database response.
   const goToSelectAmount = () => props.history.replace('/');
-  const goToUserProfile = () => props.history.replace('/user');
+  const goToWallet = () => props.history.replace('/wallet');
 
   return (
     <>
@@ -45,12 +45,12 @@ export const Auth = (props) => {
         {page === 'login' ? 
           <LoginForm
             goToSelectAmount={goToSelectAmount}
-            goToUserProfile={goToUserProfile}  
+            goToWallet={goToWallet}  
           />
           :
           <RegistrationForm 
             goToSelectAmount={goToSelectAmount}
-            goToUserProfile={goToUserProfile}
+            goToWallet={goToWallet}
           />
         }
       </div>

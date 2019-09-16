@@ -19,6 +19,7 @@ import PaymentMethodDetails from './Components/Flows/PaymentMethodFlow/PaymentMe
 import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
 import UserSettings from './Components/Pages/CommonUse/UserSettings/UserSettings';
 import Wallet from './Components/Pages/CommonUse/Wallet/Wallet';
+import ShowCode from './Components/Pages/CommonUse/Wallet/ShowCode'
 
 import WithdrawalAmount from './Components/Flows/WithdrawalFlow/WithdrawalAmount/WithdrawalAmount';
 import WithdrawalAccounts from './Components/Flows/WithdrawalFlow/WithdrawalAccounts/WithdrawalAccounts';
@@ -32,18 +33,17 @@ const App = (props) =>  {
       <Router>
         <AuthenticationHeader / >
         <Switch>
-          {/* DEFAULT: Select Tipping Amount */}
-          <Route path="/" exact render={props => (<SelectAmount {...props} />)} />
-
-
           {/* -- AUTHENTICATION --- */}
             {/* Login & Registration */}
             <Route path="/welcome" render={props => (<Auth {...props} />)} />
 
 
           {/* --- TIPPING FLOW --- */}
+            {/* DEFAULT: Select Tipping Amount */}
+            <Route path="/tip/select-amount" exact render={props => (<SelectAmount {...props} />)} />
+
             {/* Enter Tip Receiver Code */}
-            <Route path="/select-tip-receiver" render={props => (<EnterReceiverCode {...props} />)} />
+            <Route path="/tip/select-receiver" render={props => (<EnterReceiverCode {...props} />)} />
 
             {/* Tipping Success Page */}
             <Route path="/tip/success" render={props => (<SuccessPage {...props} type="tippingSuccess" />)} />
@@ -62,6 +62,10 @@ const App = (props) =>  {
 
 
           {/* --- USER-RELATED ROUTES --- */}
+            {/* Wallet */}
+            {/* Both Sender && Receiver */}
+            <Route path="/wallet" render={props => (<Wallet {...props} />)} />
+
             {/* User Profile */}
             {/* Contains Receiver Code - if applicable */}
             <Route exact path="/user" render={props => (<UserProfile {...props} />)} />
@@ -70,9 +74,9 @@ const App = (props) =>  {
             {/* Contains Change Password, Delete Account, etc. */}
             <Route path="/user/settings" render={props => (<UserSettings {...props} />)} />
 
-            {/* Wallet */}
-            {/* Both Sender && Receiver */}
-            <Route path="/user/wallet" render={props => (<Wallet {...props} />)} />
+            {/* Show Receier Code */}
+            {/* >>> OPTIONAL. RECEIVER-ONLY. Might decide to show the receiver code on Wallet */}
+            <Route path="/show-code" render={props => (<ShowCode {...props} />)} />
 
 
           {/* WALLET WITHDRAWAL ROUTES: */}

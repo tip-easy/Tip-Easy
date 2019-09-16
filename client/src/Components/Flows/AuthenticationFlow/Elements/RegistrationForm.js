@@ -25,7 +25,7 @@ export const RegistrationForm = (props) => {
       user.accountType === 'sender' ? 
         props.goToSelectAmount()
       : 
-        props.goToUserProfile()
+        props.goToWallet()
     }
   });
 

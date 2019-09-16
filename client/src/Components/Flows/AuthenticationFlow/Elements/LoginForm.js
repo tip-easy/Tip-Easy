@@ -26,7 +26,8 @@ const LoginForm = (props) => {
       user.accountType === 'sender' ? 
         props.goToSelectAmount()
       : 
-        props.goToUserProfile()
+        // In case of user being a Receiver
+        props.goToWallet()
     }
   });
 
