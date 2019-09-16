@@ -8,8 +8,16 @@ export const ReceiverWallet = (props) => {
   return (
     <div>
       --- ReceiverWallet ---
+      <br/>
+      <Link to={{
+        pathname: "/wallet", 
+        state: { receiverSenderWallet: true }
+      }}>Sender Wallet</Link>
+      <br/><Link to="/user/settings">Settings</Link>
+      <br/>LOGOUT
+      <br/>
       <br/><Link to='/show-code'>Show Code</Link>
-      <br/><Link to='/withdraw'>Withdraw</Link>
+      <br/><Link to='/show-code'>Show Code</Link>
       <br/><Link to='/tip/select-amount'>Send Tip</Link>
     </div>
   )

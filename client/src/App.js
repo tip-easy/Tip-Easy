@@ -18,6 +18,7 @@ import PaymentMethodDetails from './Components/Flows/PaymentMethodFlow/PaymentMe
 
 import UserProfile from './Components/Pages/Sender/UserProfile/UserProfile';
 import UserSettings from './Components/Pages/CommonUse/UserSettings/UserSettings';
+import UpdateUserSettings from './Components/Pages/CommonUse/UserSettings/UpdateUserSettings';
 import Wallet from './Components/Pages/CommonUse/Wallet/Wallet';
 import ShowCode from './Components/Pages/CommonUse/Wallet/ShowCode'
 
@@ -72,9 +73,13 @@ const App = (props) =>  {
 
             {/* User Settings */}
             {/* Contains Change Password, Delete Account, etc. */}
-            <Route path="/user/settings" render={props => (<UserSettings {...props} />)} />
+            <Route exact path="/user/settings" render={props => (<UserSettings {...props} />)} />
 
-            {/* Show Receier Code */}
+            {/* Change User Settings */}
+            {/* Contains Change Password, Delete Account, etc. */}
+            <Route path="/user/settings/update" render={props => (<UpdateUserSettings {...props} />)} />
+
+            {/* Show Receiver Code */}
             {/* >>> OPTIONAL. RECEIVER-ONLY. Might decide to show the receiver code on Wallet */}
             <Route path="/show-code" render={props => (<ShowCode {...props} />)} />
 
