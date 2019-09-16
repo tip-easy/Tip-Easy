@@ -17,7 +17,7 @@ export const ReceiverWallet = (props) => {
       <br/>LOGOUT
       <br/>
       <br/><Link to='/show-code'>Show Code</Link>
-      <br/><Link to='/show-code'>Show Code</Link>
+      <br/><Link to='/withdraw'>Make Withdrawal</Link>
       <br/><Link to='/tip/select-amount'>Send Tip</Link>
     </div>
   )
