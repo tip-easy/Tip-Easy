@@ -11,7 +11,7 @@ const SelectAmount = (props) => {
 
   const submitHandler = () => {
     props.setSelectedTipAmount(amount)
-    props.history.push('/select-tip-receiver')
+    props.history.push('/tip/select-receiver')
   }
 
   // TO-DO: Make into separate Utility Function with semi-exhaustive currency list

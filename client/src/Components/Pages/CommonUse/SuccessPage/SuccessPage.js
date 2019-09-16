@@ -6,11 +6,18 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
 export const SuccessPage = (props) => {
+  const { user } = props.UserReducer
   switch(props.type) {
     case "tippingSuccess":
       return (
         <div>
           Tipping Success!
+          {
+            user.account_type === "receiver" ?
+              <Link to="/wallet">RECEIVER ONLY: Back to Wallet</Link>
+            :
+              <Link to="/tip/select-amount">SENDER ONLY: Back To Select Amount</Link>
+          }
         </div>
       )
     case "withdrawalSuccess":
@@ -41,7 +48,7 @@ export const SuccessPage = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-
+    UserReducer: state.UserReducer
   }
 }
 

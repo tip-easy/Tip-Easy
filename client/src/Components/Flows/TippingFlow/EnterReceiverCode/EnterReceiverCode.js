@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { searchForTipReceiver, setSelectedTipReceiver } from '../../../../Actions';
 
 const EnterReceiverCode = (props) => {
-  const { token, user } = props.UserReducer
+  const { token } = props.UserReducer
   const [code, setCode] = useState('')
 
   const changeHandler = (e) => {
@@ -53,12 +53,13 @@ const EnterReceiverCode = (props) => {
   }
 
   const clickHandler = (code) => {
-    props.setSelectedTipReceiver(code)
-    !token && !user.email 
-      ?
-      props.history.push('/payment-method')
-      :
-      props.history.replace('/tip/success')
+    if (props.TipReducer.selectedTipAmount >= props.Balance.calculated_balance) {
+      props.setSelectedTipReceiver(code)
+      props.history.push('/tip/success')
+    } else {
+      console.log('Your balance is not high enough to cover this tip, rerouting to fund your wallet!')
+      props.history.push('/funding')
+    }
   }
 
   return (
@@ -81,17 +82,16 @@ const EnterReceiverCode = (props) => {
         <div className="tipReceiver">
           <p>Select tip receiver below</p>
           
-          {props.receiverSearchResultsArray.map((person, idx) => 
-            <div key={idx} onClick={() => clickHandler(person.code)}>
-              <img src={person.imgUrl} alt={person.imgAlt} />
+          {props.ReceiverSearchResultsArray.map((person, idx) => 
+            <div key={idx} onClick={() => clickHandler(person.unique_code)}>
               <>
                 <p>
                   <span>{person.name} </span>
                   from
-                  <span> {person.company}</span>
+                  <span> {person.organisation}</span>
                 </p>
                 <p>
-                  <span>{person.code}</span>
+                  <span>{person.unique_code}</span>
                 </p>
               </>
             </div>
@@ -104,8 +104,10 @@ const EnterReceiverCode = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    receiverSearchResultsArray: state.TipReceiverReducer.receiverSearchResultsArray,
-    UserReducer: state.UserReducer
+    ReceiverSearchResultsArray: state.TipReceiverReducer.receiverSearchResultsArray,
+    UserReducer: state.UserReducer,
+    Balance: state.BalanceReducer,
+    TipReducer: state.TipReducer
   }
 }
 
