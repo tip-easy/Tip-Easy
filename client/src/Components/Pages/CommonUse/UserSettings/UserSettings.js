@@ -13,8 +13,8 @@ export const UserSettings = (props) => {
       <br/>Email
       <br/><Link to='/user/settings/update'>EDIT PERSONAL INFO</Link>
       <br/>
-      <br/><Link to="/">WITHDRAW METHODS OVERVIEW</Link>
-      <br/><Link to="/">PAYMENT METHODS OVERVIEW</Link>
+      <br/><Link to="/withdraw/accounts">WITHDRAW METHODS OVERVIEW</Link>
+      <br/><Link to="/payment-methods">PAYMENT METHODS OVERVIEW</Link>
     </div>
   )
 }

@@ -6,13 +6,14 @@ import "./App.scss";
 
 // Components
 import AuthenticationHeader from './Components/General/AuthenticationHeader'
-import SelectAmount from './Components/Flows/TippingFlow/SelectAmount/SelectAmount';
 
 import Auth from './Components/Flows/AuthenticationFlow/Auth';
 
+import SelectAmount from './Components/Flows/TippingFlow/SelectAmount/SelectAmount';
 import EnterReceiverCode from './Components/Flows/TippingFlow/EnterReceiverCode/EnterReceiverCode';
 import SuccessPage from './Components/Pages/CommonUse/SuccessPage/SuccessPage';
 
+import OverviewPaymentMethods from './Components/Flows/PaymentMethodFlow/OverviewPaymentMethods/OverviewPaymentMethods'
 import SelectPaymentMethod from './Components/Flows/PaymentMethodFlow/SelectPaymentMethod/SelectPaymentMethod';
 import PaymentMethodDetails from './Components/Flows/PaymentMethodFlow/PaymentMethodDetails/PaymentMethodDetails';
 
@@ -22,6 +23,7 @@ import UpdateUserSettings from './Components/Pages/CommonUse/UserSettings/Update
 import Wallet from './Components/Pages/CommonUse/Wallet/Wallet';
 import ShowCode from './Components/Pages/CommonUse/Wallet/ShowCode'
 
+import OverviewWithdrawalAccounts from './Components/Flows/WithdrawalFlow/OverviewWithdrawalAccounts/OverviewWithdrawalAccounts'
 import WithdrawalAmount from './Components/Flows/WithdrawalFlow/WithdrawalAmount/WithdrawalAmount';
 import WithdrawalAccounts from './Components/Flows/WithdrawalFlow/WithdrawalAccounts/WithdrawalAccounts';
 
@@ -51,15 +53,18 @@ const App = (props) =>  {
 
 
           {/* --- PAYMENT METHOD FLOW --- */}
-            {/* Select Payment Method */}
-            <Route exact path="/payment-method" render={props => (<SelectPaymentMethod {...props} />)} />
+            {/* Payment Methods Overview */}
+            <Route exact path="/payment-methods" render={props => (<OverviewPaymentMethods {...props} />)} />
           
+            {/* Select Payment Method */}
+            <Route exact path="/payment-methods/select" render={props => (<SelectPaymentMethod {...props} />)} />
+
             {/* Enter Payment Method Details */} 
             {/* Add Payment Method; includes CC number, name, etc. */}
-            <Route path="/payment-method/details" render={props => (<PaymentMethodDetails {...props} />)} />
+            <Route path="/payment-methods/add" render={props => (<PaymentMethodDetails {...props} />)} />
           
             {/* Add Payment Method Success */}
-            <Route path="/payment-method/success" render={props => (<SuccessPage {...props} type="paymentMethod" />)} />
+            <Route path="/payment-methods/add/success" render={props => (<SuccessPage {...props} type="paymentMethod" />)} />
 
 
           {/* --- USER-RELATED ROUTES --- */}
@@ -89,8 +94,11 @@ const App = (props) =>  {
             {/* Entered from Receiver Wallet */}
             <Route exact path="/withdraw" render={props => (<WithdrawalAmount {...props} />)} />
 
+            {/* Payment Methods Overview */}
+            <Route exact path="/withdraw/accounts" render={props => (<OverviewWithdrawalAccounts {...props} />)} />
+
             {/* Select Account To Send Withdrawal */}
-            <Route exact path="/withdraw/accounts" render={props => (<WithdrawalAccounts {...props} />)} />
+            <Route exact path="/withdraw/accounts/select" render={props => (<WithdrawalAccounts {...props} />)} />
 
             {/* Withdraw Success */}
             <Route path="/withdraw/success" render={props => (<SuccessPage {...props} type="withdrawalSuccess" />)} />
