@@ -23,7 +23,7 @@ const LoginForm = (props) => {
   useEffect(() => {
     // Used to evaluate if the Login and nested GetUser have been successful and a user object has been returned from the back-end
     if (user.email) {
-      user.accountType === 'sender' ? 
+      user.account_type === 'sender' ? 
         props.goToSelectAmount()
       : 
         // In case of user being a Receiver

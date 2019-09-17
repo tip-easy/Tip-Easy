@@ -1,4 +1,5 @@
 import React, { useState} from 'react';
+import { Link } from 'react-router-dom';
 
 // Components
 import LoginForm from './Elements/LoginForm';
@@ -14,12 +15,16 @@ export const Auth = (props) => {
 
   // These handler methods have to be placed on non-nested components to access props.
   // These get passed to <Login> and <Register>, to be called depending on user interaction and database response.
-  const goToSelectAmount = () => props.history.replace('/');
+  const goToSelectAmount = () => props.history.replace('/tip/select-amount');
   const goToWallet = () => props.history.replace('/wallet');
 
   return (
     <>
       <div className="upperDiv" />
+      --- MENU ---
+      <br/><Link to="/wallet">My Account</Link>
+      <br/><Link to="/user/settings">Settings</Link><br/>
+      ------------<br/><br/>
 
       <div className="buttonRow">
         <button 
