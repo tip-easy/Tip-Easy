@@ -1,5 +1,4 @@
 import React, { useState} from 'react';
-import { Link } from 'react-router-dom';
 
 // Components
 import LoginForm from './Elements/LoginForm';
@@ -21,10 +20,6 @@ export const Auth = (props) => {
   return (
     <>
       <div className="upperDiv" />
-      --- MENU ---
-      <br/><Link to="/wallet">My Account</Link>
-      <br/><Link to="/user/settings">Settings</Link><br/>
-      ------------<br/><br/>
 
       <div className="buttonRow">
         <button 
