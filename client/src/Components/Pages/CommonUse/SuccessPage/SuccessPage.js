@@ -30,13 +30,15 @@ export const SuccessPage = (props) => {
     case "fundingSuccess":
       return (
         <div>
-          Funding Success!
+          <h2>Funding Success!</h2>
+          <Link to="/wallet">Back to Wallet</Link>
         </div>
       )
     case "paymentMethod":
       return (
         <div>
-          Funding Success!
+          <h2>Successfully added payment Method!</h2>
+          <Link to="/">Back to Wallet</Link>
         </div>
       )
     default:

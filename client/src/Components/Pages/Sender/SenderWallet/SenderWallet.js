@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 export const SenderWallet = () => {
   return (
     <div>
-      <p><Link to="/user/settings">Back</Link></p>
+      <p><Link to="/tip/select-amount">Back</Link></p>
       <h2>SenderWallet</h2>
       <p>*Show current balance and last handful of transactions*</p>
       <br/>
