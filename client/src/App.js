@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 // Styling
 import "./App.scss";
@@ -30,6 +30,8 @@ import WithdrawalAccounts from './Components/Flows/WithdrawalFlow/WithdrawalAcco
 import FundingAmount from './Components/Flows/FundingFlow/FundingAmount/FundingAmount';
 import FundingMethods from './Components/Flows/FundingFlow/FundingMethod/FundingMethods';
 
+import { TestRouter } from './Utils/Routes/Routes'
+
 const App = (props) =>  {
   return (
     <main>
@@ -40,6 +42,7 @@ const App = (props) =>  {
             {/* Login & Registration */}
             <Route path="/welcome" render={props => (<Auth {...props} />)} />
 
+            <TestRouter/>
 
           {/* --- TIPPING FLOW --- */}
             {/* DEFAULT: Select Tipping Amount */}
@@ -118,8 +121,8 @@ const App = (props) =>  {
             {/* Funding Success */}
             <Route path="/funding/success" render={props => (<SuccessPage {...props} type="fundingSuccess"/>)} />
 
-          {/* Catch-All 404 Page */}
-          <Route render={props => (<Auth {...props} />)} />
+          {/* Catch-All 404 Page. If not authorized, will return the user to `Auth`. If authenticated, it'll return to `Wallet` (in the case of a receiver) or `SelectAmount` (for senders) */}
+          <Route render={props => (<Redirect replace to='/welcome' />)} />
         </Switch>
       </Router>
     </main>
