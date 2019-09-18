@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 import { setSelectedTipAmount } from '../../../../Actions';
 
@@ -31,7 +32,10 @@ const SelectAmount = (props) => {
   return (
     <>
       <div className="selectAmount">
-        
+        --- MENU ---
+        <br/><Link to="/wallet">My Account</Link>
+        <br/><Link to="/user/settings">Settings</Link><br/>
+        ------------<br/><br/>
 
         <h2>SelectAmount</h2>
         {currency}<input type="number" value={amount} onChange={(e) => setAmount(e.target.value)}/>

@@ -116,7 +116,7 @@ const App = (props) =>  {
             <Route path="/funding/success" render={props => (<SuccessPage {...props} type="fundingSuccess"/>)} />
 
           {/* Catch-All 404 Page */}
-          <Route render={props => (<SelectAmount {...props} />)} />
+          <Route render={props => (<Auth {...props} />)} />
         </Switch>
       </Router>
     </main>

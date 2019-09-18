@@ -2,6 +2,7 @@ import React from 'react';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import { Redirect } from 'react-router-dom'
 
 import ReceiverWallet from '../../Receiver/ReceiverWallet/ReceiverWallet'
 import SenderWallet from './../../Sender/SenderWallet/SenderWallet'
@@ -14,8 +15,10 @@ export const Wallet = (props) => {
   // } else
   if (props.user.account_type === "receiver") {
     return <ReceiverWallet />
-  } else {
+  } else if (props.user.account_type === "sender") {
     return <SenderWallet />
+  } else {
+    return <Redirect to="/welcome"/>
   }
 }
 

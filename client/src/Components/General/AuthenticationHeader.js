@@ -20,11 +20,12 @@ const AuthenticationHeader = (props) => {
           Log In or Register
         </div> 
       :
+        null
         // TO-DO: Add Hamburger Icon with associated dropdown menu, depending on logged-in account type.
         // See UX-Flow
-        <div>
-          HAMBURGER
-        </div>
+        // <div>
+        //   HAMBURGER
+        // </div>
   }
 };
 
