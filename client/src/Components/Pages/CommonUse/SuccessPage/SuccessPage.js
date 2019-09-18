@@ -38,7 +38,14 @@ export const SuccessPage = (props) => {
       return (
         <div>
           <h2>Successfully added payment Method!</h2>
-          <Link to="/">Back to Wallet</Link>
+          <Link to="/">Complete</Link>
+        </div>
+      )
+    case "withdrawAccount":
+      return (
+        <div>
+          <h2>Successfully added Withdrawal Account</h2>
+          <Link to="/">Complete</Link>
         </div>
       )
     default:

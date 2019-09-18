@@ -17,7 +17,7 @@ export const OverviewWithdrawalAccounts = () => {
         <p>Last used: Sep 9th</p>
       </div>
       <Link to="/user/settings">Back</Link>
-      <br/><Link to="/payment-methods/add">Add Withdraw Method</Link>
+      <p>User can click 'Add Withdraw Method', which'll open up a Stripe window. Afterwards, they'll get taken to <Link to="/withdraw/accounts/success">Successfully Added Withdraw Method</Link></p>
     </div>
   )
 }

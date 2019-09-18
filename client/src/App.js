@@ -100,6 +100,9 @@ const App = (props) =>  {
             {/* Select Account To Send Withdrawal */}
             <Route exact path="/withdraw/accounts/select" render={props => (<WithdrawalAccounts {...props} />)} />
 
+            {/* Adding Withdraw Method Success */}
+            <Route path="/withdraw/accounts/success" render={props => (<SuccessPage {...props} type="withdrawAccount" />)} />
+
             {/* Withdraw Success */}
             <Route path="/withdraw/success" render={props => (<SuccessPage {...props} type="withdrawalSuccess" />)} />
 
