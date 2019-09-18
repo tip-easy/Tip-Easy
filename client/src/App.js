@@ -31,6 +31,7 @@ import FundingAmount from './Components/Flows/FundingFlow/FundingAmount/FundingA
 import FundingMethods from './Components/Flows/FundingFlow/FundingMethod/FundingMethods';
 
 import { TestRouter } from './Utils/Routes/Routes'
+import AuthenticationRestrictedRoute from './Components/HOCs/AuthenticationRestrictedRoute'
 
 const App = (props) =>  {
   return (
@@ -42,87 +43,197 @@ const App = (props) =>  {
             {/* Login & Registration */}
             <Route path="/welcome" render={props => (<Auth {...props} />)} />
 
-            <TestRouter/>
 
           {/* --- TIPPING FLOW --- */}
             {/* DEFAULT: Select Tipping Amount */}
-            <Route path="/tip/select-amount" exact render={props => (<SelectAmount {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              exact 
+              path="/tip/select-amount"
+              render={props => (
+                <SelectAmount {...props} />
+              )}
+            />
 
             {/* Enter Tip Receiver Code */}
-            <Route path="/tip/select-receiver" render={props => (<EnterReceiverCode {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              path="/tip/select-receiver"
+              render={props => (
+                <EnterReceiverCode {...props} />
+              )}
+            />
 
             {/* Tipping Success Page */}
-            <Route path="/tip/success" render={props => (<SuccessPage {...props} type="tippingSuccess" />)} />
+            <AuthenticationRestrictedRoute  
+              path="/tip/success"
+              render={props => (
+                <SuccessPage type="tippingSuccess" {...props} />
+              )}
+            />
 
 
           {/* --- PAYMENT METHOD FLOW --- */}
             {/* Payment Methods Overview */}
-            <Route exact path="/payment-methods" render={props => (<OverviewPaymentMethods {...props} />)} />
-          
+            <AuthenticationRestrictedRoute 
+              exact 
+              path="/payment-methods"
+              render={props => (
+                <OverviewPaymentMethods {...props} />
+              )}
+            />
+            
             {/* Select Payment Method */}
-            <Route path="/payment-methods/select" render={props => (<SelectPaymentMethod {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              exact 
+              path="/payment-methods/select"
+              render={props => (
+                <SelectPaymentMethod {...props} />
+              )}
+            />
+
 
             {/* Enter Payment Method Details */} 
             {/* Add Payment Method; includes CC number, name, etc. */}
-            <Route exact path="/payment-methods/add" render={props => (<PaymentMethodDetails {...props} />)} />
-          
+            <AuthenticationRestrictedRoute 
+              exact 
+              path="/payment-methods/add"
+              render={props => (
+                <SelectPaymentMethod {...props} />
+              )}
+            />
+
             {/* Add Payment Method Success */}
-            <Route path="/payment-methods/add/success" render={props => (<SuccessPage {...props} type="paymentMethod" />)} />
+            <AuthenticationRestrictedRoute 
+              path="/payment-methods/add/success"
+              render={props => (
+                <SuccessPage type="paymentMethod" {...props} />
+              )}
+            />
 
 
           {/* --- USER-RELATED ROUTES --- */}
             {/* Wallet */}
             {/* Both Sender && Receiver */}
-            <Route path="/wallet" render={props => (<Wallet {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              path="/wallet"
+              render={props => (
+                <Wallet {...props} />
+              )}
+            />
 
             {/* User Profile */}
             {/* Contains Receiver Code - if applicable */}
-            <Route exact path="/user" render={props => (<UserProfile {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              exact
+              path="/user"
+              render={props => (
+                <UserProfile {...props} />
+              )}
+            />
 
             {/* User Settings */}
             {/* Contains Change Password, Delete Account, etc. */}
-            <Route exact path="/user/settings" render={props => (<UserSettings {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              exact
+              path="/user/settings"
+              render={props => (
+                <UserSettings {...props} />
+              )}
+            />
 
             {/* Change User Settings */}
             {/* Contains Change Password, Delete Account, etc. */}
             <Route path="/user/settings/update" render={props => (<UpdateUserSettings {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              path="/user/settings/update"
+              render={props => (
+                <UpdateUserSettings {...props} />
+              )}
+            />
 
             {/* Show Receiver Code */}
             {/* >>> OPTIONAL. RECEIVER-ONLY. Might decide to show the receiver code on Wallet */}
             <Route path="/show-code" render={props => (<ShowCode {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              path="/show-code"
+              render={props => (
+                <ShowCode {...props} />
+              )}
+            />
 
 
           {/* WALLET WITHDRAWAL ROUTES: */}
             {/* Withdraw Tips */}
-            {/* Entered from Receiver Wallet */}
-            <Route exact path="/withdraw" render={props => (<WithdrawalAmount {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              exact
+              path="/withdraw"
+              render={props => (
+                <WithdrawalAmount {...props} />
+              )}
+            />
 
             {/* Payment Methods Overview */}
-            <Route exact path="/withdraw/accounts" render={props => (<OverviewWithdrawalAccounts {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              exact
+              path="/withdraw/accounts"
+              render={props => (
+                <OverviewWithdrawalAccounts {...props} />
+              )}
+            />
 
             {/* Select Account To Send Withdrawal */}
-            <Route exact path="/withdraw/accounts/select" render={props => (<WithdrawalAccounts {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              path="/withdraw/accounts/select"
+              render={props => (
+                <WithdrawalAccounts {...props} />
+              )}
+            />
 
             {/* Adding Withdraw Method Success */}
-            <Route path="/withdraw/accounts/success" render={props => (<SuccessPage {...props} type="withdrawAccount" />)} />
+            <AuthenticationRestrictedRoute 
+              path="/withdraw/accounts/success"
+              render={props => (
+                <SuccessPage type="withdrawAccount" {...props} />
+              )}
+            />
 
             {/* Withdraw Success */}
-            <Route path="/withdraw/success" render={props => (<SuccessPage {...props} type="withdrawalSuccess" />)} />
+            <AuthenticationRestrictedRoute 
+              path="/withdraw/success"
+              render={props => (
+                <SuccessPage type="withdrawalSuccess" {...props} />
+              )}
+            />
 
 
           {/* FUND WALLET ROUTES: */}
             {/* Enter Funding Amount */}
             <Route exact path="/funding" render={props => (<FundingAmount {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              path="/withdraw/accounts/select"
+              render={props => (
+                <WithdrawalAccounts {...props} />
+              )}
+            />
 
             {/* Select Funding Method */}
             {/* Same options as Payment Methods; card, PayPal, etc. */}
-            <Route path="/funding/methods" render={props => (<FundingMethods {...props} />)} />
+            <AuthenticationRestrictedRoute 
+              path="/funding/methods"
+              render={props => (
+                <FundingMethods {...props} />
+              )}
+            />
 
             {/* Funding Success */}
-            <Route path="/funding/success" render={props => (<SuccessPage {...props} type="fundingSuccess"/>)} />
+            <AuthenticationRestrictedRoute 
+              path="/funding/success"
+              render={props => (
+                <SuccessPage type="fundingSuccess" {...props} />
+              )}
+            />
 
           {/* Catch-All 404 Page. If not authorized, will return the user to `Auth`. If authenticated, it'll return to `Wallet` (in the case of a receiver) or `SelectAmount` (for senders) */}
-          <Route render={props => (<Redirect replace to='/welcome' />)} />
+          <Route render={props => (<Redirect replace {...props} to='/welcome' />)} />
         </Switch>
       </Router>
     </main>
