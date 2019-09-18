@@ -8,7 +8,7 @@ const AuthenticationHeader = (props) => {
 
   // On Login / Registration page, neither a Login button should be present (superfluous) 
   // nor a link to a hamburger menu, since a logged-in user should never have access to the authentication page
-  if (props.history.location.pathname === "/welcome" ) {
+  if (props.history.location.pathname === "/welcome" ||  props.history.location.pathname === "/" ) {
     return null
   } else {
     return !token && !user.email 

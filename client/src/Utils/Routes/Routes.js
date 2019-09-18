@@ -1,9 +1,53 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
-export const TestRouter = () => {
+// Separate Components
+import AuthenticationHeader from '../../Components/General/AuthenticationHeader'
+import Auth from '../../Components/Flows/AuthenticationFlow/Auth';
+
+// Route Objects
+import FundingRoutes from './FundingRoutes';
+import PaymentMethodRoutes from './PaymentMethodRoutes';
+import TippingRoutes from './TippingRoutes';
+import UserRoutes from './UserRoutes';
+import WithdrawalRoutes from './WithdrawalRoutes';
+
+export const RouterObject = () => {
   return (
-    <>
-    </>
+    <Router>
+      <AuthenticationHeader / >
+      <Switch>
+          {/* -- AUTHENTICATION --- */}
+            {/* Login & Registration */}
+            <Route exact path="/" render={props => (<Auth {...props} />)} />
+            <Route path="/welcome" render={props => (<Auth {...props} />)} />
+          
+         {/* FUND WALLET ROUTES: */}
+            <FundingRoutes />
+
+
+          {/* --- USER-RELATED ROUTES --- */}
+            <UserRoutes />
+
+
+          {/* --- PAYMENT METHOD FLOW --- */}
+            <PaymentMethodRoutes />
+
+
+          {/* --- TIPPING FLOW --- */}
+            <TippingRoutes />
+
+
+          {/* WALLET WITHDRAWAL ROUTES: */}
+            <WithdrawalRoutes/>
+
+
+          {/* Catch-All 404 Page. If not authorized, will return the user to `Auth`. If authenticated, it'll return to `Wallet` (in the case of a receiver) or `SelectAmount` (for senders) */}
+          <Route render={props => (<Redirect replace {...props} to='/welcome' />)} />
+
+      </Switch>
+    </Router>
   )
 }
+
+export default RouterObject;
