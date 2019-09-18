@@ -57,11 +57,11 @@ const App = (props) =>  {
             <Route exact path="/payment-methods" render={props => (<OverviewPaymentMethods {...props} />)} />
           
             {/* Select Payment Method */}
-            <Route exact path="/payment-methods/select" render={props => (<SelectPaymentMethod {...props} />)} />
+            <Route path="/payment-methods/select" render={props => (<SelectPaymentMethod {...props} />)} />
 
             {/* Enter Payment Method Details */} 
             {/* Add Payment Method; includes CC number, name, etc. */}
-            <Route path="/payment-methods/add" render={props => (<PaymentMethodDetails {...props} />)} />
+            <Route exact path="/payment-methods/add" render={props => (<PaymentMethodDetails {...props} />)} />
           
             {/* Add Payment Method Success */}
             <Route path="/payment-methods/add/success" render={props => (<SuccessPage {...props} type="paymentMethod" />)} />
