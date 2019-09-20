@@ -6,7 +6,10 @@ import { connect } from 'react-redux';
 const SenderMenu = (props) => {
     return (
       <div>
-        SenderMenu
+        <p>Sender Menu</p>
+        <br/><Link to="/wallet">My Account</Link>
+        <br/><Link to="/user/settings">Settings</Link><br/>
+        <Link to="/">Logout</Link> {/* TO-DO: Implement logout behaviour. For now, redirects back to wallet. */}
       </div>
     )
 };

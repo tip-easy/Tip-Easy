@@ -6,7 +6,11 @@ import { connect } from 'react-redux';
 const ReceiverMenu = (props) => {
     return (
       <div>
-        ReceiverMenu
+        <p>ReceiverMenu</p>
+        <Link to="/withdraw">Withdraw Tips</Link><br/>
+        <Link to="tip/select-amount">Send Tips</Link><br/>
+        <Link to="/user/settings">Settings</Link><br/>
+        <Link to="/">Logout</Link> {/* TO-DO: Implement logout behaviour. For now, redirects back to wallet. */}
       </div>
     )
 };
