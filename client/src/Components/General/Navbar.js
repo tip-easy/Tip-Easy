@@ -3,11 +3,12 @@ import { withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-const Navbar = (props) => {
-  const { token, user } = props.UserReducer
+import SenderMenu from './SenderMenu';
+import ReceiverMenu from './ReceiverMenu';
 
-  // On Login / Registration page, neither a Login button should be present (superfluous) 
-  // nor a link to a hamburger menu, since a logged-in user should never have access to the authentication page
+const Navbar = (props) => {
+  const { user } = props.UserReducer
+
     return (
       <div className="navbar" style={{
         display: "flex", 
@@ -22,8 +23,11 @@ const Navbar = (props) => {
               <h3>Login</h3>
               <h3>Sign Up</h3>
             </>
-          :
-            <h3>MENU</h3>
+          : 
+            user.account_type === "receiver" ?
+              <ReceiverMenu />
+            :
+              <SenderMenu />
         }
       </div>
     )

@@ -12,7 +12,6 @@ import RouterObject from './Utils/Routes/Routes'
 const App = (props) =>  {
   return (
     <Router>
-        
         <Navbar / >
 
       <main>
