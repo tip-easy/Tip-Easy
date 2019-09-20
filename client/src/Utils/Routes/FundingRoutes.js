@@ -1,5 +1,4 @@
 import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom';
 
 // Pages
 import FundingAmount from '../../Components/Flows/FundingFlow/FundingAmount/FundingAmount';
