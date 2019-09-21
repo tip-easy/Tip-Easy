@@ -1,7 +1,6 @@
 import React from 'react'
 
 // Pages
-import UserProfile from '../../Components/Pages/Sender/UserProfile/UserProfile';
 import UserSettings from '../../Components/Pages/CommonUse/UserSettings/UserSettings';
 import UpdateUserSettings from '../../Components/Pages/CommonUse/UserSettings/UpdateUserSettings';
 import Wallet from '../../Components/Pages/CommonUse/Wallet/Wallet';
@@ -19,16 +18,6 @@ export const UserRoutes = () => {
           path="/wallet"
           render={props => (
             <Wallet {...props} />
-          )}
-        />
-
-        {/* User Profile */}
-        {/* Contains Receiver Code - if applicable */}
-        <AuthenticationRestrictedRoute 
-          exact
-          path="/user"
-          render={props => (
-            <UserProfile {...props} />
           )}
         />
 
