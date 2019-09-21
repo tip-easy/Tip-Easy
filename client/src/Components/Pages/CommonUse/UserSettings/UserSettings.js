@@ -4,9 +4,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Link, Redirect } from 'react-router-dom'
 
+import BackButton from '../../../General/BackButton'
+
 export const UserSettings = (props) => {
   if (props.user.account_type === "receiver") {
     return <div>
+      <BackButton to="/wallet" replace={true} anchorText="Back to Wallet" />
       <h2>--- UserSettings (RECEIVER) ---</h2>
       <br/>User Info
       <br/>Anthony J. Campbell
