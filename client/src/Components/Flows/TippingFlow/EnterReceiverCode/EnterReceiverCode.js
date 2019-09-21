@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 
 import { searchForTipReceiver, setSelectedTipReceiver } from '../../../../Actions';
 
+import BackButton from '../../../General/BackButton'
+
 const EnterReceiverCode = (props) => {
   const { token } = props.UserReducer
   const [code, setCode] = useState('')
@@ -64,6 +66,7 @@ const EnterReceiverCode = (props) => {
 
   return (
     <>
+      <BackButton to="/tip/select-amount" replace={true} />
       <form 
         className="inputContainer"
         onSubmit={(e) => submitHandler(e)}  

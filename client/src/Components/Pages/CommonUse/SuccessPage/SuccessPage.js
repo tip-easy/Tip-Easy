@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 export const SuccessPage = (props) => {
   const { user } = props.UserReducer
+  // TO-DO: Add checks for user_type for redirect to `Wallet` or `SelectTipAmount` 
   switch(props.type) {
     case "tippingSuccess":
       return (

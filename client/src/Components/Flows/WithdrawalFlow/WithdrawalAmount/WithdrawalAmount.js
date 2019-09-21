@@ -4,10 +4,14 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
-export const WithdrawalAmount = () => {
+import BackButton from '../../../General/BackButton'
+
+export const WithdrawalAmount = (props) => {
+  console.log(props)
   return (
     <div>
-      --- WithdrawalAmount ---
+      <BackButton to="/wallet" anchorText="Back to Wallet"/>
+      <h2>--- WithdrawalAmount ---</h2>
       <br/> INPUT AMOUNT - SIMILAR TO TIP-AMOUNT
       <br/>IF (hasWithdrawAccount)<Link to='/withdraw/accounts' >Select Existing Withdraw Method</Link>
       <br/>ELSE <Link to='/withdraw/accounts' >Select Withdraw Method Type</Link>

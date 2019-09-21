@@ -4,10 +4,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom'
 
+import BackButton from '../../../General/BackButton'
+
 export const UpdateUserSettings = () => {
   return (
     <div>
-      --- UpdateUserSettings ---
+      <BackButton to="/user/settings" replace={true} anchorText="Back to User Settings" />
+      <br/><br/>--- UpdateUserSettings ---
       <br/>Form with User Info
       <br/>INPUT: Anthony J. Campbell
       <br/>INPUT: Email

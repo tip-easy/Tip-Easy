@@ -7,6 +7,13 @@ const ReceiverMenu = (props) => {
     return (
       <div>
         <p>ReceiverMenu</p>
+        {/* Content of a dropdown/hamburger menu */}
+        {
+          props.location.pathname !== "/wallet" ?  
+            <><Link to="/wallet">Wallet</Link><br/></>
+          : 
+            null
+        }
         <Link to="/withdraw">Withdraw Tips</Link><br/>
         <Link to="tip/select-amount">Send Tips</Link><br/>
         <Link to="/user/settings">Settings</Link><br/>
