@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom'
 export const SenderWallet = () => {
   return (
     <div>
-      <p><Link to="/tip/select-amount">Back</Link></p>
       <h2>SenderWallet</h2>
       <p>*Show current balance and last handful of transactions*</p>
       <br/>
       <br/>
+      <p><Link to="/tip/select-amount">Send Tip</Link></p>
       <p>Floating button positioned absolutely at the bottom of the page <Link to='/funding'>Fund Wallet</Link></p>
     </div>
   )

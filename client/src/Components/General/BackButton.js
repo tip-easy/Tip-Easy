@@ -7,20 +7,20 @@ export const BackButton = ({
   replace = false,
   anchorText,
 }) => {
+
   // `to` is a required property, hence why it's used in the switch()
-  switch(to) {
-    case (replace && !anchorText):
+    if (replace && !anchorText) {
       return <Link replace to={to} >Back</Link>
-      
-    case (!replace && anchorText):
+    }
+    else if (!replace && anchorText) {
       return <Link to={to} >{anchorText}</Link>
-
-    case (replace && anchorText):
+    }
+    else if (replace && anchorText) {
       return <Link replace to={to} >{anchorText}</Link>
-
-    default:
+    }
+    else {
       return <Link to={to} >Back</Link>
-  }
+    }
 }
 
 
