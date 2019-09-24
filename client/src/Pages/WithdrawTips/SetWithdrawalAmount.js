@@ -4,16 +4,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
-import BackButton from '../../../General/BackButton'
+import BackButton from '../../Components/General/BackButton'
 
-export const WithdrawalAmount = (props) => {
+export const SetWithdrawalAmount = (props) => {
   return (
     <div>
       <BackButton to="/wallet" anchorText="Back to Wallet"/>
-      <h2>--- WithdrawalAmount ---</h2>
+      <h2>--- SetWithdrawalAmount ---</h2>
       <br/> INPUT AMOUNT - SIMILAR TO TIP-AMOUNT
-      <br/>IF (hasWithdrawAccount)<Link to='/withdraw/accounts' >Select Existing Withdraw Method</Link>
-      <br/>ELSE <Link to='/withdraw/accounts' >Select Withdraw Method Type</Link>
+      <br/><Link to='/withdraw/accounts' >Select Existing Withdraw Method</Link>
     </div>
   )
 }
@@ -30,4 +29,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(WithdrawalAmount);
+export default connect(mapStateToProps, mapDispatchToProps)(SetWithdrawalAmount);

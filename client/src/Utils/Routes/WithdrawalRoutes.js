@@ -2,7 +2,7 @@ import React from 'react'
 
 // Pages
 import OverviewWithdrawalAccounts from '../../Pages/WithdrawTips/OverviewWithdrawalAccounts'
-import WithdrawalAmount from '../../Components/Flows/WithdrawalFlow/WithdrawalAmount/WithdrawalAmount';
+import SetWithdrawalAmount from '../../Pages/WithdrawTips/SetWithdrawalAmount';
 import SuccessPage from '../../Components/Pages/CommonUse/SuccessPage/SuccessPage';
 
 import AuthenticationRestrictedRoute from '../../Components/HOCs/AuthenticationRestrictedRoute'
@@ -16,7 +16,7 @@ export const WithdrawalRoutes = () => {
           exact
           path="/withdraw"
           render={props => (
-            <WithdrawalAmount {...props} />
+            <SetWithdrawalAmount {...props} />
           )}
         />
 

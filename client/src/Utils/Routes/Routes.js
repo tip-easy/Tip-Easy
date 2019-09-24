@@ -38,7 +38,7 @@ export const RouterObject = () => {
 
       {/* Catch-All 404 Page. If not authorized, will return the user to `Auth`. If authenticated, it'll return to `Wallet` (in the case of a receiver) or `SelectAmount` (for senders) */}
       <Route render={props => (<Redirect replace {...props} to='/' />)} />
-     </>
+    </>
   )
 }
 
