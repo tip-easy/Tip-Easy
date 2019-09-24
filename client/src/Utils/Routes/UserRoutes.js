@@ -1,8 +1,8 @@
 import React from 'react'
 
 // Pages
-// import UserSettings from '../../Pages/Settings/'
-import UpdateUserSettings from '../../Components/Pages/CommonUse/UserSettings/UpdateUserSettings';
+import UserSettings from '../../Pages/Settings/UserSettings'
+import UpdateUserSettings from '../../Pages/Settings/UpdateUserSettings';
 import Wallet from '../../Pages/Wallet/Wallet';
 import ShowCode from '../../Pages/Wallet/ShowCode';
 
@@ -23,13 +23,13 @@ export const UserRoutes = () => {
 
         {/* User Settings */}
         {/* Contains Change Password, Delete Account, etc. */}
-        {/* <AuthenticationRestrictedRoute 
+        <AuthenticationRestrictedRoute 
           exact
           path="/user/settings"
           render={props => (
             <UserSettings {...props} />
           )}
-        /> */}
+        />
 
         {/* Change User Settings */}
         {/* Contains Change Password, Delete Account, etc. */}

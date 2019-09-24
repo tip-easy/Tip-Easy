@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Link, Redirect } from 'react-router-dom'
 
-import BackButton from '../../../General/BackButton'
+import BackButton from '../../Components/General/BackButton'
 
 export const UserSettings = (props) => {
   if (props.user.account_type === "receiver") {

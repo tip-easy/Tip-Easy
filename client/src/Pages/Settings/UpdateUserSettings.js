@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom'
 
-import BackButton from '../../../General/BackButton'
+import BackButton from '../../Components/General/BackButton'
 
 export const UpdateUserSettings = () => {
   return (
