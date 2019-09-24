@@ -4,7 +4,7 @@ import React from 'react'
 import OverviewPaymentMethods from '../../Components/Flows/PaymentMethodFlow/OverviewPaymentMethods/OverviewPaymentMethods'
 import SelectPaymentMethod from '../../Components/Flows/PaymentMethodFlow/SelectPaymentMethod/SelectPaymentMethod';
 import PaymentMethodDetails from '../../Components/Flows/PaymentMethodFlow/PaymentMethodDetails/PaymentMethodDetails';
-import SuccessPage from '../../Components/Pages/CommonUse/SuccessPage/SuccessPage';
+import SuccessPage from '../../Components/General/SuccessPage';
 
 import AuthenticationRestrictedRoute from '../../Components/HOCs/AuthenticationRestrictedRoute'
 

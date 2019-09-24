@@ -3,7 +3,7 @@ import React from 'react'
 // Pages
 import OverviewWithdrawalAccounts from '../../Pages/WithdrawTips/OverviewWithdrawalAccounts'
 import SetWithdrawalAmount from '../../Pages/WithdrawTips/SetWithdrawalAmount';
-import SuccessPage from '../../Components/Pages/CommonUse/SuccessPage/SuccessPage';
+import SuccessPage from '../../Components/General/SuccessPage';
 
 import AuthenticationRestrictedRoute from '../../Components/HOCs/AuthenticationRestrictedRoute'
 
