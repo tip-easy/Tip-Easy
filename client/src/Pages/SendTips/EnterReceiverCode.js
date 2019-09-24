@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import { searchForTipReceiver, setSelectedTipReceiver } from '../../../../Actions';
+import { searchForTipReceiver, setSelectedTipReceiver } from '../../Actions';
 
-import BackButton from '../../../General/BackButton'
+import BackButton from '../../Components/General/BackButton'
 
 const EnterReceiverCode = (props) => {
   const { token } = props.UserReducer

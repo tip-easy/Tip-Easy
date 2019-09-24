@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import { setSelectedTipAmount } from '../../../../Actions';
+import { setSelectedTipAmount } from '../../Actions';
 
 const SelectAmount = (props) => {
   const [amount, setAmount] = useState(5)
