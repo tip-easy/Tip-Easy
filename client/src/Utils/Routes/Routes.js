@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom';
 
 // Separate Components
-import Auth from '../../Components/Flows/AuthenticationFlow/Auth';
+import Auth from '../../Pages/Auth/Auth';
 
 // Route Objects
 import FundingRoutes from './FundingRoutes';

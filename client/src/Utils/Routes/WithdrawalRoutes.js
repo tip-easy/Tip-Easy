@@ -1,9 +1,8 @@
 import React from 'react'
 
 // Pages
-import OverviewWithdrawalAccounts from '../../Components/Flows/WithdrawalFlow/OverviewWithdrawalAccounts/OverviewWithdrawalAccounts'
+import OverviewWithdrawalAccounts from '../../Pages/WithdrawTips/OverviewWithdrawalAccounts'
 import WithdrawalAmount from '../../Components/Flows/WithdrawalFlow/WithdrawalAmount/WithdrawalAmount';
-import WithdrawalAccounts from '../../Components/Flows/WithdrawalFlow/WithdrawalAccounts/WithdrawalAccounts';
 import SuccessPage from '../../Components/Pages/CommonUse/SuccessPage/SuccessPage';
 
 import AuthenticationRestrictedRoute from '../../Components/HOCs/AuthenticationRestrictedRoute'
@@ -27,14 +26,6 @@ export const WithdrawalRoutes = () => {
           path="/withdraw/accounts"
           render={props => (
             <OverviewWithdrawalAccounts {...props} />
-          )}
-        />
-
-        {/* Select Account To Send Withdrawal */}
-        <AuthenticationRestrictedRoute 
-          path="/withdraw/accounts/select"
-          render={props => (
-            <WithdrawalAccounts {...props} />
           )}
         />
 
