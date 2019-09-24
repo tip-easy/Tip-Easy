@@ -27,7 +27,7 @@ export const UserSettings = (props) => {
       <br/>Email
       <br/><Link to='/user/settings/update'>EDIT PERSONAL INFO</Link>
       <br/>
-      <br/><Link to="/payment-methods">PAYMENT METHODS OVERVIEW</Link>
+      <br/><Link to="/funding/accounts">FUNDING METHODS OVERVIEW</Link>
     </div>
   } else {
     return <Redirect to="/welcome"/>

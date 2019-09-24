@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
-import BackButton from '../../../General/BackButton'
+import BackButton from '../../Components/General/BackButton'
 
-export const FundingMethods = () => {
+export const SelectFundingMethods = () => {
   return (
     <div>
       <BackButton to="/funding" />
@@ -30,4 +30,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FundingMethods);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectFundingMethods);
