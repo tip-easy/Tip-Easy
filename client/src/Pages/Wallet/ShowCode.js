@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import BackButton from '../../../General/BackButton'
+import BackButton from '../../Components/General/BackButton'
 
 export const ShowCode = ({user}) => {
   // TO-DO: Add conditional logic that only renders Sender wallet in case the user is a sender

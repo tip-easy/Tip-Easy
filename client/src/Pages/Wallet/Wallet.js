@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom'
 
-import ReceiverWallet from '../../Receiver/ReceiverWallet/ReceiverWallet'
-import SenderWallet from './../../Sender/SenderWallet/SenderWallet'
+import ReceiverWallet from './ReceiverWallet'
+import SenderWallet from './SenderWallet'
 
 export const Wallet = (props) => {
   // TO-DO: Add conditional logic that only renders Sender wallet in case the user is a sender
