@@ -6,7 +6,6 @@ import Auth from '../../Pages/Auth/Auth';
 
 // Route Objects
 import FundingRoutes from './FundingRoutes';
-import PaymentMethodRoutes from './PaymentMethodRoutes';
 import TippingRoutes from './TippingRoutes';
 import UserRoutes from './UserRoutes';
 import WithdrawalRoutes from './WithdrawalRoutes';
@@ -24,9 +23,6 @@ export const RouterObject = () => {
 
       {/* --- USER-RELATED ROUTES --- */}
         <UserRoutes />
-
-      {/* --- PAYMENT METHOD FLOW --- */}
-        <PaymentMethodRoutes />
 
       {/* --- TIPPING FLOW --- */}
         <TippingRoutes />
