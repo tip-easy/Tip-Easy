@@ -2,11 +2,17 @@ import React from 'react';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
-export const ReceiverWallet = () => {
+export const ReceiverWallet = (props) => {
   return (
     <div>
-      ReceiverWallet
+      --- ReceiverWallet ---
+      <br/>
+      <br/>
+      <br/><Link to='/show-code'>Show Code</Link>
+      <br/><Link to='/withdraw'>Make Withdrawal</Link>
+      <br/><Link to='/tip/select-amount'>Send Tip</Link>
     </div>
   )
 }

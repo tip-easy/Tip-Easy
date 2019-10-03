@@ -4,16 +4,16 @@ import * as types from './actionTypes';
 import * as creators from './ActionCreators/UserActionCreators';
 
 import { endpointURLs } from '../Utils/pathVariables';
-import { tokenIsValid } from '../Utils/tokenIsValid';
-import { tokenIsNotValid } from '../Utils/tokenIsNotValid';
+import { tokenIsValid } from '../Utils/tokenUtils/tokenIsValid';
+import { tokenIsNotValid } from '../Utils/tokenUtils/tokenIsNotValid';
 
 export const getUser = ( token ) => dispatch => {
   dispatch(creators.gettingUserStart())
-
   // Preliminary token validation
   if (!tokenIsValid(token)) {
     return dispatch(tokenIsNotValid(types.GETTING_USER_FAILURE))
   }
+  
 
   return axios.get(`${endpointURLs.getUserPath}`, { 
     headers: {

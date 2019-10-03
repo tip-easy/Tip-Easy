@@ -4,8 +4,8 @@ import * as types from './actionTypes';
 import * as creators from './ActionCreators/BalanceActionCreators';
 
 import { endpointURLs } from '../Utils/pathVariables';
-import { tokenIsValid } from '../Utils/tokenIsValid'
-import { tokenIsNotValid } from '../Utils/tokenIsNotValid'
+import { tokenIsValid } from '../Utils/tokenUtils/tokenIsValid'
+import { tokenIsNotValid } from '../Utils/tokenUtils/tokenIsNotValid'
 
 export const getBalance = ( token ) => dispatch => {
   dispatch(creators.gettingBalanceStart())

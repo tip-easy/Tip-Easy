@@ -4,8 +4,8 @@ import * as types from './actionTypes';
 import * as creators from './ActionCreators/DepositActionCreators';
 
 import { endpointURLs } from '../Utils/pathVariables';
-import { tokenIsValid } from '../Utils/tokenIsValid'
-import { tokenIsNotValid } from '../Utils/tokenIsNotValid';
+import { tokenIsValid } from '../Utils/tokenUtils/tokenIsValid'
+import { tokenIsNotValid } from '../Utils/tokenUtils/tokenIsNotValid';
 
 export const makeDeposit = (deposit_details, token) => dispatch => {
   dispatch(creators.makeDepositStart())

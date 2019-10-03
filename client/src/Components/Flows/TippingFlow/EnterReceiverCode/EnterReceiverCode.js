@@ -5,7 +5,10 @@ import { bindActionCreators } from 'redux';
 
 import { searchForTipReceiver, setSelectedTipReceiver } from '../../../../Actions';
 
-const EnterCode = (props) => {
+import BackButton from '../../../General/BackButton'
+
+const EnterReceiverCode = (props) => {
+  const { token } = props.UserReducer
   const [code, setCode] = useState('')
 
   const changeHandler = (e) => {
@@ -32,7 +35,7 @@ const EnterCode = (props) => {
       let newDigit = e.target.value.slice(input.length-1, input.length);
       if (newDigit.match(/[0-9]/i)) {
         setCode(e.target.value)
-        props.searchForTipReceiver(input, props.token)
+        props.searchForTipReceiver(input, token)
       } else {
         setCode(code)
       }
@@ -47,17 +50,23 @@ const EnterCode = (props) => {
     if (code.length < 6) {
       return console.log('Make sure you fill out the six-digit code!')
     } else {
-      props.searchForTipReceiver(code, props.token)
+      props.searchForTipReceiver(code, token)
     }
   }
 
   const clickHandler = (code) => {
-    props.setSelectedTipReceiver(code)
-    props.history.push('/payment-method')
+    if (props.TipReducer.selectedTipAmount >= props.Balance.calculated_balance) {
+      props.setSelectedTipReceiver(code)
+      props.history.push('/tip/success')
+    } else {
+      console.log('Your balance is not high enough to cover this tip, rerouting to fund your wallet!')
+      props.history.push('/funding')
+    }
   }
 
   return (
     <>
+      <BackButton to="/tip/select-amount" replace={true} />
       <form 
         className="inputContainer"
         onSubmit={(e) => submitHandler(e)}  
@@ -76,17 +85,16 @@ const EnterCode = (props) => {
         <div className="tipReceiver">
           <p>Select tip receiver below</p>
           
-          {props.receiverSearchResultsArray.map((person, idx) => 
-            <div key={idx} onClick={() => clickHandler(person.code)}>
-              <img src={person.imgUrl} alt={person.imgAlt} />
+          {props.ReceiverSearchResultsArray.map((person, idx) => 
+            <div key={idx} onClick={() => clickHandler(person.unique_code)}>
               <>
                 <p>
                   <span>{person.name} </span>
                   from
-                  <span> {person.company}</span>
+                  <span> {person.organisation}</span>
                 </p>
                 <p>
-                  <span>{person.code}</span>
+                  <span>{person.unique_code}</span>
                 </p>
               </>
             </div>
@@ -99,8 +107,10 @@ const EnterCode = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    receiverSearchResultsArray: state.TipReceiverReducer.receiverSearchResultsArray,
-    token: state.UserReducer.token
+    ReceiverSearchResultsArray: state.TipReceiverReducer.receiverSearchResultsArray,
+    UserReducer: state.UserReducer,
+    Balance: state.BalanceReducer,
+    TipReducer: state.TipReducer
   }
 }
 
@@ -111,4 +121,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EnterCode);
+export default connect(mapStateToProps, mapDispatchToProps)(EnterReceiverCode);
