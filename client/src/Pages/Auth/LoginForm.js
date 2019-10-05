@@ -33,7 +33,7 @@ const LoginForm = (props) => {
 
 
   return (
-      <form onSubmit={async (event) => submitHandler(event)}>
+      <form onSubmit={(event) => submitHandler(event)}>
         <input 
           type="text" 
           placeholder="Email" 

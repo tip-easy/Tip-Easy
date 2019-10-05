@@ -8,11 +8,11 @@ export const AuthenticationRestrictedRoute = ({
   render: RenderedComponent, // Renaming render prop to avoid confusion + better readability.
   redirectTo,
 
-  UserReducer, // Not passed to Route, but used to evaluate whether the user is logged in.
+  currentUser, // Not passed to Route, but used to evaluate whether the user is logged in.
   
   ...routeProps
 }) => {
-  const { token, user } = UserReducer;
+  const { token, user } = currentUser;
   return (
     <Route
       // Passing along Route props (path, exact etc.) from invoked HOC to Route component
@@ -43,7 +43,7 @@ export const AuthenticationRestrictedRoute = ({
 
 const mapStateToProps = (state) => {
   return {
-    UserReducer: state.UserReducer
+    currentUser: state.UserReducer
   }
 }
 
