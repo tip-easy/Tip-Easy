@@ -15,7 +15,7 @@ const ReceiverMenu = (props) => {
             null
         }
         <Link to="/withdraw">Withdraw Tips</Link><br/>
-        <Link to="tip/select-amount">Send Tips</Link><br/>
+        <Link to="/tip/select-amount">Send Tips</Link><br/>
         <Link to="/user/settings">Settings</Link><br/>
         <Link to="/">Logout</Link> {/* TO-DO: Implement logout behaviour. For now, redirects back to wallet. */}
       </div>

@@ -1,10 +1,10 @@
 import React from 'react'
 
 // Pages
-import UserSettings from '../../Components/Pages/CommonUse/UserSettings/UserSettings';
-import UpdateUserSettings from '../../Components/Pages/CommonUse/UserSettings/UpdateUserSettings';
-import Wallet from '../../Components/Pages/CommonUse/Wallet/Wallet';
-import ShowCode from '../../Components/Pages/CommonUse/Wallet/ShowCode'
+import UserSettings from '../../Pages/Settings/UserSettings'
+import UpdateUserSettings from '../../Pages/Settings/UpdateUserSettings';
+import Wallet from '../../Pages/Wallet/Wallet';
+import ShowCode from '../../Pages/Wallet/ShowCode';
 
 import AuthenticationRestrictedRoute from '../../Components/HOCs/AuthenticationRestrictedRoute'
 

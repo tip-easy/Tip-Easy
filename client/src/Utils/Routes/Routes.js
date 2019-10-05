@@ -2,11 +2,10 @@ import React from 'react'
 import { Route, Redirect } from 'react-router-dom';
 
 // Separate Components
-import Auth from '../../Components/Flows/AuthenticationFlow/Auth';
+import Auth from '../../Pages/Auth/Auth';
 
 // Route Objects
 import FundingRoutes from './FundingRoutes';
-import PaymentMethodRoutes from './PaymentMethodRoutes';
 import TippingRoutes from './TippingRoutes';
 import UserRoutes from './UserRoutes';
 import WithdrawalRoutes from './WithdrawalRoutes';
@@ -25,9 +24,6 @@ export const RouterObject = () => {
       {/* --- USER-RELATED ROUTES --- */}
         <UserRoutes />
 
-      {/* --- PAYMENT METHOD FLOW --- */}
-        <PaymentMethodRoutes />
-
       {/* --- TIPPING FLOW --- */}
         <TippingRoutes />
 
@@ -38,7 +34,7 @@ export const RouterObject = () => {
 
       {/* Catch-All 404 Page. If not authorized, will return the user to `Auth`. If authenticated, it'll return to `Wallet` (in the case of a receiver) or `SelectAmount` (for senders) */}
       <Route render={props => (<Redirect replace {...props} to='/' />)} />
-     </>
+    </>
   )
 }
 

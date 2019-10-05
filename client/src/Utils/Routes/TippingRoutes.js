@@ -1,9 +1,9 @@
 import React from 'react'
 
 // Pages
-import SelectAmount from '../../Components/Flows/TippingFlow/SelectAmount/SelectAmount';
-import EnterReceiverCode from '../../Components/Flows/TippingFlow/EnterReceiverCode/EnterReceiverCode';
-import SuccessPage from '../../Components/Pages/CommonUse/SuccessPage/SuccessPage';
+import SelectAmount from '../../Pages/SendTips/SelectAmount';
+import EnterReceiverCode from '../../Pages/SendTips/EnterReceiverCode';
+import SuccessPage from '../../Components/General/SuccessPage';
 
 import AuthenticationRestrictedRoute from '../../Components/HOCs/AuthenticationRestrictedRoute'
 
