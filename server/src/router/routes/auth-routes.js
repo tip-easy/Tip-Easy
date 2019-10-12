@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const mockResponseData = require('../../database/mock-response-data');
+const getCollection = require('../../database/get-collection');
+const { createUser } = require('../../database/auth-queries.js');
 
 router.post('/login', async (req, res) => {
   try {
@@ -12,10 +14,12 @@ router.post('/login', async (req, res) => {
 
 router.post('/register', async (req, res) => {
   try {
-    const response = await mockResponseData.postRegisterResponse();
-    res.send(response);
+    const [Users, db] = await getCollection({ collection: 'users' });
+    await createUser(req.body, Users, db);
+    res.send({ message: "successfully registered"});
   } catch (err) {
-    res.status(400).send(err);
+    console.log(err);
+    res.status(500).send(err);
   }
 });
 
