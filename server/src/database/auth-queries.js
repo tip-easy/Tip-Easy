@@ -1,6 +1,9 @@
-function createUser(userObj, collection, db) {
+const getCollection = require('./get-collection');
+
+async function createUser(userObj) {
+  const [Users, db] = await getCollection({ collection: 'users' });
   return new Promise((resolve, reject) => {
-    collection.insertOne(userObj, (err, result) => {
+    Users.insertOne(userObj, (err, result) => {
       if (err) {
         reject(err);
       } else {
