@@ -1,6 +1,6 @@
 const { dbConnection, dbClient } = require('./connection');
 
-async function getCollection({ db = 'tipeasyusers', collection }) {
+async function getCollection(collection, db = 'tipeasyusers') {
   // Await successful db connection
   const connection = await dbConnection;
   // Return required collection & Mongo client instance
