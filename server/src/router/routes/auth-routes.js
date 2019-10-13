@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const mockResponseData = require('../../database/mock-response-data');
+const validateRegisterUser = require('../../middleware/validate-register-user');
+const normaliseUser = require('../../middleware/normalise-user-object');
 const { createUser } = require('../../database/auth-queries.js');
 
 router.post('/login', async (req, res) => {
@@ -11,10 +13,10 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/register', async (req, res) => {
+router.post('/register', validateRegisterUser, async (req, res) => {
   try {
-    await createUser(req.body);
-    res.send({ message: "successfully registered"});
+    await createUser(req.normalisedUser);
+    return res.send({ message: "successfully registered"});
   } catch (err) {
     console.log(err);
     res.status(500).send(err);
