@@ -1,0 +1,27 @@
+const requestContainsUserProperties = require('./helpers/request-contains-user-properties');
+const isValidEmail = require('./helpers/is-valid-email');
+const userAccountTypeIsValid = require('./helpers/user-account-type-is-valid');
+
+function validateRegisterUser(req, res, next) {
+  if (!requestContainsUserProperties(req.body)) {
+    res.status(400).send({
+      message: 'A user object containing the required properties is required'
+    });
+  } else if (!isValidEmail(req.body.email)) {
+    res.status(400).send({ 
+      message: 'A valid email is required' 
+    });
+  } else if (req.body.password.length < 6) {
+    res.status(400).send({ 
+      message: 'password must be at least 6 characters long' 
+    });
+  } else if (!userAccountTypeIsValid(req.body.account_type)) {
+    res.status(400).send({ 
+      message: 'account_type must be "sender" or "receiver"' 
+    });
+  }
+
+  next();
+}
+
+module.exports = validateRegisterUser;
