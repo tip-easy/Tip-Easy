@@ -2973,10 +2973,10 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mongodb@^3.3.0-beta2:
-  version "3.3.0-beta2"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.3.0-beta2.tgz#e18b2f2b21c2d4b5041962f1b38599ed768c6ee8"
-  integrity sha512-Z8L7VwLx4omRw4twLQ00tPxVrfDi6pELFR4oCDAu8rDUjhtmH7vsBtS9idqBTbvkcx7w9eaN+m2h4aPkXlnpDg==
+mongodb@^3.3.2:
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-3.3.2.tgz#ff086b5f552cf07e24ce098694210f3d42d668b2"
+  integrity sha512-fqJt3iywelk4yKu/lfwQg163Bjpo5zDKhXiohycvon4iQHbrfflSAz9AIlRE6496Pm/dQKQK5bMigdVo2s6gBg==
   dependencies:
     bson "^1.1.1"
     require_optional "^1.0.1"
