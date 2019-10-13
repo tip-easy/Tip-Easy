@@ -1,8 +1,9 @@
 const requestContainsUserProperties = require('./helpers/request-contains-user-properties');
 const isValidEmail = require('./helpers/is-valid-email');
 const userAccountTypeIsValid = require('./helpers/user-account-type-is-valid');
+const userEmailExists = require('./helpers/user-email-exists');
 
-function validateRegisterUser(req, res, next) {
+async function validateRegisterUser(req, res, next) {
   if (!requestContainsUserProperties(req.body)) {
     return res.status(400).send({
       message: 'A user object containing the required properties is required'
@@ -10,6 +11,10 @@ function validateRegisterUser(req, res, next) {
   } else if (!isValidEmail(req.body.email)) {
     return res.status(400).send({ 
       message: 'A valid email is required' 
+    });
+  } else if (await userEmailExists(req.body.email)) {
+    return res.status(400).send({ 
+      message: 'A user with this email already exists.' 
     });
   } else if (req.body.password.length < 6) {
     return res.status(400).send({ 
