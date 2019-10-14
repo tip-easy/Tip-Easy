@@ -12,12 +12,14 @@ router.post(
   normaliseLoginObject,
   validateLoginRoute,
   addUserToRequestObject,
-  async (req, res) => {
+  async (req, res) => {    
     try {
-      // TODO:
-      // Send token as cookie
       const generatedToken = generateToken({ userId: req.user._id.toString() });
-      res.send({ token: generatedToken });
+      res
+        .cookie('token', generatedToken, {
+          maxAge: process.env.TOKEN_EXPIRY_TIME
+        })
+        .send({ token: generatedToken });
     } catch (err) {
       console.log(err);
       res.status(500).send(err);
