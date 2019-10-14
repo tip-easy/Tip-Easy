@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const mockResponseData = require('../../database/mock-response-data');
-const validateRegisterUser = require('../../middleware/validate-register-user');
-const normaliseUser = require('../../middleware/normalise-user-object');
+const validateRegisterUser = require('../../middleware/auth/validate-register-user');
+const normaliseUser = require('../../middleware/auth/normalise-user-object');
 const { createUser } = require('../../database/auth-queries.js');
 
 router.post('/login', async (req, res) => {

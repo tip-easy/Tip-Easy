@@ -1,7 +1,7 @@
-const requestContainsUserProperties = require('./helpers/request-contains-user-properties');
-const isValidEmail = require('./helpers/is-valid-email');
-const userAccountTypeIsValid = require('./helpers/user-account-type-is-valid');
-const userEmailExists = require('./helpers/user-email-exists');
+const requestContainsUserProperties = require('../helpers/request-contains-user-properties');
+const isValidEmail = require('../helpers/is-valid-email');
+const userAccountTypeIsValid = require('./helpers/register/user-account-type-is-valid');
+const userEmailExists = require('../helpers/user-email-exists');
 
 async function validateRegisterUser(req, res, next) {
   if (!requestContainsUserProperties(req.body)) {

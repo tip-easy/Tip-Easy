@@ -1,7 +1,7 @@
-const hashPassword = require('./helpers/hash-password');
-const makeUserDataLowerCase = require('./helpers/make-user-data-lower-case');
-const enforceUserObjectSchema = require('./helpers/enforce-user-object-schema');
-const addUniqueCodeToUser = require('./helpers/add-unique-code-to-user');
+const hashPassword = require('./helpers/register/hash-password');
+const makeUserDataLowerCase = require('./helpers/register/make-user-data-lower-case');
+const enforceUserObjectSchema = require('./helpers/register/enforce-user-object-schema');
+const addUniqueCodeToUser = require('./helpers/register/add-unique-code-to-user');
 
 async function normaliseUserObject(req, res, next) {
   const normalisers = [

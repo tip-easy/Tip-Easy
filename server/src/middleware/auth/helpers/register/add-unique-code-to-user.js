@@ -1,5 +1,5 @@
 const generateUniqueCode = require('./generate-unique-code');
-const uniqueCodeExistsOnDB = require('./unique-code-exists');
+const uniqueCodeExistsOnDB = require('../../../helpers/unique-code-exists');
 
 async function addUniqueCodeToUser(user) {
   let code = generateUniqueCode();
