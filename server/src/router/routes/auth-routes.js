@@ -13,7 +13,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/register', validateRegisterUser, async (req, res) => {
+router.post('/register', validateRegisterUser, normaliseUser, async (req, res) => {
   try {
     await createUser(req.normalisedUser);
     return res.send({ message: "successfully registered"});
