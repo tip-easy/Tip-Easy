@@ -3,7 +3,7 @@ const isValidEmail = require('../helpers/is-valid-email');
 const userAccountTypeIsValid = require('./helpers/register/user-account-type-is-valid');
 const userEmailExists = require('../helpers/user-email-exists');
 
-async function validateRegisterUser(req, res, next) {
+async function validateRegisterRoute(req, res, next) {
   if (!requestContainsUserProperties(req.body)) {
     return res.status(400).send({
       message: 'A user object containing the required properties is required'
@@ -29,4 +29,4 @@ async function validateRegisterUser(req, res, next) {
   next();
 }
 
-module.exports = validateRegisterUser;
+module.exports = validateRegisterRoute;
