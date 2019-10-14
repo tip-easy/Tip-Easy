@@ -17,7 +17,8 @@ router.post(
       const generatedToken = generateToken({ userId: req.user._id.toString() });
       res
         .cookie('token', generatedToken, {
-          maxAge: process.env.TOKEN_EXPIRY_TIME
+          maxAge: process.env.TOKEN_EXPIRY_TIME,
+          httpOnly: true 
         })
         .send({ token: generatedToken });
     } catch (err) {
