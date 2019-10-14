@@ -10,7 +10,7 @@ function generateToken({ userId } = {}) {
   ) {
     // TODO: Add user roles in token payload
     const payload = {};
-    const options = { expiresIn: '2 days', subject: userId };
+    const options = { expiresIn: process.env.TOKEN_EXPIRY_TIME, subject: userId };
     const token = jwt.sign(payload, process.env.AUTHSECRET, options);
     return token;
   } else if (getType(userId) === 'undefined') {
