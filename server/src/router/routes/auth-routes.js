@@ -1,11 +1,17 @@
 const router = require('express').Router();
 const mockResponseData = require('../../database/mock-response-data');
+const validateLoginRoute = require('../../middleware/auth/validate-login-route');
 const validateRegisterRoute = require('../../middleware/auth/validate-register-route');
 const normaliseUser = require('../../middleware/auth/normalise-user-object');
+const normaliseLoginObject = require('../../middleware/auth/normalise-login-object');
 const { createUser } = require('../../database/auth-queries.js');
 
-router.post('/login', async (req, res) => {
+router.post('/login', normaliseLoginObject, validateLoginRoute, async (req, res) => {
   try {
+    // TODO:
+    // Generate token
+    // Respond with token
+    // Send token as cookie
     const response = await mockResponseData.postLoginResponse();
     res.send(response);
   } catch (err) {
