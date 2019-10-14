@@ -4,6 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
 
 const expressServer = express();
 
@@ -13,7 +14,8 @@ const router = require('./router/index');
 expressServer.use(
   helmet(),
   cors(),
-  express.json()
+  express.json(),
+  cookieParser()
 );
 
 expressServer.use(
