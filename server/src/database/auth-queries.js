@@ -16,13 +16,13 @@ async function createUser(userObj) {
   });
 }
 
-async function getUserByEmail(email) {
+async function getUserByField(field, filterOptions) {
   const [Users, db] = await getCollection('users');
   return new Promise((resolve, reject) => {
     Users.findOne(
-      { email },
+      field,
       // Return only _id field
-      { projection: { _id: 1 } },
+      { projection: filterOptions },
       (err, result) => {
         if (err) {
           reject(err);
@@ -39,5 +39,5 @@ async function getUserByEmail(email) {
 
 module.exports = {
   createUser,
-  getUserByEmail
+  getUserByField
 }
