@@ -1,23 +1,29 @@
 const router = require('express').Router();
-const mockResponseData = require('../../database/mock-response-data');
 const validateLoginRoute = require('../../middleware/auth/validate-login-route');
 const validateRegisterRoute = require('../../middleware/auth/validate-register-route');
 const normaliseUser = require('../../middleware/auth/normalise-user-object');
 const normaliseLoginObject = require('../../middleware/auth/normalise-login-object');
+const addUserToRequestObject = require('../../middleware/auth/add-user-to-request-object');
+const generateToken = require('../../data-processors/helpers/generate-token');
 const { createUser } = require('../../database/auth-queries.js');
 
-router.post('/login', normaliseLoginObject, validateLoginRoute, async (req, res) => {
-  try {
-    // TODO:
-    // Generate token
-    // Respond with token
-    // Send token as cookie
-    const response = await mockResponseData.postLoginResponse();
-    res.send(response);
-  } catch (err) {
-    res.status(400).send(err);
+router.post(
+  '/login',
+  normaliseLoginObject,
+  validateLoginRoute,
+  addUserToRequestObject,
+  async (req, res) => {
+    try {
+      // TODO:
+      // Send token as cookie
+      const generatedToken = generateToken({ userId: req.user._id.toString() });
+      res.send({ token: generatedToken });
+    } catch (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
   }
-});
+);
 
 router.post('/register', validateRegisterRoute, normaliseUser, async (req, res) => {
   try {
