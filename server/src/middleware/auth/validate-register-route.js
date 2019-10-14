@@ -1,7 +1,7 @@
 const objectContainsProperties = require('../../global-helpers/object-contains-properties');
 const isValidEmail = require('../helpers/is-valid-email');
 const userAccountTypeIsValid = require('./helpers/register/user-account-type-is-valid');
-const userEmailExists = require('../helpers/user-email-exists');
+const userExists = require('../helpers/user-exists');
 
 async function validateRegisterRoute(req, res, next) {
   const requestContainsUserProperties = objectContainsProperties(req.body, [
@@ -19,7 +19,7 @@ async function validateRegisterRoute(req, res, next) {
     return res.status(400).send({
       message: 'A valid email is required'
     });
-  } else if (await userEmailExists(req.body.email)) {
+  } else if (await userExists({ email: req.body.email }, { _id: 1 })) {
     return res.status(400).send({
       message: 'A user with this email already exists.'
     });
