@@ -12,6 +12,9 @@ const LoginForm = (props) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const goToSelectAmount = () => props.history.replace('/tip/select-amount');
+  const goToWallet = () => props.history.replace('/wallet');
+
   const submitHandler = (event) => {
     event.preventDefault();
     props.login({

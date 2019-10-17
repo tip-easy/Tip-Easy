@@ -7,26 +7,17 @@ import RegistrationForm from './RegistrationForm';
 // HOCs
 import LoggedIn from '../../Components/HOCs/LoggedIn'
 
-// TO-DO: Add HOC to check for user info in store.
-//        If found, redirect to `SelectAmount` (if Sender) or `ReceiverWallet` (if Receiver)
 export const Auth = (props) => {
   const [page, setPage] = useState('login')
 
-  // These handler methods have to be placed on non-nested components to access props.
-  // These get passed to <Login> and <Register>, to be called depending on user interaction and database response.
-  const goToSelectAmount = () => props.history.replace('/tip/select-amount');
-  const goToWallet = () => props.history.replace('/wallet');
-
   return (
     <>
-      <div className="upperDiv" />
-
       <div className="buttonRow">
         <button 
           onClick={() => {
             setPage('login'); 
           }}
-          disabled={page === 'login' ? true : false}
+          disabled={page === 'login'}
         >
           Login
         </button>
@@ -35,23 +26,17 @@ export const Auth = (props) => {
           onClick={() => {
             setPage('register');
           }}
-          disabled={page === 'register' ? true : false}  
+          disabled={page === 'register'}  
         >
           Register
         </button>
       </div>
 
-      <div className="inputContainer">
+      <div className="formContainer">
         {page === 'login' ? 
-          <LoginForm
-            goToSelectAmount={goToSelectAmount}
-            goToWallet={goToWallet}  
-          />
+          <LoginForm />
           :
-          <RegistrationForm 
-            goToSelectAmount={goToSelectAmount}
-            goToWallet={goToWallet}
-          />
+          <RegistrationForm />
         }
       </div>
     </>

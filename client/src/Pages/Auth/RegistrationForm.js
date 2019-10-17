@@ -10,10 +10,21 @@ export const RegistrationForm = (props) => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [passwordConfirmation, setPasswordConfirmation] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
+
+  const goToSelectAmount = () => props.history.replace('/tip/select-amount');
+  const goToWallet = () => props.history.replace('/wallet');
 
   const submitHandler = (event) => {
+    setErrorMessage(null)
     event.preventDefault()
-    props.register({
+
+    if (password !== passwordConfirmation) {
+      return setErrorMessage(">>> Passwords do not match! <<<")
+    }
+
+    return props.register({
       email,
       password,
     })
@@ -21,7 +32,7 @@ export const RegistrationForm = (props) => {
 
   useEffect(() => {
     // Used to evaluate if Registration and the nested Login and GetUser have been successful and a user object has been returned from the back-end
-    if (user.email) {
+    if (user.email && localStorage.get('token')) {
       user.accountType === 'sender' ? 
         props.goToSelectAmount()
       : 
@@ -32,22 +43,55 @@ export const RegistrationForm = (props) => {
   return (
     <form onSubmit={(event) => submitHandler(event)}>
       
-      {/* Not 100% sure how I'm going to implement dropdown just yet */}
-      {/* Thinking of using react-dropdown, https://reactjsexample.com/a-dead-simple-dropdown-component-for-react/ */}
-      <div className="dropdown">
-        Send or Receive Tips?
+      {/* Holder for error message that only renders when error is defined */}
+      <div className="errorMessageHolder">
+        {errorMessage}
       </div>
 
-      <input 
+
+      <div>
+        <p>Do You Want To Send Tips Or Receive Them As Well?</p>
+        <select>
+          <option value="sender">Send Tips</option>
+          <option value="receiver">Receive Tips</option>
+        </select>
+      </div>
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      Email: <input 
         type="text" 
         placeholder="Email" 
         onChange={(e) => setEmail(e.target.value)}  
-      />
-      <input 
+      /><br/>
+
+      Password: <input 
         type="password" 
         placeholder="Password" 
         onChange={(e) => setPassword(e.target.value)}
-      />
+      /><br/>
+
+      Confirm Password:<input 
+        type="password" 
+        placeholder="Confirm Password" 
+        onChange={(e) => setPasswordConfirmation(e.target.value)}
+      /><br/>
         
       <button onClick={(event) => submitHandler(event)}>
         Sign Up
