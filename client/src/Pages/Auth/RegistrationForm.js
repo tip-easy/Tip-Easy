@@ -27,6 +27,16 @@ export const RegistrationForm = (props) => {
     })
   }
 
+  // TO-DO: Create validation function for email address:
+  //        - Length
+  //        - @ symbol
+  //        - .XXX extension
+
+  // TO-DO: Create validation function for password:
+  //        - Length
+  //        - Special characters
+  //        - Alphanumeric characters
+
   useEffect(() => {
     // Used to evaluate if Registration and the nested Login and GetUser have been successful and a user object has been returned from the back-end
     if (user.email && localStorage.get('token')) {
