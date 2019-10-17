@@ -48,7 +48,6 @@ export const RegistrationForm = (props) => {
         {errorMessage}
       </div>
 
-
       <div>
         <p>Do You Want To Send Tips Or Receive Them As Well?</p>
         <select>
@@ -57,41 +56,33 @@ export const RegistrationForm = (props) => {
         </select>
       </div>
 
+      <div className="formInputContainer">
+        <p>
+          Email: <input 
+            type="text" 
+            placeholder="Email" 
+            onChange={(e) => setEmail(e.target.value)}  
+          />
+        </p>
+      </div>
 
-      
+      <div className="formInputContainer">
+        <p>Password: <input 
+            type="password" 
+            placeholder="Password" 
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </p>
+      </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      Email: <input 
-        type="text" 
-        placeholder="Email" 
-        onChange={(e) => setEmail(e.target.value)}  
-      /><br/>
-
-      Password: <input 
-        type="password" 
-        placeholder="Password" 
-        onChange={(e) => setPassword(e.target.value)}
-      /><br/>
-
-      Confirm Password:<input 
-        type="password" 
-        placeholder="Confirm Password" 
-        onChange={(e) => setPasswordConfirmation(e.target.value)}
-      /><br/>
+      <div className="formInputContainer">
+        <p>Confirm Password: <input 
+            type="password" 
+            placeholder="Confirm Password" 
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
+          />
+        </p>
+      </div>
         
       <button onClick={(event) => submitHandler(event)}>
         Sign Up
