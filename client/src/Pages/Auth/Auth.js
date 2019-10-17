@@ -7,7 +7,7 @@ import RegistrationForm from './RegistrationForm';
 // HOCs
 import LoggedIn from '../../Components/HOCs/LoggedIn'
 
-export const Auth = (props) => {
+export const Auth = () => {
   const [page, setPage] = useState('login')
 
   return (
@@ -19,7 +19,7 @@ export const Auth = (props) => {
           }}
           disabled={page === 'login'}
         >
-          Login
+          Log In
         </button>
 
         <button 
@@ -31,6 +31,11 @@ export const Auth = (props) => {
           Register
         </button>
       </div>
+
+
+      {/* Manual breaks are temporary separation until styling can come into effect */}
+      <br/><br/><br/>
+
 
       <div className="formContainer">
         {page === 'login' ? 
