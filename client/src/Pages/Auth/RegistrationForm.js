@@ -13,9 +13,6 @@ export const RegistrationForm = (props) => {
   const [passwordConfirmation, setPasswordConfirmation] = useState('')
   const [errorMessage, setErrorMessage] = useState(null)
 
-  const goToSelectAmount = () => props.history.replace('/tip/select-amount');
-  const goToWallet = () => props.history.replace('/wallet');
-
   const submitHandler = (event) => {
     setErrorMessage(null)
     event.preventDefault()

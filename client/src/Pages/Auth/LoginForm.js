@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect} from 'react-redux';
+import { withRouter } from 'react-router-dom'; 
 
 import { bindActionCreators } from 'redux';
 
@@ -23,30 +24,52 @@ const LoginForm = (props) => {
     })
   }
 
+  // TO-DO: Create validation function for email address:
+  //        - Length
+  //        - @ symbol
+  //        - .XXX extension
+
+  // TO-DO: Create validation function for password:
+  //        - Length
+  //        - Special characters
+  //        - Alphanumeric characters
+
   useEffect(() => {
-    // Used to evaluate if the Login and nested GetUser have been successful and a user object has been returned from the back-end
+    // Used to evaluate if the Login and nested GetUser have been successful 
+    // Check for a user object in the Redux store.
+    // This is a temporary measure until proper authentication can be implemented
     if (user.email) {
       user.account_type === 'sender' ? 
-        props.goToSelectAmount()
+        goToSelectAmount()
       : 
         // In case of user being a Receiver
-        props.goToWallet()
+        goToWallet()
     }
   });
 
 
   return (
       <form onSubmit={(event) => submitHandler(event)}>
-        <input 
-          type="text" 
-          placeholder="Email" 
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input 
-          type="password" 
-          placeholder="Password" 
-          onChange={(e) => setPassword(e.target.value)}
-        />
+
+        <div className="formInputContainer">
+          <p>
+            Email: <input 
+                type="text" 
+                placeholder="Email" 
+                onChange={(e) => setEmail(e.target.value)}
+              />
+          </p>
+        </div>   
+
+        <div className="formInputContainer">
+          <p>
+            Password: <input 
+              type="password" 
+              placeholder="Password" 
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </p>
+        </div>
           
         <button onClick={(event) => submitHandler(event)}>
           Log In
@@ -70,4 +93,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps, 
   mapDispatchToProps
-)(LoginForm);
+)(withRouter(LoginForm));
