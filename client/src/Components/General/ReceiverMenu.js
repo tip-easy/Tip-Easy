@@ -7,17 +7,19 @@ const ReceiverMenu = (props) => {
     return (
       <div>
         <p>ReceiverMenu</p>
-        {/* Content of a dropdown/hamburger menu */}
-        {
-          props.location.pathname !== "/wallet" ?  
-            <><Link to="/wallet">Wallet</Link><br/></>
-          : 
-            null
-        }
-        <Link to="/withdraw">Withdraw Tips</Link><br/>
-        <Link to="/tip/select-amount">Send Tips</Link><br/>
-        <Link to="/user/settings">Settings</Link><br/>
-        <Link to="/">Logout</Link> {/* TO-DO: Implement logout behaviour. For now, redirects back to wallet. */}
+
+        <select>
+          {
+            props.location.pathname !== "/wallet" ?  
+              <option><Link to="/wallet">Wallet</Link></option>
+            : 
+              null
+          }
+          <option><Link to="/withdraw">Withdraw Tips</Link></option>
+          <option><Link to="/tip/select-amount">Send Tips</Link></option>
+          <option><Link to="/user/settings">Settings</Link></option>
+          <option><Link to="/">Logout</Link> </option>
+        </select>
       </div>
     )
 };

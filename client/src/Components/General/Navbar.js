@@ -21,12 +21,18 @@ const Navbar = (props) => {
         borderBottom: "1px solid black",
         marginBottom: "10px"
       }}>
-        <h3><Link to="/">TipEasy</Link></h3>
+
+        <h3>
+          <Link to="/">
+            TipEasy
+          </Link>
+        </h3>
+
         {
-            user.account_type === "receiver" ?
-              <ReceiverMenu />
-            :
-              <SenderMenu />
+          user.account_type === "receiver" ?
+            <ReceiverMenu />
+          :
+            <SenderMenu />
         }
       </div>
     )
