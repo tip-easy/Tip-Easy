@@ -3,23 +3,25 @@ import { withRouter, Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { logout } from '../../Actions/index';
+
 const ReceiverMenu = (props) => {
     return (
       <div>
         <p>ReceiverMenu</p>
 
-        <select>
+        <div>
           {
             props.location.pathname !== "/wallet" ?  
-              <option><Link to="/wallet">Wallet</Link></option>
+              <Link to="/wallet">Wallet</Link>
             : 
               null
           }
-          <option><Link to="/withdraw">Withdraw Tips</Link></option>
-          <option><Link to="/tip/select-amount">Send Tips</Link></option>
-          <option><Link to="/user/settings">Settings</Link></option>
-          <option><Link to="/">Logout</Link> </option>
-        </select>
+          <Link to="/withdraw">Withdraw Tips</Link>
+          <Link to="/tip/select-amount">Send Tips</Link>
+          <Link to="/user/settings">Settings</Link>
+        </div>
+        <p onClick={() => props.logout()}>Logout</p>
       </div>
     )
 };
@@ -33,7 +35,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    
+    logout
   }, dispatch)
 }
 
