@@ -14,6 +14,8 @@ const ReceiverMenu = (props) => {
         <p 
           // In lieu of a dropdown menu using <select>. Dropdown experience will be created through absolute positioning in styling.
           onClick={() => setMenuVisibility(!menuVisibility)}
+          // Styling is temporary to indicate clickability
+          style={{border: "1px solid red", padding: "5px"}}
         >
           ReceiverMenu
         </p>
@@ -34,7 +36,7 @@ const ReceiverMenu = (props) => {
         :
           null
         }
-        
+
       </div>
     </>
   )
