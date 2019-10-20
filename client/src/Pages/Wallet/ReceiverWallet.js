@@ -18,11 +18,10 @@ export const ReceiverWallet = (props) => {
     getBalance(token)
   }, [getBalance]);
 
-
   return (
     <div>
       <h2>Wallet</h2>
-      <h3>Your Balance: {currency} {calculated_balance}</h3>
+      <h3>Your Balance: {currency === "usd" ? <>$</> : null} {calculated_balance}</h3>
 
       <br/><Link to='/show-code'>Show Code</Link>
       <br/><Link to='/withdraw'>Make Withdrawal</Link>
