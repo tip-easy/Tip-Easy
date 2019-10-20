@@ -25,6 +25,7 @@ export const login = user_info => dispatch => {
     .then(res => {
       dispatch(creators.loggingInSuccess())
       const token = res.data.token
+      localStorage.setItem('tiptoken', token)
       
       dispatch(getUser(token))
     })
