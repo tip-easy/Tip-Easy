@@ -34,14 +34,7 @@ const ReceiverMenu = (props) => {
         :
           null
         }
-
-
-
         
-
-
-
-
       </div>
     </>
   )
