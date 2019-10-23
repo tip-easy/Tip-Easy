@@ -13,7 +13,7 @@ module.exports = {
     }),
   getMeResponse: () =>
     Promise.resolve({
-      account_type: 'sender',
+      account_type: 'receiver',
       name: 'Anthony',
       email: 'anthony@company.com',
       profile_img: '',
