@@ -3,7 +3,9 @@ import * as types from '../Actions/actionTypes';
 const initialState = {
   registering: false,
   
-  errorMessage: ''
+  successMessage: "",
+
+  errorMessage: ""
 }
 
 export const RegistrationReducer = (state = initialState, action) => {
@@ -17,6 +19,7 @@ export const RegistrationReducer = (state = initialState, action) => {
     case types.REGISTERING_SUCCESS:
       return {
         ...state,
+        successMessage: action.payload.successMessage,
         registering: false,
       }
 
@@ -27,6 +30,15 @@ export const RegistrationReducer = (state = initialState, action) => {
 
         errorMessage: "",
       }
+
+    case types.REGISTERING_FAILURE_INVALID_PARAMS:
+      return {
+        ...state,
+        registering: false,
+
+        errorMessage: action.payload.error,
+      }
+
 
     case types.REGISTERING_FAILURE_NO_ACCOUNT_TYPE:
       return {
@@ -61,7 +73,9 @@ export const RegistrationReducer = (state = initialState, action) => {
       }
 
     case types.CAUTION_CLEAR_ENTIRE_STORE:
-      return initialState
+      return {
+        ...initialState
+      }
 
     default: 
       return state

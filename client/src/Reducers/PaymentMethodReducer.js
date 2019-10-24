@@ -3,13 +3,21 @@ import * as types from './../Actions/actionTypes';
 const initialState = {
   paymentMethodsArray: [
     {
-      pay_method_type: "card",
-      pay_method_name: "Card"
+      pay_method_id: "111-222-333-444",
+      pay_method_name: "card",
+      created_at: 1560000000,
+      last_used: 1565090000,
+      brand: "amex",
+      last_4_chars: "8008",
     },
-    {
-      pay_method_type: "applepay",
-      pay_method_name: "ApplePay"
-    },
+    // {
+    //   pay_method_id: "111-222-333-444",
+    //   pay_method_name: "card",
+    //   created_at: 1565094311,
+    //   last_used: 1565097311,
+    //   brand: "visa",
+    //   last_4_chars: "4242",
+    // },
     // {
     //   pay_method_type: "applepay",
     //   pay_method_name: "ApplePay"
@@ -66,7 +74,6 @@ export const PaymentMethodReducer = (state = initialState, action) => {
     case types.ADDING_PAYMENT_METHOD_SUCCESS:
       return {
         ...state,
-        paymentMethodsArray: action.payload.paymentMethodsArray,
 
         addingPaymentMethod: false,
 
@@ -112,7 +119,9 @@ export const PaymentMethodReducer = (state = initialState, action) => {
       }
     
     case types.CAUTION_CLEAR_ENTIRE_STORE:
-      return initialState
+      return {
+        ...initialState
+      }
 
     default: 
       return state

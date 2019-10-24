@@ -1,17 +1,25 @@
 import * as types from './../Actions/actionTypes';
 
 const initialState = {
-  token: "XXXXX",
+  token: "",
   user: {
     // Having a default / placeholder?
-    account_type: "sender",
-    name: "Anakin",
-    email: "Vader@ImperialAcademy.com",
+    // account_type: "sender",
+    // name: "Anakin",
+    // email: "Vader@ImperialAcademy.com",
+    // profile_img: "",
+    // unique_code: "AA0000",
+    // location: "Coruscant",
+    // organisation: "Sith Order",
+    // default_currency: "usd",
+    account_type: "",
+    name: "",
+    email: "",
     profile_img: "",
-    unique_code: "AA0000",
-    location: "Coruscant",
-    organisation: "Sith Order",
-    default_currency: "$",
+    unique_code: "",
+    location: "",
+    organisation: "",
+    default_currency: "",
   },
 
   gettingUser: false,
@@ -98,7 +106,7 @@ export const UserReducer = (state = initialState, action) => {
         ...state,
         changingPassword: false,
 
-        changingPasswordMessage: "",
+        changingPasswordMessage: action.payload.message,
       }
 
     case types.CHANGING_PASSWORD_FAILURE:
@@ -135,7 +143,9 @@ export const UserReducer = (state = initialState, action) => {
       }
 
     case types.CAUTION_CLEAR_ENTIRE_STORE:
-      return initialState
+      return {
+        ...initialState
+      }
 
     default: 
       return state

@@ -30,11 +30,11 @@ export const fetchingTransactionsStart = () => {
   }
 }
 
-export const fetchingTransactionsSuccess = (transactionArray) => {
+export const fetchingTransactionsSuccess = (transactionsArray) => {
   return { 
     type: types.FETCHING_TRANSACTIONS_SUCCESS,
     payload: {
-      transactionArray: transactionArray
+      transactionsArray: transactionsArray
     }
   }
 }

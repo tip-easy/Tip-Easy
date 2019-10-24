@@ -94,10 +94,14 @@ export const TipReducer = (state = initialState, action) => {
       }
 
     case types.CLEAR_ENTIRE_TIP_STORE:
-      return initialState
+      return {
+        ...initialState
+      }
 
     case types.CAUTION_CLEAR_ENTIRE_STORE:
-      return initialState
+      return {
+        ...initialState
+      }
 
     default: 
       return state

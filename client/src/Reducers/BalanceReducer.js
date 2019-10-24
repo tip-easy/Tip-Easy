@@ -1,7 +1,9 @@
 import * as types from './../Actions/actionTypes';
 
 const initialState = {
-  balance: 0,
+  calculated_balance: 0,
+  currency: "",
+  wallet_type: "",
 
   gettingBalance: false,
   
@@ -21,7 +23,9 @@ export const BalanceReducer = (state = initialState, action) => {
     case types.GETTING_BALANCE_SUCCESS:
       return {
         ...state,
-        balance: action.payload.balance,
+        calculated_balance: action.payload.calculated_balance,
+        currency: action.payload.currency,
+        wallet_type: action.payload.wallet_type,
 
         gettingBalance: false,
       }
@@ -35,13 +39,17 @@ export const BalanceReducer = (state = initialState, action) => {
     case types.CLEAR_BALANCE_FROM_STORE:
       return {
         ...state,
-        balance: initialState.balance,
+        calculated_balance: initialState.calculated_balance,
+        currency: initialState.currency,
+        wallet_type: initialState.wallet_type,
 
         balanceMessage: initialState.balanceMessage,
       }
 
     case types.CAUTION_CLEAR_ENTIRE_STORE:
-      return initialState
+        return {
+          ...initialState
+        }
 
     default: 
       return state

@@ -8,7 +8,7 @@ export const loggingInStart = () => {
 
 export const loggingInFailureIncompleteParams = () => {
   return {
-    type: types.LOGGING_IN_FAILURE, 
+    type: types.LOGGING_IN_FAILURE_INVALID_PARAMS, 
     payload: {
       error: "Make sure you're passing a valid email and password!"
     } 
