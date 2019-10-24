@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const verifyAuth = require('../../middleware/auth/verify-auth');
 const mockResponseData = require('../../database/mock-response-data');
 
 router.post('/send-transaction', verifyAuth, async (req, res) => {
