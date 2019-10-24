@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const mockResponseData = require('../../database/mock-response-data');
+const verifyAuth = require('../../middleware/auth/verify-auth');
 
-router.get('/me', async (req, res) => {
+router.get('/me', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.getMeResponse();
     res.send(response);
@@ -10,7 +11,7 @@ router.get('/me', async (req, res) => {
   }
 });
 
-router.patch('/me', async (req, res) => {
+router.patch('/me', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.patchMeResponse();
     res.send(response);
@@ -19,7 +20,7 @@ router.patch('/me', async (req, res) => {
   }
 });
 
-router.delete('/me', async (req, res) => {
+router.delete('/me', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.deleteMeResponse();
     res.send(response);
@@ -28,7 +29,7 @@ router.delete('/me', async (req, res) => {
   }
 });
 
-router.get('/me/balance', async (req, res) => {
+router.get('/me/balance', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.getBalanceResponse();
     res.send(response);
@@ -37,7 +38,7 @@ router.get('/me/balance', async (req, res) => {
   }
 });
 
-router.get('/me/transactions', async (req, res) => {
+router.get('/me/transactions', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.getTransactionsResponse();
     res.send(response);
@@ -46,7 +47,7 @@ router.get('/me/transactions', async (req, res) => {
   }
 });
 
-router.get('/me/payment-methods', async (req, res) => {
+router.get('/me/payment-methods', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.getPaymentMethodsResponse();
     res.send(response);
@@ -55,7 +56,7 @@ router.get('/me/payment-methods', async (req, res) => {
   }
 });
 
-router.get('/me/payment-methods/:id', async (req, res) => {
+router.get('/me/payment-methods/:id', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.getPaymentMethodByIdResponse();
     res.send(response);
@@ -64,7 +65,7 @@ router.get('/me/payment-methods/:id', async (req, res) => {
   }
 });
 
-router.delete('/me/payment-methods/:id', async (req, res) => {
+router.delete('/me/payment-methods/:id', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.deletePaymentMethodByIdResponse();
     res.send(response);
@@ -73,7 +74,7 @@ router.delete('/me/payment-methods/:id', async (req, res) => {
   }
 });
 
-router.post('/me/payment-methods', async (req, res) => {
+router.post('/me/payment-methods', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.postPaymentMethodResponse();
     res.send(response);
@@ -82,7 +83,7 @@ router.post('/me/payment-methods', async (req, res) => {
   }
 });
 
-router.put('/me/reset-password', async (req, res) => {
+router.put('/me/reset-password', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.putResetPasswordResponse();
     res.send(response);

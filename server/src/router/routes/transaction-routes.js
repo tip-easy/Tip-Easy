@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const mockResponseData = require('../../database/mock-response-data');
 
-router.post('/send-transaction', async (req, res) => {
+router.post('/send-transaction', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.postSendTransactionResponse();
     res.send(response);
@@ -10,7 +10,7 @@ router.post('/send-transaction', async (req, res) => {
   }
 });
 
-router.post('/withdraw', async (req, res) => {
+router.post('/withdraw', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.postWithdrawResponse();
     res.send(response);
@@ -19,7 +19,7 @@ router.post('/withdraw', async (req, res) => {
   }
 });
 
-router.post('/deposit', async (req, res) => {
+router.post('/deposit', verifyAuth, async (req, res) => {
   try {
     const response = await mockResponseData.postDepositResponse();
     res.send(response);
