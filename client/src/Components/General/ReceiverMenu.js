@@ -1,25 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { withRouter, Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import { logout } from '../../Actions/index';
+
 const ReceiverMenu = (props) => {
-    return (
+  const [menuVisibility, setMenuVisibility] = useState(false)
+
+  return (
+    <>
       <div>
-        <p>ReceiverMenu</p>
-        {/* Content of a dropdown/hamburger menu */}
-        {
-          props.location.pathname !== "/wallet" ?  
-            <><Link to="/wallet">Wallet</Link><br/></>
-          : 
-            null
+        <p 
+          // In lieu of a dropdown menu using <select>. Dropdown experience will be created through absolute positioning in styling.
+          onClick={() => setMenuVisibility(!menuVisibility)}
+          // Styling is temporary to indicate clickability
+          style={{border: "1px solid red", padding: "5px"}}
+        >
+          ReceiverMenu
+        </p>
+
+        { menuVisibility ?
+          <div>
+            {/* If user is currently in the wallet, there's no need to show the wallet button */}
+            { props.location.pathname !== "/wallet" ?  
+              <p><Link to="/wallet">Wallet</Link></p>
+            : 
+              null
+            }
+            <p><Link to="/withdraw">Withdraw Tips</Link></p>
+            <p><Link to="/tip/select-amount">Send Tips</Link></p>
+            <p><Link to="/user/settings">Settings</Link></p>
+            <p onClick={() => props.logout()}>Logout</p>
+          </div>
+        :
+          null
         }
-        <Link to="/withdraw">Withdraw Tips</Link><br/>
-        <Link to="/tip/select-amount">Send Tips</Link><br/>
-        <Link to="/user/settings">Settings</Link><br/>
-        <Link to="/">Logout</Link> {/* TO-DO: Implement logout behaviour. For now, redirects back to wallet. */}
+
       </div>
-    )
+    </>
+  )
 };
 
 
@@ -31,7 +51,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    
+    logout
   }, dispatch)
 }
 

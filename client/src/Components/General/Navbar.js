@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -9,28 +9,36 @@ import ReceiverMenu from './ReceiverMenu';
 const Navbar = (props) => {
   const { user } = props.UserReducer
 
-    return (
+  return (
+    // Rendering of Navbar is currently conditional on account info being present in Redux store
+    // TO-DO: Implement more elaborate checks based on token and account info (after authentication implementation)
+    user.account_type && props.UserReducer.token
+      ? 
+    (
       <div className="navbar" style={{
         display: "flex", 
         justifyContent: "space-between", 
         borderBottom: "1px solid black",
         marginBottom: "10px"
       }}>
-        <h3>-- Navbar ---</h3>
+
+        <h3>
+          <Link to="/">
+            TipEasy
+          </Link>
+        </h3>
+
         {
-          props.history.location.pathname === "/welcome" ||  props.history.location.pathname === "/" ?
-            <>
-              <h3>Login</h3>
-              <h3>Sign Up</h3>
-            </>
-          : 
-            user.account_type === "receiver" ?
-              <ReceiverMenu />
-            :
-              <SenderMenu />
+          user.account_type === "receiver" ?
+            <ReceiverMenu />
+          :
+            <SenderMenu />
         }
       </div>
     )
+      :
+    null
+  )
 };
 
 
