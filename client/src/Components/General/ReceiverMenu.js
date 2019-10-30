@@ -31,6 +31,7 @@ const ReceiverMenu = (props) => {
             <p><Link to="/withdraw">Withdraw Tips</Link></p>
             <p><Link to="/tip/select-amount">Send Tips</Link></p>
             <p><Link to="/user/settings">Settings</Link></p>
+            {/* TODO: Test logout extensively */}
             <p onClick={() => props.logout()}>Logout</p>
           </div>
         :
