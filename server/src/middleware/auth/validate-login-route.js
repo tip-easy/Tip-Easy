@@ -6,7 +6,7 @@ const credentialsMatch = require('./helpers/login/credentials-match');
 async function validateLoginRoute(req, res, next) {
   if (!objectContainsProperties(req.body, ['email', 'password'])) {
     return res.status(400).send({
-      message: 'A login object containing the required properties is required.'
+      message: 'A login object containing a valid email address and password is required.'
     });
   } else if (!isValidEmail(req.body.email)) {
     return res.status(400).send({
