@@ -9,12 +9,15 @@ const dbClient = new MongoClient(uri, {
 // Here we are wrapping the database connection method
 // in a Promise that resolves when connection is successful
 function getDbConnection() {
+  if (!process.env.DB_URI) {
+    console.warn('No DB_URI environment variable found.\nPlease make sure you are running mongo locally for things to work.\n');
+  }
   return new Promise((resolve, reject) => {
     dbClient.connect((err, connection) => {
-      console.log('db connection opened');
+      console.log('connecting to db...');
       if (err) {
         dbClient.close();
-        console.log('db connection closed');
+        console.log('db connection failed');
         reject(err);
       } else if (connection) {
         resolve(connection);
