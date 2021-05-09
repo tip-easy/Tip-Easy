@@ -15,6 +15,8 @@ export const getBalance = ( token ) => dispatch => {
     return dispatch(tokenIsNotValid(types.GETTING_BALANCE_FAILURE))
   }
 
+  console.log("here")
+
   axios.get(`${endpointURLs.getBalancePath}`, { 
     headers: {
       'Content-Type': 'application/json',
@@ -22,8 +24,8 @@ export const getBalance = ( token ) => dispatch => {
     }
   })
     .then(res => {
-      const { calculated_balance, currency, wallet_type } = res.data[0]
-      
+
+      const { calculated_balance, currency, wallet_type } = res.data
       return dispatch(creators.gettingBalanceSuccess(calculated_balance, currency, wallet_type))
     })
 
